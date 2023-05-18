@@ -24,7 +24,7 @@ const Banner = () => {
   return (
     <>
       <Slider {...settings}>
-        <div className='relative h-96'>
+        <div className='relative h-96 '>
           <img
             src={imgSrc[0]}
             alt='Banner 1'
