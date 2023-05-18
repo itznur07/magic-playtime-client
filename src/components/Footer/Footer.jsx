@@ -93,7 +93,7 @@ const Footer = () => {
               <span className='text-[#e52165]'>
                 <FaCopyright />
               </span>{" "}
-              <p>@copyright by magic playtiome</p>
+              <p>@copyright by magic playtime</p>
             </div>
           </div>
         </div>

@@ -1,0 +1,14 @@
+.slider-container {
+  height: 500px;
+}
+
+.slick-slide {
+  height: 400px;
+}
+
+.slick-dot {
+  width: 12px;
+  height: 12px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
