@@ -2,6 +2,7 @@ import React from "react";
 import {
   FaAddressCard,
   FaBabyCarriage,
+  FaCopyright,
   FaFacebook,
   FaInstagram,
   FaPhone,
@@ -86,6 +87,13 @@ const Footer = () => {
                 <FaTelegram />
               </span>{" "}
               <p>magicplaytime@gmail.com</p>
+            </div>
+            <div className='flex  space-x-3'>
+              {" "}
+              <span className='text-[#e52165]'>
+                <FaCopyright />
+              </span>{" "}
+              <p>@copyright by magic playtiome</p>
             </div>
           </div>
         </div>
