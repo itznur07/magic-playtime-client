@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import Navbar from "../Navbar/Navbar";
 
 const Header = () => {
   return (
-    <div>Header</div>
-  )
-}
+    <div>
+      <Navbar></Navbar>
+    </div>
+  );
+};
 
-export default Header
+export default Header;
