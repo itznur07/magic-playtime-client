@@ -4,7 +4,17 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        alert("Logout successfully!");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <>
@@ -62,7 +72,7 @@ const Navbar = () => {
                   </span>
 
                   <button
-                    // onClick={handleLogOut}
+                    onClick={handleLogout}
                     className='px-4 py-2.5 rounded bg-[#e52165] hover:bg-[#0d1137]  text-white font-semibold'
                   >
                     Log out
