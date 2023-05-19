@@ -1,9 +1,12 @@
+import { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useTitle from "../../Hooks/useTitle";
-// import loginImg from "../../assets/images/login/login.svg";
+import { AuthContext } from "../../Providers/AuthProviders";
 
 const Registration = () => {
+  const { userRegistration } = useContext(AuthContext);
+
   const handleSignUp = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -18,12 +21,21 @@ const Registration = () => {
       password,
       photoURL,
     };
+
+    /** registration function call */
+    userRegistration(email, password)
+      .then(() => {
+        alert("User registration succesfully!");
+        form.reset();
+      })
+      .catch((error) => {
+        console.log("User sign up error:", error);
+      });
   };
 
   /** custom useTitle hook call */
   useTitle("Create an account");
 
-  
   return (
     <div className='flex justify-center space-x-24 items-center my-14'>
       <form

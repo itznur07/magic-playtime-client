@@ -1,21 +1,26 @@
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { createContext, useState } from "react";
 import app from "../firebase/firebase.config";
 
-const AuthContext = createContext();
-
-const auth = getAuth(app);
+export const AuthContext = createContext();
 
 const AuthProviders = ({ children }) => {
   const [user, setUser] = useState();
+  const [loading, setLoading] = useState(true);
+
+  const auth = getAuth(app);
 
   /** User Sing in with email password */
-  const singIn = (name, email, password, photoURL) => {
-    return signInWithEmailAndPassword(auth, email, password);
+  const userRegistration = (email, password) => {
+    setLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password);
   };
 
+  /** User Sign in with Google */
+
   const authInfo = {
-    name: "Nuruddin",
+    user,
+    userRegistration,
   };
 
   return (
