@@ -1,5 +1,6 @@
 import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import useTitle from "../../Hooks/useTitle";
 
 function Login() {
   const handleSignIn = (event) => {
@@ -10,6 +11,9 @@ function Login() {
 
     console.log({ email, password });
   };
+
+  /** custom useTitle hook call */
+  useTitle("Login");
 
   return (
     <div className='flex justify-center space-x-24 items-center my-14'>
@@ -58,7 +62,7 @@ function Login() {
         <br />
         <button
           type='submit'
-          className='bg-[#ff3811] hover:bg-[#0d1137] text-white w-full font-bold py-2 mt-4 px-4 rounded focus:outline-none focus:shadow-outline'
+          className='bg-[#e52165] hover:bg-[#0d1137] text-white w-full font-bold py-2 mt-4 px-4 rounded focus:outline-none focus:shadow-outline'
         >
           Login
         </button>
@@ -76,7 +80,7 @@ function Login() {
         <div className='text-center text-md mt-3 text-sm text-slate-600'>
           New here?{" "}
           <Link to='/signup'>
-            <span className='text-[#ff3811] font-medium'>Sign up</span>
+            <span className='text-[#e52165] font-medium'>Sign up</span>
           </Link>
         </div>
       </form>

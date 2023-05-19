@@ -1,5 +1,6 @@
 import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import useTitle from "../../Hooks/useTitle";
 // import loginImg from "../../assets/images/login/login.svg";
 
 const Registration = () => {
@@ -9,10 +10,20 @@ const Registration = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    const photoURL = form.photo.value;
 
-    console.log({ name, email, password });
+    const userInfo = {
+      name,
+      email,
+      password,
+      photoURL,
+    };
   };
 
+  /** custom useTitle hook call */
+  useTitle("Create an account");
+
+  
   return (
     <div className='flex justify-center space-x-24 items-center my-14'>
       <form
@@ -30,6 +41,7 @@ const Registration = () => {
             type='text'
             name='name'
             id='name'
+            required
             className='w-full border rounded-lg py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-[#e52165] focus:border-transparent'
           />
         </div>
@@ -41,6 +53,7 @@ const Registration = () => {
             type='email'
             name='email'
             id='email'
+            required
             className='w-full border rounded-lg py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-[#e52165] focus:border-transparent'
           />
         </div>
@@ -55,6 +68,7 @@ const Registration = () => {
             type='password'
             name='password'
             id='password'
+            required
             className='w-full border rounded-lg py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-[#e52165] focus:border-transparent'
           />
         </div>
@@ -65,6 +79,7 @@ const Registration = () => {
           <input
             type='text'
             name='photo'
+            required
             id='photo'
             className='w-full border rounded-lg py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-[#e52165] focus:border-transparent'
           />
