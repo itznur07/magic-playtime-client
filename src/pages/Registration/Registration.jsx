@@ -5,7 +5,7 @@ import useTitle from "../../Hooks/useTitle";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 const Registration = () => {
-  const { userRegistration } = useContext(AuthContext);
+  const { userRegistration, signInWithGoogle } = useContext(AuthContext);
 
   const handleSignUp = (event) => {
     event.preventDefault();
@@ -30,6 +30,17 @@ const Registration = () => {
       })
       .catch((error) => {
         console.log("User sign up error:", error);
+      });
+  };
+
+  /** Sign in with google */
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then(() => {
+        alert("User sing in successfully!");
+      })
+      .catch((error) => {
+        console.log("google sign in error:", error);
       });
   };
 
@@ -106,7 +117,10 @@ const Registration = () => {
           type='button'
           className='bg-red-600 hover:bg-[#0d1137] text-white w-full font-bold py-2 mt-4 px-4 rounded focus:outline-none focus:shadow-outline'
         >
-          <div className='flex justify-center items-center space-x-2'>
+          <div
+            onClick={handleGoogleSignIn}
+            className='flex justify-center items-center space-x-2'
+          >
             <FaGoogle /> <span>Google</span>
           </div>
         </button>
