@@ -5,7 +5,7 @@ import useTitle from "../../Hooks/useTitle";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 function Login() {
-  const { logInWithEmailPassword } = useContext(AuthContext);
+  const { logInWithEmailPassword, signInWithGoogle } = useContext(AuthContext);
 
   const handleSignIn = (event) => {
     event.preventDefault();
@@ -17,6 +17,16 @@ function Login() {
       .then(() => {
         alert("User Login Successfully!");
         form.reset();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then(() => {
+        alert("Sign in successfully!");
       })
       .catch((error) => {
         console.log(error);
@@ -43,6 +53,7 @@ function Login() {
           <input
             type='email'
             name='email'
+            required
             id='email'
             className='w-full border rounded-lg py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-[#e52165] focus:border-transparent'
           />
@@ -57,6 +68,7 @@ function Login() {
           <input
             type='password'
             name='password'
+            required
             id='password'
             className='w-full border rounded-lg py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-[#e52165] focus:border-transparent'
           />
@@ -81,7 +93,10 @@ function Login() {
           type='button'
           className='bg-red-600 hover:bg-[#0d1137] text-white w-full font-bold py-2 mt-4 px-4 rounded focus:outline-none focus:shadow-outline'
         >
-          <div className='flex justify-center items-center space-x-2'>
+          <div
+            onClick={handleGoogleSignIn}
+            className='flex justify-center items-center space-x-2'
+          >
             <FaGoogle /> <span>Google</span>
           </div>
         </button>

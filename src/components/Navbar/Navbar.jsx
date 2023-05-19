@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaBabyCarriage } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProviders";
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <>
       <div className='bg-white relative z-50'>
@@ -34,7 +37,7 @@ const Navbar = () => {
               to='/addtoys'
               className='relative inline-block text-md px-4 py-2 leading-none  text-gray-800   hover:text-blue-500 hover:bg-slate-100 rounded-sm mt-4 lg:mt-0 '
             >
-              All Toys
+              Add Toys
             </Link>
             <Link
               to='/mytoys'
@@ -52,19 +55,29 @@ const Navbar = () => {
           {/* login & cart & wish icon here */}
           <div>
             <div className='flex items-center md:space-x-6'>
-              {/* 
-                <button
-                  onClick={handleLogOut}
-                  className='px-4 py-2.5 rounded bg-[#FF3811] text-white font-semibold'
-                >
-                  Log out
-                </button> */}
+              {user ? (
+                <>
+                  <span>
+                    <img src={user?.photoURL} alt='profile-pic' />
+                  </span>
 
-              <Link to='/login'>
-                <button className='px-4 py-2.5 rounded bg-[#e52165] hover:bg-[#0d1137] text-white font-semibold'>
-                  Log in
-                </button>
-              </Link>
+                  <button
+                    // onClick={handleLogOut}
+                    className='px-4 py-2.5 rounded bg-[#e52165] hover:bg-[#0d1137]  text-white font-semibold'
+                  >
+                    Log out
+                  </button>
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <Link to='/login'>
+                    <button className='px-4 py-2.5 rounded bg-[#e52165] hover:bg-[#0d1137] text-white font-semibold'>
+                      Log in
+                    </button>
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </nav>
