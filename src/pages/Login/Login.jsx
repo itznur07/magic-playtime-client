@@ -1,15 +1,26 @@
+import { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useTitle from "../../Hooks/useTitle";
+import { AuthContext } from "../../Providers/AuthProviders";
 
 function Login() {
+  const { logInWithEmailPassword } = useContext(AuthContext);
+
   const handleSignIn = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
 
-    console.log({ email, password });
+    logInWithEmailPassword(email, password)
+      .then(() => {
+        alert("User Login Successfully!");
+        form.reset();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   /** custom useTitle hook call */
