@@ -5,7 +5,8 @@ import useTitle from "../../Hooks/useTitle";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 const Registration = () => {
-  const { userRegistration, signInWithGoogle } = useContext(AuthContext);
+  const { userRegistration, signInWithGoogle, updateUserProfile } =
+    useContext(AuthContext);
 
   const handleSignUp = (event) => {
     event.preventDefault();
@@ -15,16 +16,10 @@ const Registration = () => {
     const password = form.password.value;
     const photoURL = form.photo.value;
 
-    const userInfo = {
-      name,
-      email,
-      password,
-      photoURL,
-    };
-
     /** registration function call */
     userRegistration(email, password)
       .then(() => {
+        updateUserProfile(name, photoURL);
         alert("User registration succesfully!");
         form.reset();
       })

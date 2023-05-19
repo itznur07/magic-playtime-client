@@ -67,9 +67,11 @@ const Navbar = () => {
             <div className='flex items-center md:space-x-6'>
               {user ? (
                 <>
-                  <span>
-                    <img src={user?.photoURL} alt='profile-pic' />
-                  </span>
+                  <img
+                    className='w-14 h-14 mx-3 rounded-full border-2 border-[#e52165]'
+                    src={user?.photoURL}
+                    alt='profile-pic'
+                  />
 
                   <button
                     onClick={handleLogout}
