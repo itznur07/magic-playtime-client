@@ -23,12 +23,8 @@ const router = createBrowserRouter([
         element: <Login></Login>,
       },
       {
-        path: "/toy-details",
+        path: "/toy-details/:id",
         element: <ToyDetails></ToyDetails>,
-        loader: ({ params }) =>
-          fetch(
-            `https://toy-marketplace-server-six.vercel.app/categorys/${params.id}}`
-          ),
       },
     ],
   },
