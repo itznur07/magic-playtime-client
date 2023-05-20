@@ -4,21 +4,31 @@ import "react-tabs/style/react-tabs.css";
 import Card from "./Card";
 
 const ShopByCategory = () => {
-  const [category, setCategory] = useState([]);
-
-  const car = category[0];
-  const sports = category[1];
-  const dolls = category[2];
-
-  console.log("====================================");
-  console.log(car);
-  console.log("====================================");
+  const [carData, setCarData] = useState([]);
+  const [sportsData, setSportsData] = useState([]);
+  const [dollData, setDollData] = useState([]);
 
   useEffect(() => {
-    fetch("https://toy-marketplace-server-six.vercel.app/categorys")
+    fetch("https://toy-marketplace-server-six.vercel.app/cartoys")
       .then((res) => res.json())
       .then((data) => {
-        setCategory(data);
+        setCarData(data);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch("https://toy-marketplace-server-six.vercel.app/sportstoys")
+      .then((res) => res.json())
+      .then((data) => {
+        setSportsData(data);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch("https://toy-marketplace-server-six.vercel.app/dolltoys")
+      .then((res) => res.json())
+      .then((data) => {
+        setDollData(data);
       });
   }, []);
 
@@ -50,7 +60,7 @@ const ShopByCategory = () => {
             {/* Render toys for Car category */}
             <div className=''>
               <div className='toy grid grid-cols-3  gap-4'>
-                {car?.toys.map((toy) => (
+                {carData?.map((toy) => (
                   <Card className='toy' key={toy._id} toy={toy} />
                 ))}
               </div>
@@ -61,7 +71,7 @@ const ShopByCategory = () => {
             {/* Render toys for Sports category */}
             <div className=''>
               <div className='toy grid grid-cols-3  gap-4'>
-                {sports?.toys.map((toy) => (
+                {sportsData?.map((toy) => (
                   <Card className='toy' key={toy._id} toy={toy} />
                 ))}
               </div>
@@ -72,7 +82,7 @@ const ShopByCategory = () => {
             {/* Render toys for Doll category */}
             <div className=''>
               <div className='toy grid grid-cols-3  gap-4'>
-                {dolls?.toys.map((toy) => (
+                {dollData?.map((toy) => (
                   <Card className='toy' key={toy._id} toy={toy} />
                 ))}
               </div>
