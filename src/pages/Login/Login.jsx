@@ -1,11 +1,16 @@
 import { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useTitle from "../../Hooks/useTitle";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 function Login() {
   const { logInWithEmailPassword, signInWithGoogle } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location?.state?.from?.pathname || "/";
 
   const handleSignIn = (event) => {
     event.preventDefault();
@@ -16,6 +21,7 @@ function Login() {
     logInWithEmailPassword(email, password)
       .then(() => {
         alert("User Login Successfully!");
+        navigate(from, { replace: true });
         form.reset();
       })
       .catch((error) => {
@@ -27,6 +33,7 @@ function Login() {
     signInWithGoogle()
       .then(() => {
         alert("Sign in successfully!");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error);

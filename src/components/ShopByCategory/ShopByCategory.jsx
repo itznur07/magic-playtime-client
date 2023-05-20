@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import { AuthContext } from "../../Providers/AuthProviders";
 import Card from "./Card";
 
 const ShopByCategory = () => {
+  const { loading } = useContext(AuthContext);
+
   const [carData, setCarData] = useState([]);
   const [sportsData, setSportsData] = useState([]);
   const [dollData, setDollData] = useState([]);
