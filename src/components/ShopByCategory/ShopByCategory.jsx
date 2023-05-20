@@ -1,0 +1,87 @@
+import React, { useEffect, useState } from "react";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+import Card from "./Card";
+
+const ShopByCategory = () => {
+  const [category, setCategory] = useState([]);
+
+  const car = category[0];
+  const sports = category[1];
+  const dolls = category[2];
+
+  console.log("====================================");
+  console.log(car);
+  console.log("====================================");
+
+  useEffect(() => {
+    fetch("https://toy-marketplace-server-six.vercel.app/categorys")
+      .then((res) => res.json())
+      .then((data) => {
+        setCategory(data);
+      });
+  }, []);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleViewDetails = () => {
+    if (!isLoggedIn) {
+      alert("You have to log in first to view details");
+      // Redirect to the login page
+    } else {
+      // Proceed with viewing details
+    }
+  };
+
+  return (
+    <>
+      <h1 className='text-3xl font-semibold text-center m-10 mb-10 mt-16'>
+        Shop By Category
+      </h1>
+      <div className='my-10 flex items-center justify-center'>
+        <Tabs>
+          <TabList>
+            <Tab>Car Toys</Tab>
+            <Tab>Sports Toys</Tab>
+            <Tab>Doll Toys</Tab>
+          </TabList>
+
+          <TabPanel>
+            {/* Render toys for Car category */}
+            <div className=''>
+              <div className='toy grid grid-cols-3  gap-4'>
+                {car?.toys.map((toy) => (
+                  <Card className='toy' key={toy._id} toy={toy} />
+                ))}
+              </div>
+            </div>
+          </TabPanel>
+
+          <TabPanel>
+            {/* Render toys for Sports category */}
+            <div className=''>
+              <div className='toy grid grid-cols-3  gap-4'>
+                {sports?.toys.map((toy) => (
+                  <Card className='toy' key={toy._id} toy={toy} />
+                ))}
+              </div>
+            </div>
+          </TabPanel>
+
+          <TabPanel>
+            {/* Render toys for Doll category */}
+            <div className=''>
+              <div className='toy grid grid-cols-3  gap-4'>
+                {dolls?.toys.map((toy) => (
+                  <Card className='toy' key={toy._id} toy={toy} />
+                ))}
+              </div>
+            </div>
+          </TabPanel>
+        </Tabs>
+      </div>
+    </>
+  );
+};
+
+export default ShopByCategory;

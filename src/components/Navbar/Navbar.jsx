@@ -69,7 +69,7 @@ const Navbar = () => {
                 <>
                   <img
                     className='w-14 h-14 mx-3 rounded-full border-2 border-[#e52165]'
-                    src={user?.photoURL}
+                    src={user.auth.currentUser.photoURL}
                     alt='profile-pic'
                   />
 
