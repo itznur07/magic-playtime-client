@@ -1,10 +1,15 @@
 import { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useTitle from "../../Hooks/useTitle";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 const Registration = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location?.state?.from?.pathname || "/";
+
   const { userRegistration, signInWithGoogle, updateUserProfile } =
     useContext(AuthContext);
 
@@ -21,6 +26,7 @@ const Registration = () => {
       .then(() => {
         updateUserProfile(name, photoURL);
         alert("User registration succesfully!");
+        navigate(from, { replace: true });
         form.reset();
       })
       .catch((error) => {
@@ -33,6 +39,7 @@ const Registration = () => {
     signInWithGoogle()
       .then(() => {
         alert("User sing in successfully!");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log("google sign in error:", error);

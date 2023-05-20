@@ -17,10 +17,6 @@ const AuthProviders = ({ children }) => {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  console.log("====================================");
-  console.log(user);
-  console.log("====================================");
-
   const auth = getAuth(app);
 
   /** User Sing up with email password */
