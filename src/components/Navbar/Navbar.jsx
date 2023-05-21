@@ -1,10 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FaBabyCarriage } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+
+  // user profle photo hover
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   const handleLogout = () => {
     logOut()
@@ -68,11 +79,17 @@ const Navbar = () => {
               {user ? (
                 <>
                   <img
-                    className='w-14 h-14 mx-3 rounded-full border-2 border-[#e52165]'
-                    src={user.auth.currentUser.photoURL}
+                    className='w-14 h-14 mx-3 relative hover:mb-5 cursor-pointer  rounded-full border-2 border-[#e52165]'
+                    src={user?.auth.currentUser.photoURL}
                     alt='profile-pic'
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
                   />
-
+                  {isHovered && (
+                    <div className='name-overlay absolute bottom-3  '>
+                      {user?.auth.currentUser.displayName}
+                    </div>
+                  )}
                   <button
                     onClick={handleLogout}
                     className='px-4 py-2.5 rounded bg-[#e52165] hover:bg-[#0d1137]  text-white font-semibold'

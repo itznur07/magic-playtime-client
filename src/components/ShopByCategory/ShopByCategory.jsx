@@ -48,10 +48,8 @@ const ShopByCategory = () => {
 
   return (
     <>
-      <h1 className='text-3xl font-semibold text-center m-10 mb-10 mt-16'>
-        Shop By Category
-      </h1>
-      <div className='my-10 flex items-center justify-center'>
+      <h1 className='text-3xl font-bold text-center mb-6 mt-5'>Shop By Category</h1>
+      <div className='my-5 flex items-center justify-center'>
         <Tabs>
           <TabList>
             <Tab>Car Toys</Tab>
