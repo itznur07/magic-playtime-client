@@ -24,11 +24,11 @@ const Banner = () => {
   return (
     <>
       <Slider {...settings}>
-        <div className='relative h-96  '>
+        <div className='relative h-96 overflow-hidden'>
           <img
             src={imgSrc[0]}
             alt='Banner 1'
-            className='w-full h-full object-cover'
+            className='w-full h-full max-h-96 object-cover'
           />
           <div className='absolute top-28 left-36'>
             <div>

@@ -1,185 +1,185 @@
-const AddToys = () => {
-  
-  const handleAddCoffe = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const name = form.name.value;
-    const quantity = form.quantity.value;
-    const supplier = form.supplier.value;
-    const taste = form.taste.value;
-    const category = form.category.value;
-    const details = form.details.value;
-    const photo = form.photo.value;
+import React from "react";
 
-    const coffeeInfo = {
+const AddToys = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const pictureUrl = form.pictureUrl.value;
+    const name = form.name.value;
+    const sellerName = form.sellerName.value;
+    const sellerEmail = form.sellerEmail.value;
+    const subcategory = form.subcategory.value;
+    const price = form.price.value;
+    const rating = form.rating.value;
+    const quantity = form.quantity.value;
+    const description = form.description.value;
+
+    const toyData = {
+      pictureUrl,
       name,
+      sellerName,
+      sellerEmail,
+      subcategory,
+      price,
+      rating,
       quantity,
-      supplier,
-      taste,
-      category,
-      details,
-      photo,
+      description,
     };
 
-    //   fetch(
-    //     "https://cofee-house-server-nuruddinmd509-gmailcom.vercel.app/coffee",
-    //     {
-    //       method: "POST",
-    //       headers: {
-    //         "content-type": "application/json",
-    //       },
-    //       body: JSON.stringify(coffeeInfo),
-    //     }
-    //   )
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //       if (data.insertedId) {
-    //         alert("Coffee added successfully!");
-    //       }
-    //       form.reset();
-    //       navigate("/coffee");
-    //     });
-    // };
+    console.log(toyData);
+  };
 
-    return (
-      <div className='flex flex-col space-y-5 items-center justify-center h-screen'>
-        <div>
-          <h1 className='text-3xl font-bold my-2 uppercase text-blue-500'>
-            Add Toys
-          </h1>
-        </div>
-        <form
-          // onSubmit={handleAddCoffe}
-          className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'
-        >
-          <div className='grid grid-cols-2 gap-5'>
-            <div className='mb-4'>
-              <label
-                className='block text-gray-700 font-bold mb-2'
-                htmlFor='name'
-              >
-                Name
-              </label>
-              <input
-                className=' appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-                id='name'
-                name='name'
-                type='text'
-                placeholder='Enter coffee name'
-                required
-              />
-            </div>
-            <div className='mb-4'>
-              <label
-                className='block text-gray-700 font-bold mb-2'
-                htmlFor='quantity'
-              >
-                Quantity
-              </label>
-              <input
-                className=' appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-                id='quantity'
-                name='quantity'
-                type='text'
-                placeholder='Enter coffee chef'
-                required
-              />
-            </div>
-
-            <div className='mb-4'>
-              <label
-                className='block text-gray-700 font-bold mb-2'
-                htmlFor='supplier'
-              >
-                Supplier
-              </label>
-              <input
-                className=' appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-                id='supplier'
-                name='supplier'
-                type='text'
-                placeholder='Enter coffee supplier'
-                required
-              />
-            </div>
-            <div className='mb-4'>
-              <label
-                className='block text-gray-700 font-bold mb-2'
-                htmlFor='taste'
-              >
-                Taste
-              </label>
-              <input
-                className=' appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-                id='taste'
-                name='taste'
-                type='text'
-                placeholder='Enter coffee taste'
-                required
-              />
-            </div>
-            <div className='mb-4'>
-              <label
-                className='block text-gray-700 font-bold mb-2'
-                htmlFor='category'
-              >
-                Category
-              </label>
-              <input
-                className=' appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-                id='category'
-                name='category'
-                type='text'
-                placeholder='Enter coffee cagegory'
-                required
-              />
-            </div>
-            <div className='mb-4'>
-              <label
-                className='block text-gray-700 font-bold mb-2'
-                htmlFor='details'
-              >
-                Details
-              </label>
-              <input
-                className=' appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-                id='details'
-                name='details'
-                type='text'
-                placeholder='Enter coffee details'
-                required
-              />
-            </div>
-          </div>
-          <div className='mb-4'>
+  return (
+    <div className='p-6'>
+      <h2 className='text-3xl font-bold text-center my-5 '>Add A Toy</h2>
+      <form onSubmit={handleSubmit} className='md:mx-52 '>
+        <div className='grid grid-cols-2 gap-5'>
+          <div>
             <label
-              className='block text-gray-700 font-bold mb-2'
-              htmlFor='photo'
+              htmlFor='pictureUrl'
+              className='block text-gray-700 font-medium mb-2'
             >
-              Photo
+              Picture URL
             </label>
             <input
-              className=' appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-              id='photo'
-              name='photo'
               type='text'
-              placeholder='Enter photo url'
+              id='pictureUrl'
+              className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
+              name='pictureUrl'
               required
             />
           </div>
-          {/* Submit button */}
-          <div className='flex items-center justify-between '>
-            <button
-              className='bg-blue-500 hover:bg-blue-700 w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-              type='submit'
+          <div>
+            <label
+              htmlFor='name'
+              className='block text-gray-700 font-medium mb-2'
             >
-              Submit
-            </button>
+              Name
+            </label>
+            <input
+              type='text'
+              id='name'
+              className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
+              name='name'
+              required
+            />
           </div>
-        </form>
-      </div>
-    );
-  };
+          <div>
+            <label
+              htmlFor='sellerName'
+              className='block text-gray-700 font-medium mb-2'
+            >
+              Seller Name
+            </label>
+            <input
+              type='text'
+              id='sellerName'
+              className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
+              name='sellerName'
+              required
+            />
+          </div>
+          <div>
+            <label
+              htmlFor='sellerEmail'
+              className='block text-gray-700 font-medium mb-2'
+            >
+              Seller Email
+            </label>
+            <input
+              type='email'
+              id='sellerEmail'
+              className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
+              name='sellerEmail'
+              required
+            />
+          </div>
+          <div>
+            <label
+              htmlFor='subcategory'
+              className='block text-gray-700 font-medium mb-2'
+            >
+              Sub-category
+            </label>
+            <input
+              type='text'
+              id='subcategory'
+              className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
+              name='subcategory'
+              required
+            />
+          </div>
+          <div>
+            <label
+              htmlFor='price'
+              className='block text-gray-700 font-medium mb-2'
+            >
+              Price
+            </label>
+            <input
+              type='text'
+              id='price'
+              className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
+              name='price'
+              required
+            />
+          </div>
+          <div>
+            <label
+              htmlFor='rating'
+              className='block text-gray-700 font-medium mb-2'
+            >
+              Rating
+            </label>
+            <input
+              type='text'
+              id='rating'
+              className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
+              name='rating'
+              required
+            />
+          </div>
+          <div>
+            <label
+              htmlFor='quantity'
+              className='block text-gray-700 font-medium mb-2'
+            >
+              Available Quantity
+            </label>
+            <input
+              type='text'
+              id='quantity'
+              className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
+              name='quantity'
+              required
+            />
+          </div>
+          <div>
+            <label
+              htmlFor='description'
+              className='block text-gray-700 font-medium mb-2'
+            >
+              Detail Description
+            </label>
+            <textarea
+              id='description'
+              className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
+              name='description'
+              required
+            />
+          </div>
+        </div>
+        <div>
+          <button
+            type='submit'
+            className='w-full font-medium my-5 bg-[#e52165] text-white px-4 py-2.5 rounded-md hover:bg-[#0d1137] transition-colors'
+          >
+            Add Toy
+          </button>
+        </div>
+      </form>
+    </div>
+  );
 };
 
 export default AddToys;
