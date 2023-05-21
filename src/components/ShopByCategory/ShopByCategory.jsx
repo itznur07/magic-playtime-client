@@ -18,7 +18,6 @@ const ShopByCategory = () => {
         setCarData(data);
       });
   }, []);
-
   useEffect(() => {
     fetch("https://toy-marketplace-server-six.vercel.app/sportstoys")
       .then((res) => res.json())
@@ -26,7 +25,6 @@ const ShopByCategory = () => {
         setSportsData(data);
       });
   }, []);
-
   useEffect(() => {
     fetch("https://toy-marketplace-server-six.vercel.app/dolltoys")
       .then((res) => res.json())

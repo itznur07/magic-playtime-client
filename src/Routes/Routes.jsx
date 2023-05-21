@@ -3,6 +3,7 @@ import Main from "../Layout/Main";
 import AddToys from "../pages/AddToys/AddToys";
 import AllToys from "../pages/AllToys/AllToys";
 import Blogs from "../pages/Blogs/Blogs";
+import Error from "../pages/ErrorPages/Error";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import MyToys from "../pages/MyToys/MyToys";
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
         element: <AddToys></AddToys>,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <Error></Error>,
   },
 ]);
 
