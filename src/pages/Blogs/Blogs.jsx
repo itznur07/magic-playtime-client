@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import useTitle from "../../Hooks/useTitle";
 
 const Blogs = () => {
-
-
-  useTitle('Blogs')
+  useTitle("Blogs");
 
   return (
     <div className='container mx-auto py-8'>
@@ -87,7 +85,10 @@ const Blogs = () => {
           </p>
         </div>
         <div className='text-center'>
-          <Link to='/' className='text-blue-500 underline'>
+          <Link
+            to='/'
+            className='border border-[#434142] px-4 py-2 rounded-sm mt-8 text-gray-800 hover:text-slate-500'
+          >
             Back to Home
           </Link>
         </div>

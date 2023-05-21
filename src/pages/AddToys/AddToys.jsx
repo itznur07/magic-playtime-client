@@ -2,9 +2,7 @@ import React from "react";
 import useTitle from "../../Hooks/useTitle";
 
 const AddToys = () => {
-
-  useTitle('Add Toy')
-  
+  useTitle("Add Toy");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,9 +29,22 @@ const AddToys = () => {
       description,
     };
 
-    console.log(toyData);
+    fetch(`https://toy-marketplace-server-six.vercel.app/mytoys`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(toyData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          alert("Toy Data Add successfully!");
+          form.reset();
+        }
+      });
   };
-
+  
   return (
     <div className='p-6'>
       <h2 className='text-3xl font-bold text-center my-5 '>Add A Toy</h2>
