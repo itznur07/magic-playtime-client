@@ -5,6 +5,8 @@ import useTitle from "../../Hooks/useTitle";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 const Registration = () => {
+
+
   const navigate = useNavigate();
   const location = useLocation();
 

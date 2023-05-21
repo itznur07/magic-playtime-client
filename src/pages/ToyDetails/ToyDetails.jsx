@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { FaRegHeart, FaShareAlt } from "react-icons/fa";
 import { useParams } from "react-router-dom";
+import useTitle from "../../Hooks/useTitle";
 
 const ToyDetails = () => {
+
+  useTitle('Toy Details')
+
   const params = useParams();
 
   const [data, setData] = useState({});
