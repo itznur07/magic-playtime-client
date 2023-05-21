@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { FaEdit } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import useTitle from "../../Hooks/useTitle";
 
 const MyToys = () => {
@@ -13,6 +15,28 @@ const MyToys = () => {
         setMyToys(data);
       });
   }, []);
+
+  // Delete toy
+
+  const handleDeleted = (_id) => {
+    const proceed = confirm("Are you sure you wanna deleted?");
+
+    if (proceed) {
+      fetch(`https://toy-marketplace-server-six.vercel.app/mytoys/${_id}`, {
+        method: "DELETE",
+        headers: {
+          "content-type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            alert("Toys Deleted successfully!");
+            location.reload();
+          }
+        });
+    }
+  };
 
   return (
     <div className='md:mx-24 py-10'>
@@ -44,12 +68,17 @@ const MyToys = () => {
               <td className='p-2'>${toy?.price}</td>
               <td className='p-2'>{toy?.quantity}</td>
               <td>
-                <button className='px-4 py-2 bg-[#e52165] text-white rounded hover:bg-[#0d1137]'>
-                  Update
-                </button>
+                <Link to={`/updateToy/${toy?._id}`}>
+                  <span className='cursor-pointer text-red-500'>
+                    <FaEdit />
+                  </span>
+                </Link>
               </td>
               <td>
-                <button className='px-4 py-2 bg-[#e52165] text-white rounded hover:bg-[#0d1137]'>
+                <button
+                  className='px-4 py-2 bg-[#e52165] text-white rounded hover:bg-[#0d1137]'
+                  onClick={() => handleDeleted(toy?._id)}
+                >
                   Delete
                 </button>
               </td>
