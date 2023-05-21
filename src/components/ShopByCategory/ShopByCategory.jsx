@@ -46,45 +46,47 @@ const ShopByCategory = () => {
 
   return (
     <>
-      <h1 className='text-3xl font-bold text-center mb-6 mt-5'>Shop By Category</h1>
+      <h1 className='text-3xl font-bold text-center mb-6 mt-5'>
+        Shop By Category
+      </h1>
       <div className='my-5 flex items-center justify-center'>
         <Tabs>
-          <TabList>
-            <Tab>Car Toys</Tab>
-            <Tab>Sports Toys</Tab>
-            <Tab>Doll Toys</Tab>
+          <TabList className='flex flex-col md:flex-row'>
+            <Tab className='mr-4 mb-4 md:mb-0 bg-[#f3f2f2] p-2 border rounded-sm cursor-pointer'>
+              Car Toys
+            </Tab>
+            <Tab className='mr-4 mb-4 md:mb-0 bg-[#f3f2f2] p-2 border rounded-sm cursor-pointer'>
+              Sports Toys
+            </Tab>
+            <Tab className='mr-4 mb-4 md:mb-0 bg-[#f3f2f2] p-2 border  rounded-sm cursor-pointer'>
+              Doll Toys
+            </Tab>
           </TabList>
 
           <TabPanel>
             {/* Render toys for Car category */}
-            <div className=''>
-              <div className='toy grid grid-cols-3  gap-4'>
-                {carData?.map((toy) => (
-                  <Card className='toy' key={toy._id} toy={toy} />
-                ))}
-              </div>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+              {carData?.map((toy) => (
+                <Card className='toy' key={toy._id} toy={toy} />
+              ))}
             </div>
           </TabPanel>
 
           <TabPanel>
             {/* Render toys for Sports category */}
-            <div className=''>
-              <div className='toy grid grid-cols-3  gap-4'>
-                {sportsData?.map((toy) => (
-                  <Card className='toy' key={toy._id} toy={toy} />
-                ))}
-              </div>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+              {sportsData?.map((toy) => (
+                <Card className='toy' key={toy._id} toy={toy} />
+              ))}
             </div>
           </TabPanel>
 
           <TabPanel>
             {/* Render toys for Doll category */}
-            <div className=''>
-              <div className='toy grid grid-cols-3  gap-4'>
-                {dollData?.map((toy) => (
-                  <Card className='toy' key={toy._id} toy={toy} />
-                ))}
-              </div>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+              {dollData?.map((toy) => (
+                <Card className='toy' key={toy._id} toy={toy} />
+              ))}
             </div>
           </TabPanel>
         </Tabs>

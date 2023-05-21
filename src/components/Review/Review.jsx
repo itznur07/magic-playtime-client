@@ -35,19 +35,23 @@ const reviews = [
 
 const Review = () => {
   return (
-    <div>
+    <div className='p-4 md:mx-14'>
       <h1 className='text-center pt-10 text-3xl font-bold'>Top Reviews</h1>
-      <div className='flex items-center md:space-x-5 justify-between md:mx-24'>
+      <div className='flex flex-col md:flex-row items-center md:space-x-5 md:justify-between mt-10'>
         {reviews.map((review) => (
-          <div key={review.id} className='mt-5'>
-            <div className='bg-white flex space-y-2 flex-col justify-center rounded shadow-md p-8 '>
-              <img
-                className='w-14 h-14 rounded-full'
-                src={review.img}
-                alt='reviewer-not-found'
-              />
-              <p className='text-gray-500'>{review.author}</p>
-              <p className='text-gray-700'>{review.text.slice(0, 78)}...</p>
+          <div key={review.id} className='mt-5 w-full md:w-auto'>
+            <div className='bg-white rounded shadow-md p-4 md:p-8'>
+              <div className='flex flex-col text-center items-center space-x-4'>
+                <img
+                  className='w-14 h-14 rounded-full'
+                  src={review.img}
+                  alt='reviewer-not-found'
+                />
+                <div className="mt-4">
+                  <p className='text-gray-500'>{review.author}</p>
+                  <p className='text-gray-700'>{review.text.slice(0, 78)}...</p>
+                </div>
+              </div>
             </div>
           </div>
         ))}

@@ -4,8 +4,7 @@ import { useParams } from "react-router-dom";
 import useTitle from "../../Hooks/useTitle";
 
 const ToyDetails = () => {
-
-  useTitle('Toy Details')
+  useTitle("Toy Details");
 
   const params = useParams();
 

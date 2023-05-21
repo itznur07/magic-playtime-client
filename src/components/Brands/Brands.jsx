@@ -31,7 +31,7 @@ const Companys = () => {
   return (
     <>
       <h1 className='text-center pt-10 text-3xl font-bold'>Populer Brands</h1>
-      <div className='flex items-center justify-between md:mx-24 mt-10 mb-10'>
+      <div className='flex md:flex-row flex-col items-center justify-between md:mx-24 mt-10 mb-10'>
         {companys.map((company) => (
           <CompanyCard img={company.img} name={company.name} />
         ))}

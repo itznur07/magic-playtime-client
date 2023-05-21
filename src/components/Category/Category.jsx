@@ -12,7 +12,7 @@ const Category = () => {
 
   return (
     <>
-      <div className='flex items-center justify-between md:mx-24 my-16'>
+      <div className='flex md:flex-row flex-col md:gpa-0 gap-5 items-center justify-between md:mx-24 my-16'>
         {babyToyImages.map((product) => (
           <CategoryCard img={product} />
         ))}

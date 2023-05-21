@@ -22,19 +22,20 @@ const Gallery = () => {
   ];
 
   return (
-    <div className='gallery-section py-10 md:mx-24'>
+    <div className='gallery-section py-10 md:mx-24 mx-5'>
       <div className='container mx-auto'>
         <h2 className='text-3xl font-bold text-center mb-6'>Toys Gallery</h2>
-        <div className='grid grid-cols-3 gap-4'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
           {images?.map((image, index) => (
             <div
               onClick={() => handleImageClick(image)}
               key={index}
-              className='relative overflow-hidden'
+              className='relative overflow-hidden cursor-pointer'
             >
               <img
                 src={image}
-                className='w-full rounded h-full object-cover transition-transform duration-300 transform hover:scale-105 cursor-pointer'
+                className='w-full rounded h-full object-cover transition-transform duration-300 transform hover:scale-105'
+                alt='Toy'
               />
             </div>
           ))}
@@ -44,11 +45,11 @@ const Gallery = () => {
       {selectedImage && (
         <div className='fixed inset-0 flex items-center justify-center z-10'>
           <div className='absolute inset-0 bg-black opacity-75'></div>
-          <div className='relative'>
+          <div className='relative max-w-md mx-auto'>
             <img
               src={selectedImage}
               alt='Selected Image'
-              className='max-w-md max-h-md'
+              className='w-full h-auto'
             />
             <button
               className='absolute top-4 right-4 text-white font-bold text-lg focus:outline-none'

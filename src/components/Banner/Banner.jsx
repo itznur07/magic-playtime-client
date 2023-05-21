@@ -24,76 +24,76 @@ const Banner = () => {
   return (
     <>
       <Slider {...settings}>
-        <div className='relative h-96 overflow-hidden'>
+        <div className='relative h-64 md:h-96 overflow-hidden'>
           <img
             src={imgSrc[0]}
             alt='Banner 1'
-            className='w-full h-full max-h-96 object-cover'
+            className='w-full h-full max-h-full object-cover'
           />
-          <div className='absolute top-28 left-36'>
+          <div className='absolute top-16 md:top-28 left-8 md:left-36'>
             <div>
-              <span className='text-3xl font-bold my-3'>
+              <span className='text-xl md:text-3xl font-bold my-3'>
                 Discover Endless Fun and Adventure <br /> with Our Amazing Toys
               </span>{" "}
               <br />
-              <span className='text-md capitalize mt-4 font-medium'>
+              <span className='text-sm md:text-md capitalize mt-4 font-medium'>
                 Welcome to ToyLand, the ultimate destination for all your toy{" "}
                 <br />
-                needs. Dive into a world of imagination and play with our <br />
+                needs. Dive into a world of imagination and play with our{" "}
                 extensive collection of toys, games, and playsets. <br />
               </span>
               <br />
-              <button className='uppercase bg-[#e52165] px-5 py-2.5 rounded text-white'>
+              <button className='uppercase bg-[#e52165] px-4 md:px-5 py-2 rounded text-white'>
                 Shop now
               </button>
             </div>
           </div>
         </div>
-        <div className='relative h-96'>
+        <div className='relative h-64 md:h-96'>
           <img
             src={imgSrc[1]}
             alt='Banner 2'
             className='w-full h-full object-cover '
           />
-          <div className='absolute top-32 left-36'>
+          <div className='absolute top-20 md:top-32 left-8 md:left-36'>
             <div>
-              <span className='text-3xl font-bold mb-2'>
+              <span className='text-xl md:text-3xl font-bold mb-2'>
                 Toys Galore: Unleash the Fun and Excitement!
               </span>{" "}
               <br />
-              <span className='text-md capitalize mt-4 font-medium'>
+              <span className='text-sm md:text-md capitalize mt-4 font-medium'>
                 Step into a world filled with laughter, joy, and boundless
                 imagination. <br /> Our extensive collection of toys is a
                 treasure trove of endless possibilities.
               </span>
               <br />
-              <button className='uppercase bg-[#e52165] mt-3 px-5 py-2.5 rounded text-white'>
+              <button className='uppercase bg-[#e52165] mt-2 md:mt-3 px-4 md:px-5 py-2 rounded text-white'>
                 Shop now
               </button>
             </div>
           </div>
         </div>
-        <div className='relative h-96 '>
+        <div className='relative h-64 md:h-96'>
           <img
             src={imgSrc[2]}
             alt='Banner 3'
             className='w-full h-full object-cover'
           />
-          <div className='absolute top-28 left-36'>
+          <div className='absolute top-16 md:top-28 left-8 md:left-36'>
             <div>
-              <span className='text-3xl font-bold mb-2'>
+              <span className='text-xl md:text-3xl font-bold mb-2'>
                 Elevate Playtime to Extraordinary Heights with <br /> Our
                 Incredible Toy Collection!
               </span>{" "}
               <br />
-              <span className='text-md capitalize mt-4 font-medium'>
+              <span className='text-sm md:text-md capitalize mt-4 font-medium'>
                 Dive into a world of imagination, where every toy has a story to{" "}
                 <br />
                 tell. Discover a captivating array of toys that inspire
                 laughter, learning, and endless fun
               </span>{" "}
               <br />
-              <button className='uppercase bg-[#e52165] mt-3 px-5 py-2.5 rounded text-white'>
+              <button className='uppercase bg-[#e52165] mt-2 md:mt-3 px-4 md:px-5 py-2 rounded text-white'>
                 Shop now
               </button>
             </div>
