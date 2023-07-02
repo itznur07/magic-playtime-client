@@ -6,7 +6,9 @@ const AllToys = () => {
   useTitle("All Toys");
 
   const { user } = useContext(AuthContext);
+  const [searchTerm, setSearchTerm] = useState("");
   const [toys, setToys] = useState([]);
+  // const history = useHistory();
 
   useEffect(() => {
     fetch(`https://toy-marketplace-server-six.vercel.app/alltoys`)
@@ -16,28 +18,24 @@ const AllToys = () => {
       });
   }, []);
 
-  // const [searchTerm, setSearchTerm] = useState("");
-  // const history = useHistory();
+  // Update the 'toys' state with the fetched data
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
-  // // Update the 'toys' state with the fetched data
+  const handleViewDetails = (toyId) => {
+    if (user?.email) {
+      // Redirect to toy details page
+      history.push(`/toys/${toyId}`);
+    } else {
+      // Redirect to login page
+      history.push("/login");
+    }
+  };
 
-  // const handleSearch = (e) => {
-  //   setSearchTerm(e.target.value);
-  // };
-
-  // const handleViewDetails = (toyId) => {
-  //   if (user?.email) {
-  //     // Redirect to toy details page
-  //     history.push(`/toys/${toyId}`);
-  //   } else {
-  //     // Redirect to login page
-  //     history.push("/login");
-  //   }
-  // };
-
-  // const filteredToys = toys?.filter((toy) =>
-  //   toy.name.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
+  const filteredToys = toys?.filter((toy) =>
+    toy.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className='md:mx-24 py-10'>
@@ -48,8 +46,8 @@ const AllToys = () => {
           type='text'
           placeholder='Search by Toy Name'
           className='w-full p-2 border border-gray-300 rounded'
-          // value={searchTerm}
-          // onChange={handleSearch}
+          value={searchTerm}
+          onChange={handleSearch}
         />
       </div>
 
@@ -64,7 +62,7 @@ const AllToys = () => {
           </tr>
         </thead>
         <tbody>
-          {toys?.slice(0, 20).map((toy) => (
+          {filteredToys?.slice(0, 20).map((toy) => (
             <tr key={toy?.id}>
               <td className='p-2'>{toy?.seller}</td>
               <td className='p-2'>{toy?.name}</td>

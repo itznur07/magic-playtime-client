@@ -5,7 +5,8 @@ import useTitle from "../../Hooks/useTitle";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 function Login() {
-  const { logInWithEmailPassword, signInWithGoogle } = useContext(AuthContext);
+  const { logInWithEmailPassword, signInWithGoogle, forgetPassword } =
+    useContext(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,6 +28,10 @@ function Login() {
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const handleForgetPassword = (email) => {
+    forgetPassword(email);
   };
 
   const handleGoogleSignIn = () => {
@@ -84,7 +89,7 @@ function Login() {
           Forget password?{" "}
           <span
             className='text-blue-500 cursor-pointer'
-            // onClick={handleForgetPassword}
+            onClick={handleForgetPassword}
           >
             reset
           </span>

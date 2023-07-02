@@ -72,7 +72,6 @@ const UpdateToys = () => {
               className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
               name='pictureUrl'
               defaultValue={loadedData?.pictureUrl}
-              required
             />
           </div>
           <div>
@@ -88,7 +87,6 @@ const UpdateToys = () => {
               className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
               name='name'
               defaultValue={loadedData?.name}
-              required
             />
           </div>
           <div>
@@ -103,7 +101,6 @@ const UpdateToys = () => {
               id='sellerName'
               className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
               name='sellerName'
-              required
               defaultValue={loadedData?.sellerName}
             />
           </div>
@@ -120,7 +117,6 @@ const UpdateToys = () => {
               className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
               name='sellerEmail'
               defaultValue={loadedData?.sellerEmail}
-              required
             />
           </div>
           <div>
@@ -135,7 +131,6 @@ const UpdateToys = () => {
               id='subcategory'
               className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
               name='subcategory'
-              required
               defaultValue={loadedData?.subcategory}
             />
           </div>
@@ -152,7 +147,6 @@ const UpdateToys = () => {
               className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
               name='price'
               defaultValue={loadedData?.price}
-              required
             />
           </div>
           <div>
@@ -168,7 +162,6 @@ const UpdateToys = () => {
               className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
               name='rating'
               defaultValue={loadedData?.rating}
-              required
             />
           </div>
           <div>
@@ -184,7 +177,6 @@ const UpdateToys = () => {
               className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
               name='quantity'
               defaultValue={loadedData?.quantity}
-              required
             />
           </div>
           <div>
@@ -199,7 +191,6 @@ const UpdateToys = () => {
               className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
               name='description'
               defaultValue={loadedData?.description}
-              required
             />
           </div>
         </div>

@@ -7,6 +7,7 @@ import {
   signInWithPopup,
   signOut,
   updateProfile,
+  verifyPasswordResetCode,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
@@ -52,6 +53,12 @@ const AuthProviders = ({ children }) => {
     return signInWithPopup(auth, new GoogleAuthProvider());
   };
 
+  /** User Forget Password System */
+  const forgetPassword = () => {
+    setLoading(true);
+    return verifyPasswordResetCode(auth);
+  };
+
   /** Auth observer firebase */
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -70,6 +77,7 @@ const AuthProviders = ({ children }) => {
     signInWithGoogle,
     logInWithEmailPassword,
     logOut,
+    forgetPassword,
     updateUserProfile,
   };
 
