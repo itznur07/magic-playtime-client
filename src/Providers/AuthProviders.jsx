@@ -17,6 +17,7 @@ export const AuthContext = createContext();
 const AuthProviders = ({ children }) => {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
 
   const auth = getAuth(app);
 
@@ -70,9 +71,17 @@ const AuthProviders = ({ children }) => {
     };
   }, []);
 
+  /** Products */
+  useEffect(() => {
+    fetch("https://toy-marketplace-server-six.vercel.app/products")
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, []);
+
   const authInfo = {
     user,
     loading,
+    products,
     userRegistration,
     signInWithGoogle,
     logInWithEmailPassword,

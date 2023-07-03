@@ -25,8 +25,6 @@ const Banner = () => {
           speed={2000}
           loop={true}
           modules={[Pagination, Navigation, Autoplay]}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log("slide change")}
         >
           <SwiperSlide>
             <div className='relative h-64 md:h-96 overflow-hidden rounded-lg'>

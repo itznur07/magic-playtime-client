@@ -1,6 +1,7 @@
 import React from "react";
 import useTitle from "../../Hooks/useTitle";
 import Banner from "../../components/Banner/Banner";
+import HankPick from "../../components/HandPick/HankPick";
 import ProductCategorys from "../../components/ProductCategorys/ProductCategorys";
 
 const Home = () => {
@@ -22,6 +23,9 @@ const Home = () => {
             {/* Banner here */}
             <Banner></Banner>
             {/* Banner ends here */}
+            {/* Hand Pick Pices here */}
+            <HankPick></HankPick>
+            {/* Hand Pick Pices ends here */}
           </div>
           {/* right column ends here */}
         </div>
