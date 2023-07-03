@@ -1,106 +1,123 @@
-import React from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick-theme.css";
-import "slick-carousel/slick/slick.css";
+import { Autoplay, Navigation, Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 const Banner = () => {
-  /** Slider settings */
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-  };
-
   const imgSrc = [
-    "https://images.unsplash.com/photo-1516627145497-ae6968895b74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1140&q=80",
-    "https://images.unsplash.com/photo-1578349035260-9f3d4042f1f7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80",
-    "https://images.unsplash.com/photo-1517881837958-1c0d1819dbd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1176&q=80",
+    "https://img.freepik.com/free-photo/fluffy-toy-texture-close-up_23-2149686884.jpg?w=1060&t=st=1688345830~exp=1688346430~hmac=c849651665ae22fdc66ac760fda599350c617eccf74774d8f71da0453892396b",
+    "https://img.freepik.com/free-photo/easter-car-with-white-egg-pink-ribbon_23-2149301315.jpg?w=1060&t=st=1688360476~exp=1688361076~hmac=bf5d678ba655b717053411cfefd0fbca7aaf537befb9ee9c8d42946b7c94eda7",
+    "https://img.freepik.com/free-photo/warm-blankets-plush-toy_23-2147698733.jpg?w=1060&t=st=1688345980~exp=1688346580~hmac=1cf89df5880d131545ff6ae73e4f291a1f6c4b31d2b56877aa29bb8d920ca1bb",
   ];
 
   return (
-    <>
-      <Slider {...settings}>
-        <div className='relative h-64 md:h-96 overflow-hidden'>
-          <img
-            src={imgSrc[0]}
-            alt='Banner 1'
-            className='w-full h-full max-h-full object-cover'
-          />
-          <div className='absolute top-16 md:top-28 left-8 md:left-36'>
-            <div>
-              <span className='text-xl md:text-3xl font-bold my-3'>
-                Discover Endless Fun and Adventure <br /> with Our Amazing Toys
-              </span>{" "}
-              <br />
-              <span className='text-sm md:text-md capitalize mt-4 font-medium'>
-                Welcome to ToyLand, the ultimate destination for all your toy{" "}
-                <br />
-                needs. Dive into a world of imagination and play with our{" "}
-                extensive collection of toys, games, and playsets. <br />
-              </span>
-              <br />
-              <button className='uppercase bg-[#e52165] px-4 md:px-5 py-2 rounded text-white'>
-                Shop now
-              </button>
+    <div className='grid grid-cols-9 gap-5'>
+      <div className='col-span-7'>
+        <Swiper
+          spaceBetween={50}
+          slidesPerView={1}
+          navigation
+          pagination={{ clickable: true }}
+          scrollbar={{ draggable: true }}
+          autoplay={{ delay: 2000 }}
+          speed={2000}
+          loop={true}
+          modules={[Pagination, Navigation, Autoplay]}
+          onSwiper={(swiper) => console.log(swiper)}
+          onSlideChange={() => console.log("slide change")}
+        >
+          <SwiperSlide>
+            <div className='relative h-64 md:h-96 overflow-hidden rounded-lg'>
+              <img
+                src={imgSrc[0]}
+                alt='Banner 1'
+                className='w-full h-full max-h-full object-cover rounded-lg'
+              />
+              <div className='absolute top-5 left-10'>
+                <button className='ml-5 mb-1 p-2  text-white font-medium text-xs border border-white rounded-full'>
+                  Super Hit Doll Collectoins
+                </button>
+                <div className='text-4xl font-bold text-white'>
+                  Dolls & Toys
+                </div>
+              </div>
+              <div className='absolute top-4 right-5'>
+                <button className='ml-5 mb-1 p-2 bg-[#F6C952] text-white font-medium text-xs rounded-lg'>
+                  Explore now
+                </button>
+              </div>
             </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className='relative h-64 md:h-96 rounded-lg'>
+              <img
+                src={imgSrc[1]}
+                alt='Banner 2'
+                className='w-full h-full object-cover  rounded-lg'
+              />
+              <div className='absolute top-5 left-10'>
+                <button className='ml-5 mb-1 p-2  text-white font-medium text-xs border border-white rounded-full'>
+                  Super Hit Cars Collectoins
+                </button>
+                <div className='text-4xl font-bold text-white'>Cars & Toys</div>
+              </div>
+              <div className='absolute top-4 right-5'>
+                <button className='ml-5 mb-1 p-2 bg-[#F7B9A2] text-white font-medium text-xs rounded-lg'>
+                  Explore now
+                </button>
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className='relative h-64 md:h-96 rounded-lg'>
+              <img
+                src={imgSrc[2]}
+                alt='Banner 3'
+                className='w-full h-full object-cover rounded-lg'
+              />
+              <div className='absolute top-10 right-10'>
+                <button className='ml-5 mb-1 p-2  text-white font-medium text-xs border border-white rounded-full'>
+                  Super Hit Cloth Collectoins
+                </button>
+                <div className='text-4xl font-bold text-white'>
+                  Cloth & Toys
+                </div>
+              </div>
+              <div className='absolute top-36 right-28'>
+                <button className='ml-5 mb-1 p-2 bg-[#F6C952] text-white font-medium text-xs rounded-lg'>
+                  Explore now
+                </button>
+              </div>
+            </div>
+          </SwiperSlide>
+        </Swiper>
+      </div>
+      <div className='col-span-2'>
+        <div className='rounded-lg relative md:h-96'>
+          <img
+            src='https://img.freepik.com/free-photo/charming-boy-with-reindeer-horns_1187-140.jpg?w=740&t=st=1688351565~exp=1688352165~hmac=65974c91282a86b16effc5165df51444b278ef65dd8c21f9b21bc5526a6d4621'
+            alt='Shoes'
+            className='full h-full max-h-full object-cover rounded-lg'
+          />
+          <div className='absolute top-8 left-5'>
+            <span className='bg-[#d91c19] p-1.5 rounded-lg text-xs font-medium  text-white'>
+              Kids best store
+            </span>
+            <br />
+            <span className='text-4xl text-white font-bold uppercase '>
+              store
+            </span>
+          </div>
+          <div className='absolute bottom-5 left-10'>
+            <button className='bg-white px-3 text-slate-600 py-1 rounded-lg text-sm font-bold'>
+              Shop now
+            </button>
           </div>
         </div>
-        <div className='relative h-64 md:h-96'>
-          <img
-            src={imgSrc[1]}
-            alt='Banner 2'
-            className='w-full h-full object-cover '
-          />
-          <div className='absolute top-20 md:top-32 left-8 md:left-36'>
-            <div>
-              <span className='text-xl md:text-3xl font-bold mb-2'>
-                Toys Galore: Unleash the Fun and Excitement!
-              </span>{" "}
-              <br />
-              <span className='text-sm md:text-md capitalize mt-4 font-medium'>
-                Step into a world filled with laughter, joy, and boundless
-                imagination. <br /> Our extensive collection of toys is a
-                treasure trove of endless possibilities.
-              </span>
-              <br />
-              <button className='uppercase bg-[#e52165] mt-2 md:mt-3 px-4 md:px-5 py-2 rounded text-white'>
-                Shop now
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className='relative h-64 md:h-96'>
-          <img
-            src={imgSrc[2]}
-            alt='Banner 3'
-            className='w-full h-full object-cover'
-          />
-          <div className='absolute top-16 md:top-28 left-8 md:left-36'>
-            <div>
-              <span className='text-xl md:text-3xl font-bold mb-2'>
-                Elevate Playtime to Extraordinary Heights with <br /> Our
-                Incredible Toy Collection!
-              </span>{" "}
-              <br />
-              <span className='text-sm md:text-md capitalize mt-4 font-medium'>
-                Dive into a world of imagination, where every toy has a story to{" "}
-                <br />
-                tell. Discover a captivating array of toys that inspire
-                laughter, learning, and endless fun
-              </span>{" "}
-              <br />
-              <button className='uppercase bg-[#e52165] mt-2 md:mt-3 px-4 md:px-5 py-2 rounded text-white'>
-                Shop now
-              </button>
-            </div>
-          </div>
-        </div>
-      </Slider>
-    </>
+      </div>
+    </div>
   );
 };
 

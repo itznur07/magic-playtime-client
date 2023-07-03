@@ -1,35 +1,39 @@
-import AOS from "aos";
-import "aos/dist/aos.css";
-
-import React, { useEffect } from "react";
+import React from "react";
 import useTitle from "../../Hooks/useTitle";
 import Banner from "../../components/Banner/Banner";
-import Companys from "../../components/Brands/Brands";
-import Category from "../../components/Category/Category";
-import Gallery from "../../components/Gallery/Gallery";
-import Review from "../../components/Review/Review";
-import ShopByCategory from "../../components/ShopByCategory/ShopByCategory";
-
+import ProductCategorys from "../../components/ProductCategorys/ProductCategorys";
 
 const Home = () => {
   useTitle("Home");
 
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      easing: "ease-in-out",
-    });
-  }, []);
-
   return (
-    <>
-      <Banner data-aos='fade-up'></Banner>
+    <div className='my-10'>
+      <div className='max-w-7xl mx-auto'>
+        <div className='grid grid-cols-12 gap-10'>
+          {/* left column here */}
+          <div className='col-span-3'>
+            {/* silderbar here */}
+            <ProductCategorys></ProductCategorys>
+            {/* silderbar ends here */}
+          </div>
+          {/* left column ends here */}
+          {/* right column */}
+          <div className='col-span-9'>
+            {/* Banner here */}
+            <Banner></Banner>
+            {/* Banner ends here */}
+          </div>
+          {/* right column ends here */}
+        </div>
+      </div>
+
+      {/* <Banner data-aos='fade-up'></Banner>
       <Category data-aos='fade-up'></Category>
       <Gallery data-aos='fade-up'></Gallery>
       <ShopByCategory data-aos='fade-up'></ShopByCategory>
       <Companys data-aos='fade-up'></Companys>
-      <Review data-aos='fade-up'></Review>
-    </>
+      <Review data-aos='fade-up'></Review> */}
+    </div>
   );
 };
 

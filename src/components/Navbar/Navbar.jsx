@@ -30,8 +30,8 @@ const Navbar = () => {
 
   return (
     <>
-      <div className='bg-white relative z-50'>
-        <nav className='md:flex md:flex-row flex flex-col items-center justify-between flex-wrap  py-6 md:mx-24'>
+      <div className='max-w-7xl mx-auto bg-white relative z-50'>
+        <nav className='md:flex md:flex-row flex flex-col items-center justify-between flex-wrap  py-6'>
           {/* logo here */}
           <div className='flex items-center  text-gray-500'>
             <Link to='/'>
@@ -48,12 +48,25 @@ const Navbar = () => {
             >
               Home
             </Link>
-            <Link
-              to='/shop'
-              className='inline-block text-md px-4 py-2 leading-none  text-gray-800   hover:text-blue-500 hover:bg-slate-100 rounded-sm mt-4 lg:mt-0'
-            >
-              Shop
-            </Link>
+
+            <li tabIndex={0} className='list-none cursor-pointer'>
+              <details>
+                <summary>Shop</summary>
+                <ul className='absolute bg-white shadow-lg p-5 mt-5 md:space-y-2'>
+                  <Link to='/shop'>
+                    <li className='hover:text-[#1fd1a7] p-2'>
+                      <a>Shop</a>
+                    </li>
+                  </Link>
+                  <li className='hover:text-[#1fd1a7] p-2'>
+                    <a>Spacial products</a>
+                  </li>
+                  <li className='hover:text-[#1fd1a7] p-2'>
+                    <a>Top reated products</a>
+                  </li>
+                </ul>
+              </details>
+            </li>
             <Link
               to='/alltoys'
               className='relative inline-block text-md px-4 py-2 leading-none  text-gray-800   hover:text-blue-500 hover:bg-slate-100 rounded-sm mt-4 lg:mt-0 '
