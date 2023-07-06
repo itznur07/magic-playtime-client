@@ -3,6 +3,7 @@ import useTitle from "../../Hooks/useTitle";
 import Banner from "../../components/Banner/Banner";
 import HankPick from "../../components/HandPick/HankPick";
 import ProductCategorys from "../../components/ProductCategorys/ProductCategorys";
+import PostList from "../../components/RecentPostList/RecentPostList";
 
 const Home = () => {
   useTitle("Home");
@@ -15,6 +16,7 @@ const Home = () => {
           <div className='col-span-3'>
             {/* silderbar here */}
             <ProductCategorys></ProductCategorys>
+            <PostList></PostList>
             {/* silderbar ends here */}
           </div>
           {/* left column ends here */}
