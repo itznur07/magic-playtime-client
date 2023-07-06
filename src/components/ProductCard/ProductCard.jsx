@@ -1,9 +1,10 @@
 import React from "react";
+import { FaEye, FaHeart, FaShoppingBag } from "react-icons/fa";
 
 function ProductCard({ images, title, price, discount_price }) {
   return (
-    <div className='max-w-sm rounded overflow-hidden shadow-lg bg-blue-100'>
-      <div className='relative'>
+    <div className='max-w-sm border rounded overflow-hidden shadow-lg bg-blue-100'>
+      <div className='relative group '>
         <img
           className='w-full object-cover h-56'
           src={images[0]}
@@ -15,9 +16,22 @@ function ProductCard({ images, title, price, discount_price }) {
         <span className='absolute top-0 right-0 ml-2 bg-yellow-500 text-white px-2 py-1 text-xs font-bold uppercase'>
           Sale
         </span>
+        <div className='absolute top-20 right-0 hidden group-hover:block'>
+          <ul className='md:space-y-5 cursor-pointer bg-[#fff] text-slate-600 p-2 py-4 shadow-lg rounded'>
+            <li className='hover:shadow-inner hover:text-[#e52165]'>
+              <FaShoppingBag></FaShoppingBag>
+            </li>
+            <li className='hover:shadow-inner hover:text-[#e52165]'>
+              <FaHeart></FaHeart>{" "}
+            </li>
+            <li className='hover:shadow-inner hover:text-[#e52165]'>
+              <FaEye></FaEye>{" "}
+            </li>
+          </ul>
+        </div>
       </div>
       <div className='px-2 mt-5'>
-        <div className='font-bold text-xl text-center'>
+        <div className='font-semibold text-xl text-center'>
           {title.slice(0, 16)}..
         </div>
       </div>

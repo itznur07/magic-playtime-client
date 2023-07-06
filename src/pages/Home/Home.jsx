@@ -3,6 +3,7 @@ import useTitle from "../../Hooks/useTitle";
 import Banner from "../../components/Banner/Banner";
 import HankPick from "../../components/HandPick/HankPick";
 import ProductCategorys from "../../components/ProductCategorys/ProductCategorys";
+import PromoBanner from "../../components/PromoBanner/PromoBanner";
 import PostList from "../../components/RecentPostList/RecentPostList";
 
 const Home = () => {
@@ -28,6 +29,9 @@ const Home = () => {
             {/* Hand Pick Pices here */}
             <HankPick></HankPick>
             {/* Hand Pick Pices ends here */}
+            {/* promo banner here */}
+            <PromoBanner></PromoBanner>
+            {/* promo banner ends here */}
           </div>
           {/* right column ends here */}
         </div>
