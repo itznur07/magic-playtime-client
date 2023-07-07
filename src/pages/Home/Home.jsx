@@ -1,6 +1,7 @@
 import React from "react";
 import useTitle from "../../Hooks/useTitle";
 import Banner from "../../components/Banner/Banner";
+import FeatureCard from "../../components/FeatureCard/FeatureCard";
 import HankPick from "../../components/HandPick/HankPick";
 import ProductCategorys from "../../components/ProductCategorys/ProductCategorys";
 import PromoBanner from "../../components/PromoBanner/PromoBanner";
@@ -21,6 +22,7 @@ const Home = () => {
             <ProductCategorys></ProductCategorys>
             <PostList></PostList>
             <PromoCard></PromoCard>
+            <FeatureCard></FeatureCard>
             {/* silderbar ends here */}
           </div>
           {/* left column ends here */}

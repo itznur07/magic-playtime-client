@@ -5,7 +5,7 @@ function ProductCard({ images, title, price, discount_price }) {
   const [image, hoverImage] = useState(0);
 
   return (
-    <div className='max-w-sm border rounded overflow-hidden shadow-lg bg-[#F7F7F7]'>
+    <div className='max-w-sm border rounded overflow-hidden bg-[#F7F7F7]'>
       <div className='relative group'>
         <img
           onMouseOver={() => hoverImage(1)}

@@ -26,7 +26,7 @@ const PromoBanner = () => {
           </button>{" "}
           <button className='text-[#ffffff]'>Toys</button>
         </div>
-        <div className='absolute md:rotate-90 top-14 -left-7'>
+        <div className='absolute md:rotate-90 top-14 -right-7'>
           <h1 className='text-3xl font-bold text-[#e52165]'>Hurry...!</h1>
           <span className='text-lg font-medium mt-1 text-white'>
             Limited Edition

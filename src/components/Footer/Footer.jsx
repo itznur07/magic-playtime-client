@@ -1,7 +1,6 @@
 import React from "react";
 import {
   FaAddressCard,
-  FaBabyCarriage,
   FaCopyright,
   FaFacebook,
   FaInstagram,
@@ -10,19 +9,17 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import logo from "../../assets/khelaGor.svg";
 
 const Footer = () => {
   return (
-    <footer className='md:mx-24 md:mt-10'>
+    <footer className='max-w-7xl mx-auto md:mt-10'>
       <div className='flex items-center justify-between flex-wrap'>
         <div className='w-full md:w-1/4 text-start py-2 text-black'>
           <Link to='/'>
-            <div className='flex items-center text-3xl space-x-2 text-[#e52165]'>
-              <FaBabyCarriage />
-              <span className='font-bold'>Magic Playtime</span>
-            </div>
+            <img src={logo} alt='' />
           </Link>
-          <p className='text-nd mt-2'>
+          <p className='text-nd mt-3'>
             Welcome to Toyland, your ultimate destination for all things play!
             We offer a vast selection of toys, games
           </p>
