@@ -3,9 +3,9 @@ import React from "react";
 const PromoBanner = () => {
   return (
     <div className='grid grid-cols-9 md:gap-5 md:mt-10'>
-      <div className='relative col-span-3'>
+      <div className='relative col-span-3 order-last'>
         <img
-          src='https://img.freepik.com/free-photo/cute-plush-toys-arrangement_23-2150312305.jpg?w=1060&t=st=1688620251~exp=1688620851~hmac=66420343ca78de8ff223e8ce2f8f7a21356ff518133e823d15d6f840aca52f27'
+          src='https://img.freepik.com/free-photo/cute-fluffy-monkey-toys_23-2149642406.jpg?w=360&t=st=1688696133~exp=1688696733~hmac=338fe24fe73d8d51ac4fbec7a9163d9cab755ff05d647602466f03c185f764b1'
           alt='Bunny and dog'
           className='h-80 w-full object-cover rounded-lg'
         />

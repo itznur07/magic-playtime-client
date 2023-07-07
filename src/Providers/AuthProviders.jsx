@@ -75,7 +75,10 @@ const AuthProviders = ({ children }) => {
   useEffect(() => {
     fetch("https://toy-marketplace-server-six.vercel.app/products")
       .then((res) => res.json())
-      .then((data) => setProducts(data));
+      .then((data) => {
+        const reverseData = data.reverse();
+        setProducts(reverseData);
+      });
   }, []);
 
   const authInfo = {

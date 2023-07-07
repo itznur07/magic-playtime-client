@@ -1,37 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { AuthContext } from "../../Providers/AuthProviders";
-import Card from "./Card";
+import ProductCard from "../ProductCard/ProductCard";
 
 const ShopByCategory = () => {
-  const { loading } = useContext(AuthContext);
+  const { loading, products } = useContext(AuthContext);
 
-  const [carData, setCarData] = useState([]);
-  const [sportsData, setSportsData] = useState([]);
-  const [dollData, setDollData] = useState([]);
-
-  useEffect(() => {
-    fetch("https://toy-marketplace-server-six.vercel.app/cartoys")
-      .then((res) => res.json())
-      .then((data) => {
-        setCarData(data);
-      });
-  }, []);
-  useEffect(() => {
-    fetch("https://toy-marketplace-server-six.vercel.app/sportstoys")
-      .then((res) => res.json())
-      .then((data) => {
-        setSportsData(data);
-      });
-  }, []);
-  useEffect(() => {
-    fetch("https://toy-marketplace-server-six.vercel.app/dolltoys")
-      .then((res) => res.json())
-      .then((data) => {
-        setDollData(data);
-      });
-  }, []);
+  const all = products;
+  const car = products.filter((product) => product.categories[1] === "car");
+  const truck = products.filter((product) => product.categories[1] === "truck");
+  const bus = products.filter((product) => product.categories[1] === "bus");
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -46,46 +25,59 @@ const ShopByCategory = () => {
 
   return (
     <>
-      <h1 className='text-3xl font-bold text-center mb-6 mt-5'>
-        Shop By Category
-      </h1>
-      <div className='my-5 flex items-center justify-center'>
+      <div className='my-5 flex items-center justify-center mt-16'>
         <Tabs>
-          <TabList className='flex flex-col md:flex-row'>
-            <Tab className='mr-4 mb-4 md:mb-0 bg-[#f3f2f2] p-2 border rounded-sm cursor-pointer'>
+          <TabList className='flex flex-col md:flex-row md:mb-5'>
+            <Tab className='mr-4 mb-4 md:mb-0 bg-gradient-to-r from-[#26f7aa] to-[#4cfdbc] px-4 py-2 border outline-none rounded-sm cursor-pointer text-white font-medium hover:shadow-lg'>
+              {" "}
+              All Toys
+            </Tab>
+            <Tab className='mr-4 mb-4 md:mb-0 bg-gradient-to-r from-[#26f7aa] to-[#4cfdbc] px-4 py-2 border outline-none  rounded-sm cursor-pointer text-white font-medium hover:shadow-lg'>
+              {" "}
               Car Toys
             </Tab>
-            <Tab className='mr-4 mb-4 md:mb-0 bg-[#f3f2f2] p-2 border rounded-sm cursor-pointer'>
-              Sports Toys
+            <Tab className='mr-4 mb-4 md:mb-0 bg-gradient-to-r from-[#26f7aa] to-[#4cfdbc] px-4 p-2 border outline-none rounded-sm  cursor-pointer text-white font-medium hover:shadow-lg'>
+              {" "}
+              Truck
             </Tab>
-            <Tab className='mr-4 mb-4 md:mb-0 bg-[#f3f2f2] p-2 border  rounded-sm cursor-pointer'>
-              Doll Toys
+            <Tab className='mr-4 mb-4 md:mb-0 bg-gradient-to-r from-[#26f7aa] to-[#4cfdbc] px-4 py-2 border outline-none rounded-sm cursor-pointer text-white font-medium hover:shadow-lg'>
+              {" "}
+              Bus
             </Tab>
           </TabList>
 
           <TabPanel>
             {/* Render toys for Car category */}
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
-              {carData?.map((toy) => (
-                <Card className='toy' key={toy._id} toy={toy} />
+            <div className='grid grid-cols-1 md:grid-cols-4 gap-5'>
+              {all?.slice(0, 8).map((toy) => (
+                <ProductCard className='toy' key={toy._id} {...toy} />
+              ))}
+            </div>
+          </TabPanel>
+
+          <TabPanel>
+            {/* Render toys for Car category */}
+            <div className='grid grid-cols-1 md:grid-cols-4 gap-5'>
+              {car?.map((toy) => (
+                <ProductCard className='toy' key={toy._id} {...toy} />
               ))}
             </div>
           </TabPanel>
 
           <TabPanel>
             {/* Render toys for Sports category */}
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
-              {sportsData?.map((toy) => (
-                <Card className='toy' key={toy._id} toy={toy} />
+            <div className='grid grid-cols-1 md:grid-cols-4 gap-5'>
+              {truck?.map((toy) => (
+                <ProductCard className='toy' key={toy._id} {...toy} />
               ))}
             </div>
           </TabPanel>
 
           <TabPanel>
             {/* Render toys for Doll category */}
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
-              {dollData?.map((toy) => (
-                <Card className='toy' key={toy._id} toy={toy} />
+            <div className='grid grid-cols-1 md:grid-cols-4 gap-5'>
+              {bus?.map((toy) => (
+                <ProductCard className='toy' key={toy._id} {...toy} />
               ))}
             </div>
           </TabPanel>

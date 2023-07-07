@@ -5,12 +5,14 @@ import HankPick from "../../components/HandPick/HankPick";
 import ProductCategorys from "../../components/ProductCategorys/ProductCategorys";
 import PromoBanner from "../../components/PromoBanner/PromoBanner";
 import PostList from "../../components/RecentPostList/RecentPostList";
+import ShopByCategory from "../../components/ShopByCategory/ShopByCategory";
+import PromoCard from "../../shared/PromoCard/PromoCard";
 
 const Home = () => {
   useTitle("Home");
 
   return (
-    <div className='my-10'>
+    <div className='my-5'>
       <div className='max-w-7xl mx-auto'>
         <div className='grid grid-cols-12 gap-10'>
           {/* left column here */}
@@ -18,6 +20,7 @@ const Home = () => {
             {/* silderbar here */}
             <ProductCategorys></ProductCategorys>
             <PostList></PostList>
+            <PromoCard></PromoCard>
             {/* silderbar ends here */}
           </div>
           {/* left column ends here */}
@@ -32,6 +35,9 @@ const Home = () => {
             {/* promo banner here */}
             <PromoBanner></PromoBanner>
             {/* promo banner ends here */}
+            {/* product catelogue here */}
+            <ShopByCategory></ShopByCategory>
+            {/* product catelogue ends here */}
           </div>
           {/* right column ends here */}
         </div>

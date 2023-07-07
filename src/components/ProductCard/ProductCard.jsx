@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaEye, FaHeart, FaShoppingBag } from "react-icons/fa";
 
 function ProductCard({ images, title, price, discount_price }) {
+  const [image, hoverImage] = useState(0);
+
   return (
-    <div className='max-w-sm border rounded overflow-hidden shadow-lg bg-blue-100'>
-      <div className='relative group '>
+    <div className='max-w-sm border rounded overflow-hidden shadow-lg bg-[#F7F7F7]'>
+      <div className='relative group'>
         <img
-          className='w-full object-cover h-56'
-          src={images[0]}
+          onMouseOver={() => hoverImage(1)}
+          onMouseLeave={() => hoverImage(0)}
+          className={`w-full object-cover h-64`}
+          src={images[image]}
           alt='Toy airplane'
         />
         <span className='absolute top-0 left-0 bg-red-500 text-white px-2 py-1 text-xs font-bold uppercase'>
@@ -31,7 +35,7 @@ function ProductCard({ images, title, price, discount_price }) {
         </div>
       </div>
       <div className='px-2 mt-5'>
-        <div className='font-semibold text-xl text-center'>
+        <div className='font-semibold text-lg text-center'>
           {title.slice(0, 16)}..
         </div>
       </div>
@@ -45,7 +49,7 @@ function ProductCard({ images, title, price, discount_price }) {
         <span
           className={`${
             discount_price
-              ? "inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 line-through"
+              ? "inline-block bg-gray-200 rounded-full px-2 py-1 text-sm font-semibold text-gray-700 mr-2 line-through"
               : "bg-gray-200 rounded-full px-3 py-1 text-center text-sm font-semibold text-gray-700"
           }`}
         >
