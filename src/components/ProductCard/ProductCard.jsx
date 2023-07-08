@@ -1,8 +1,16 @@
 import React, { useState } from "react";
-import { FaEye, FaHeart, FaShoppingBag } from "react-icons/fa";
+import {
+  FaEye,
+  FaHeart,
+  FaMinus,
+  FaPlus,
+  FaShoppingBag,
+  FaWindowClose,
+} from "react-icons/fa";
 
-function ProductCard({ images, title, price, discount_price }) {
+function ProductCard({ images, title, price, discount_price, description, categories }) {
   const [image, hoverImage] = useState(0);
+  const [show, setShow] = useState(false);
 
   return (
     <div className='max-w-sm border rounded overflow-hidden bg-[#F7F7F7]'>
@@ -28,9 +36,81 @@ function ProductCard({ images, title, price, discount_price }) {
             <li className='hover:shadow-inner hover:text-[#e52165]'>
               <FaHeart></FaHeart>{" "}
             </li>
-            <li className='hover:shadow-inner hover:text-[#e52165]'>
+            <li
+              onClick={() => setShow(!show)}
+              className='hover:shadow-inner hover:text-[#e52165]'
+            >
               <FaEye></FaEye>{" "}
             </li>
+            {/* popup here */}
+            {show ? (
+              <div className='fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-80'>
+                <div className='bg-[#F7F7F7] border-4 border-white p-4 rounded-md shadow-lg relative'>
+                  <div>
+                    <div className='flex space-x-3'>
+                      <div className='flex flex-col items-center'>
+                        <img
+                          src={images[0]}
+                          className='max-w-sm rounded border-2 border-white shadow'
+                          alt=''
+                        />
+                        <div className='flex space-x-2 mt-2'>
+                          <img
+                            src={images[1]}
+                            className='w-28 rounded border-2 border-white shadow'
+                            alt=''
+                          />
+                          <img
+                            src={images[2]}
+                            className='w-28 rounded border-2 border-white shadow'
+                            alt=''
+                          />
+                        </div>
+                      </div>
+                      <div className='p-10'>
+                        <h1 className='text-2xl font-semibold'>{title}</h1>
+                        <div className='mt-3 font-semibold'>
+                          Price: <span>${discount_price}</span>{" "}
+                          <span className='line-through'>${price}</span>
+                        </div>
+
+                        <div className='max-w-sm mt-2'>
+                          <p>{description}</p>
+                        </div>
+
+                        <div className='flex items-center space-x-3'>
+                          <button className='flex items-center space-x-5 rounded border-2 p-2 mt-3 text-md font-medium'>
+                            <span className='hover:text-black font-bold'>
+                              <FaMinus></FaMinus>
+                            </span>
+                            <span>0</span>
+                            <span className='hover:text-black font-bold'>
+                              <FaPlus></FaPlus>
+                            </span>
+                          </button>
+                          <button className='rounded bg-black hover:bg-[#e52165] text-white border-2 p-2 mt-3 text-md font-medium'>
+                            Add To Cart
+                          </button>
+                        </div>
+                        <div  className="mt-5 font-medium">
+                          <span className="font-bold">Categories:</span> <span>{categories[0]}</span>, <span>{categories[1]}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                      type='button'
+                      className='bg-[#fdfdfd] text-red-500 p-2 rounded-md absolute top-2 right-2'
+                      onClick={() => setShow(!show)}
+                    >
+                      <FaWindowClose size={20} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
+            {/* popup ends here */}
           </ul>
         </div>
       </div>
