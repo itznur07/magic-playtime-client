@@ -7,6 +7,7 @@ import {
   FaShoppingBag,
   FaWindowClose,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 function ProductCard({
@@ -22,45 +23,51 @@ function ProductCard({
   const [show, setShow] = useState(false);
   const [popupImg, setPopupImg] = useState(0);
 
+  const navigate = useNavigate();
+
   const { user } = useContext(AuthContext);
 
   const handleAddToCart = (product) => {
-    const {
-      title,
-      images,
-      price,
-      discount_price,
-      description,
-      categories,
-      quantity,
-      reviews,
-    } = product;
+    if (user) {
+      const {
+        title,
+        images,
+        price,
+        discount_price,
+        description,
+        categories,
+        quantity,
+        reviews,
+      } = product;
 
-    const productData = {
-      title,
-      images,
-      price,
-      discount_price,
-      description,
-      categories,
-      quantity,
-      reviews,
-      email: user?.email,
-    };
+      const productData = {
+        title,
+        images,
+        price,
+        discount_price,
+        description,
+        categories,
+        quantity,
+        reviews,
+        email: user?.email,
+      };
 
-    fetch("https://toy-marketplace-server-six.vercel.app/carts", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(productData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId) {
-          alert("Product added to carts");
-        }
-      });
+      fetch("https://toy-marketplace-server-six.vercel.app/carts", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(productData),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            alert("Product added to carts");
+          }
+        });
+    } else {
+      navigate("/login");
+    }
   };
 
   return (
