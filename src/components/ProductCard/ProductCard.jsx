@@ -8,9 +8,18 @@ import {
   FaWindowClose,
 } from "react-icons/fa";
 
-function ProductCard({ images, title, price, discount_price, description, categories }) {
+function ProductCard({
+  images,
+  title,
+  price,
+  discount_price,
+  description,
+  categories,
+}) {
   const [image, hoverImage] = useState(0);
   const [show, setShow] = useState(false);
+
+  const [popupImg, setPopupImg] = useState(0);
 
   return (
     <div className='max-w-sm border rounded overflow-hidden bg-[#F7F7F7]'>
@@ -50,7 +59,7 @@ function ProductCard({ images, title, price, discount_price, description, catego
                     <div className='flex space-x-3'>
                       <div className='flex flex-col items-center'>
                         <img
-                          src={images[0]}
+                          src={images[popupImg]}
                           className='max-w-sm rounded border-2 border-white shadow'
                           alt=''
                         />
@@ -59,11 +68,19 @@ function ProductCard({ images, title, price, discount_price, description, catego
                             src={images[1]}
                             className='w-28 rounded border-2 border-white shadow'
                             alt=''
+                            onClick={() => setPopupImg(1)}
                           />
                           <img
                             src={images[2]}
                             className='w-28 rounded border-2 border-white shadow'
                             alt=''
+                            onClick={() => setPopupImg(2)}
+                          />
+                          <img
+                            src={images[0]}
+                            className='w-28 rounded border-2 border-white shadow'
+                            alt=''
+                            onClick={() => setPopupImg(0)}
                           />
                         </div>
                       </div>
@@ -92,8 +109,10 @@ function ProductCard({ images, title, price, discount_price, description, catego
                             Add To Cart
                           </button>
                         </div>
-                        <div  className="mt-5 font-medium">
-                          <span className="font-bold">Categories:</span> <span>{categories[0]}</span>, <span>{categories[1]}</span>
+                        <div className='mt-5 font-medium'>
+                          <span className='font-bold'>Categories:</span>{" "}
+                          <span>{categories[0]}</span>,{" "}
+                          <span>{categories[1]}</span>
                         </div>
                       </div>
                     </div>
