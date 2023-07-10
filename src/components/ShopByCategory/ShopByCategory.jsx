@@ -49,8 +49,13 @@ const ShopByCategory = () => {
           <TabPanel>
             {/* Render toys for Car category */}
             <div className='grid grid-cols-1 md:grid-cols-4 gap-5'>
-              {all?.slice(0, 8).map((toy) => (
-                <ProductCard className='toy' key={toy._id} {...toy} />
+              {all?.slice(0, 8).map((product) => (
+                <ProductCard
+                  className='toy'
+                  key={product._id}
+                  product={product}
+                  {...product}
+                />
               ))}
             </div>
           </TabPanel>

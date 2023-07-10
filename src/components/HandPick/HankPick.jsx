@@ -11,7 +11,7 @@ const HankPick = () => {
       <h1 className='text-3xl font-bold'>Hand Pick Pieces</h1>
       <div className='grid grid-cols-4 gap-7 mt-10'>
         {products?.slice(0, 4).map((product) => (
-          <ProductCard key={product.id} {...product} />
+          <ProductCard key={product.id} product={product} {...product} />
         ))}
       </div>
     </div>

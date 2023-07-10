@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   FaEye,
   FaHeart,
@@ -7,6 +7,7 @@ import {
   FaShoppingBag,
   FaWindowClose,
 } from "react-icons/fa";
+import { AuthContext } from "../../Providers/AuthProviders";
 
 function ProductCard({
   images,
@@ -15,11 +16,52 @@ function ProductCard({
   discount_price,
   description,
   categories,
+  product,
 }) {
   const [image, hoverImage] = useState(0);
   const [show, setShow] = useState(false);
-
   const [popupImg, setPopupImg] = useState(0);
+
+  const { user } = useContext(AuthContext);
+
+  const handleAddToCart = (product) => {
+    const {
+      title,
+      images,
+      price,
+      discount_price,
+      description,
+      categories,
+      quantity,
+      reviews,
+    } = product;
+
+    const productData = {
+      title,
+      images,
+      price,
+      discount_price,
+      description,
+      categories,
+      quantity,
+      reviews,
+      email: user?.email,
+    };
+
+    fetch("https://toy-marketplace-server-six.vercel.app/carts", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(productData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          alert("Product added to carts");
+        }
+      });
+  };
 
   return (
     <div className='max-w-sm border rounded overflow-hidden bg-[#F7F7F7]'>
@@ -39,7 +81,10 @@ function ProductCard({
         </span>
         <div className='absolute top-20 right-0 hidden group-hover:block'>
           <ul className='md:space-y-5 cursor-pointer bg-[#fff] text-slate-600 p-2 py-4 shadow-lg rounded'>
-            <li className='hover:shadow-inner hover:text-[#e52165]'>
+            <li
+              onClick={() => handleAddToCart(product)}
+              className='hover:shadow-inner hover:text-[#e52165]'
+            >
               <FaShoppingBag></FaShoppingBag>
             </li>
             <li className='hover:shadow-inner hover:text-[#e52165]'>
@@ -60,25 +105,25 @@ function ProductCard({
                       <div className='flex flex-col items-center'>
                         <img
                           src={images[popupImg]}
-                          className='max-w-sm rounded border-2 border-white shadow'
+                          className='max-w-sm h-auto rounded border-2 border-white shadow object-cover'
                           alt=''
                         />
                         <div className='flex space-x-2 mt-2'>
                           <img
                             src={images[1]}
-                            className='w-28 rounded border-2 border-white shadow'
+                            className='w-28 rounded border-2 border-white shadow object-cover'
                             alt=''
                             onClick={() => setPopupImg(1)}
                           />
                           <img
                             src={images[2]}
-                            className='w-28 rounded border-2 border-white shadow'
+                            className='w-28 rounded border-2 border-white shadow object-cover'
                             alt=''
                             onClick={() => setPopupImg(2)}
                           />
                           <img
                             src={images[0]}
-                            className='w-28 rounded border-2 border-white shadow'
+                            className='w-28 rounded border-2 border-white shadow object-cover'
                             alt=''
                             onClick={() => setPopupImg(0)}
                           />
