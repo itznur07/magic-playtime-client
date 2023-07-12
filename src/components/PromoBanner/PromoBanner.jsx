@@ -16,7 +16,7 @@ const PromoBanner = () => {
       </div>
       <div className='relative col-span-6 overflow-hidden rounded-lg'>
         <img
-          src='https://img.freepik.com/free-photo/cute-plush-toys-arrangement_23-2150312314.jpg?w=1060&t=st=1688620150~exp=1688620750~hmac=3699e965521b97886897d3c4088072a48c30d9bd6946eb119df0bd8d7d226fdc'
+          src='https://img.freepik.com/free-photo/cute-plush-toys-arrangement_23-2150312306.jpg?w=1060&t=st=1688707306~exp=1688707906~hmac=bf402252821b7b148d052aed51c4e6aecead61f554dc9c43494ccccc44ad96fb'
           alt='Price tag'
           className='h-80 w-full object-cover rounded-lg cursor-pointer hover:scale-105 transition-all ease-linear duration-300 delay-75 '
         />

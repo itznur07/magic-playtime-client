@@ -20,15 +20,15 @@ function ProductCard({
   categories,
   product,
 }) {
+  const [quantity, setQuantity] = useState(0);
   const [image, hoverImage] = useState(0);
   const [show, setShow] = useState(false);
   const [popupImg, setPopupImg] = useState(0);
-
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const { user } = useContext(AuthContext);
-
-  const handleAddToCart = (product) => {
+  /** Handle Add Function for cart and wishlishts  */
+  const handleAddToCartAndWishList = (product, cart) => {
     if (user) {
       const {
         title,
@@ -53,27 +53,59 @@ function ProductCard({
         email: user?.email,
       };
 
-      fetch("https://toy-marketplace-server-six.vercel.app/carts", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(productData),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.insertedId) {
-            Swal.fire({
-              title: "added to cart!",
-              text: "Product successfully added to card!",
-              icon: "success",
-              confirmButtonText: "ok",
-              confirmButtonColor: "green",
-            });
-          }
-        });
+      // api call condition
+      if (cart) {
+        fetch("https://toy-marketplace-server-six.vercel.app/carts", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(productData),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              Swal.fire({
+                title: "added to cart!",
+                text: "Product successfully added to card!",
+                icon: "success",
+                confirmButtonText: "ok",
+                confirmButtonColor: "green",
+              });
+            }
+          });
+      } else {
+        fetch("https://toy-marketplace-server-six.vercel.app/wishlists", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(productData),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              Swal.fire({
+                title: "added to wishlists!",
+                text: "Product successfully added to wishlists!",
+                icon: "success",
+                confirmButtonText: "ok",
+                confirmButtonColor: "green",
+              });
+            }
+          });
+      }
     } else {
       navigate("/login");
+    }
+  };
+
+  /** Quantity Inc and Dec Function */
+  const handleQty = (inc) => {
+    if (inc) {
+      setQuantity(quantity + 1);
+    } else {
+      setQuantity(quantity - 1);
     }
   };
 
@@ -96,12 +128,17 @@ function ProductCard({
         <div className='absolute top-20 right-0 hidden group-hover:block'>
           <ul className='md:space-y-5 cursor-pointer bg-[#fff] text-slate-600 p-2 py-4 shadow-lg rounded'>
             <li
-              onClick={() => handleAddToCart(product)}
+              onClick={() =>
+                handleAddToCartAndWishList(product, { cart: true })
+              }
               className='hover:shadow-inner hover:text-[#e52165]'
             >
               <FaShoppingBag></FaShoppingBag>
             </li>
-            <li className='hover:shadow-inner hover:text-[#e52165]'>
+            <li
+              onClick={() => handleAddToCartAndWishList(product)}
+              className='hover:shadow-inner hover:text-[#e52165]'
+            >
               <FaHeart></FaHeart>{" "}
             </li>
             <li
@@ -157,14 +194,23 @@ function ProductCard({
                         <div className='flex items-center space-x-3'>
                           <button className='flex items-center space-x-5 rounded border-2 p-2 mt-3 text-md font-medium'>
                             <span className='hover:text-black font-bold'>
-                              <FaMinus></FaMinus>
+                              <FaMinus onClick={() => handleQty()}></FaMinus>
                             </span>
-                            <span>0</span>
+                            <span>{quantity}</span>
                             <span className='hover:text-black font-bold'>
-                              <FaPlus></FaPlus>
+                              <FaPlus
+                                onClick={() => handleQty({ inc: true })}
+                              ></FaPlus>
                             </span>
                           </button>
-                          <button className='rounded bg-black hover:bg-[#e52165] text-white border-2 p-2 mt-3 text-md font-medium'>
+                          <button
+                            onClick={() =>
+                              handleAddToCartAndWishList(product, {
+                                cart: true,
+                              })
+                            }
+                            className='rounded bg-black hover:bg-[#e52165] text-white border-2 p-2 mt-3 text-md font-medium'
+                          >
                             Add To Cart
                           </button>
                         </div>
