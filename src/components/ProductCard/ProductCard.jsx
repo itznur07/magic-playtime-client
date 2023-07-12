@@ -73,6 +73,7 @@ function ProductCard({
                 confirmButtonText: "ok",
                 confirmButtonColor: "green",
               });
+              location.reload();
             }
           });
       } else {
@@ -93,6 +94,7 @@ function ProductCard({
                 confirmButtonText: "ok",
                 confirmButtonColor: "green",
               });
+              location.reload();
             }
           });
       }

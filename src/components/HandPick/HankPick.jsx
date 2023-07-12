@@ -4,7 +4,6 @@ import ProductCard from "../ProductCard/ProductCard";
 
 const HankPick = () => {
   const { products } = useContext(AuthContext);
-  console.log(products);
 
   return (
     <div className='md:mt-10'>

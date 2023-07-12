@@ -5,7 +5,13 @@ import { AuthContext } from "../../Providers/AuthProviders";
 import logo from "../../assets/KhelaGor.svg";
 
 const Navbar = () => {
-  const { user, logOut, loading } = useContext(AuthContext);
+  const { user, logOut, loading, carts, wishlists } = useContext(AuthContext);
+
+  /** filtered carts and wishlists */
+  const filterdCarts = carts?.filter((cart) => cart?.email === user?.email);
+  const filterdWishlists = wishlists?.filter(
+    (product) => product?.email === user?.email
+  );
 
   // user profle photo hover
   const [isHovered, setIsHovered] = useState(false);
@@ -101,19 +107,19 @@ const Navbar = () => {
             <div className='flex items-center md:space-x-3'>
               {user ? (
                 <>
-                  <Link to='/wislist'>
+                  <Link to='/wislists'>
                     <button className='relative px-3.5 py-3.5 rounded-xl bg-[#1FD1A7] hover:bg-[#0d1137] text-white font-semibold'>
                       <FaHeart size={18}></FaHeart>
                       <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-[#E2355F] px-1.5 rounded-full'>
-                        0
+                        {filterdWishlists.length}
                       </span>
                     </button>
                   </Link>
-                  <Link to='/cart'>
+                  <Link to='/carts'>
                     <button className='relative px-3.5 py-3.5 rounded-xl bg-[#1FD1A7] hover:bg-[#0d1137] text-white font-semibold'>
                       <FaShoppingCart size={18}></FaShoppingCart>
                       <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-[#E2355F] px-1.5 rounded-full'>
-                        0
+                        {filterdCarts.length}
                       </span>
                     </button>
                   </Link>
@@ -135,7 +141,7 @@ const Navbar = () => {
                     <button className='relative px-3.5 py-3.5 rounded-xl bg-[#1FD1A7] hover:bg-[#0d1137] text-white font-semibold'>
                       <FaHeart size={18}></FaHeart>
                       <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-[#E2355F] px-1.5 rounded-full'>
-                        0
+                        {filterdWishlists.length}
                       </span>
                     </button>
                   </Link>
@@ -143,7 +149,7 @@ const Navbar = () => {
                     <button className='relative px-3.5 py-3.5 rounded-xl bg-[#1FD1A7] hover:bg-[#0d1137] text-white font-semibold'>
                       <FaShoppingCart size={18}></FaShoppingCart>
                       <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-[#E2355F] px-1.5 rounded-full'>
-                        0
+                        {filterdCarts.length}
                       </span>
                     </button>
                   </Link>

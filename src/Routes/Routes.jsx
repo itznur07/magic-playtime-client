@@ -3,6 +3,7 @@ import Main from "../Layout/Main";
 import AddToys from "../pages/AddToys/AddToys";
 import AllToys from "../pages/AllToys/AllToys";
 import Blogs from "../pages/Blogs/Blogs";
+import Carts from "../pages/Carts/Carts";
 import Error from "../pages/ErrorPages/Error";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: "/carts",
+        element: <Carts></Carts>,
       },
       {
         path: "/toy-details/:id",
@@ -56,7 +61,10 @@ const router = createBrowserRouter([
       {
         path: "/updateToy/:id",
         element: <UpdateToys></UpdateToys>,
-        loader: ({ params }) => fetch(`https://toy-marketplace-server-six.vercel.app/mytoys/${params.id}`),
+        loader: ({ params }) =>
+          fetch(
+            `https://toy-marketplace-server-six.vercel.app/mytoys/${params.id}`
+          ),
       },
     ],
   },

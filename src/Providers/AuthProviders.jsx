@@ -18,6 +18,8 @@ const AuthProviders = ({ children }) => {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
+  const [carts, setCarts] = useState([]);
+  const [wishlists, setWishlists] = useState([]);
 
   const auth = getAuth(app);
 
@@ -81,10 +83,29 @@ const AuthProviders = ({ children }) => {
       });
   }, []);
 
+  /** carts */
+  useEffect(() => {
+    fetch("https://toy-marketplace-server-six.vercel.app/carts")
+      .then((res) => res.json())
+      .then((data) => {
+        setCarts(data);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch("https://toy-marketplace-server-six.vercel.app/wishlists")
+      .then((res) => res.json())
+      .then((data) => {
+        setWishlists(data);
+      });
+  }, []);
+
   const authInfo = {
     user,
     loading,
     products,
+    carts,
+    wishlists,
     userRegistration,
     signInWithGoogle,
     logInWithEmailPassword,
