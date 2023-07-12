@@ -101,18 +101,27 @@ const Navbar = () => {
             <div className='flex items-center md:space-x-3'>
               {user ? (
                 <>
+                  <Link to='/wislist'>
+                    <button className='relative px-3.5 py-3.5 rounded-xl bg-[#1FD1A7] hover:bg-[#0d1137] text-white font-semibold'>
+                      <FaHeart size={18}></FaHeart>
+                      <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-[#E2355F] px-1.5 rounded-full'>
+                        0
+                      </span>
+                    </button>
+                  </Link>
+                  <Link to='/cart'>
+                    <button className='relative px-3.5 py-3.5 rounded-xl bg-[#1FD1A7] hover:bg-[#0d1137] text-white font-semibold'>
+                      <FaShoppingCart size={18}></FaShoppingCart>
+                      <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-[#E2355F] px-1.5 rounded-full'>
+                        0
+                      </span>
+                    </button>
+                  </Link>
                   <img
-                    className='w-14 h-14 mx-3 relative hover:mb-5 cursor-pointer  rounded-full border-2 border-[#1FD1A7]'
+                    className='w-12 h-12 mx-3 cursor-pointer  rounded-full border-2 border-[#1FD1A7]'
                     src={user?.auth.currentUser.photoURL}
                     alt='profile-pic'
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
                   />
-                  {isHovered && (
-                    <div className='name-overlay absolute bottom-3  '>
-                      {user?.auth.currentUser.displayName}
-                    </div>
-                  )}
                   <button
                     onClick={handleLogout}
                     className='px-4 py-2.5 rounded bg-[#1FD1A7] hover:bg-[#0d1137]  text-white font-semibold'

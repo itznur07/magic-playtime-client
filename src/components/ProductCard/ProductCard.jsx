@@ -8,6 +8,7 @@ import {
   FaWindowClose,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 function ProductCard({
@@ -62,7 +63,13 @@ function ProductCard({
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
-            alert("Product added to carts");
+            Swal.fire({
+              title: "added to cart!",
+              text: "Product successfully added to card!",
+              icon: "success",
+              confirmButtonText: "ok",
+              confirmButtonColor: "green",
+            });
           }
         });
     } else {
