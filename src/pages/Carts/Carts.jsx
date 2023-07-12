@@ -1,23 +1,46 @@
 import React, { useContext } from "react";
 import { FaTrash } from "react-icons/fa";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 const Carts = () => {
   const { user, carts } = useContext(AuthContext);
-//   const [quantity, setQuantity] = useState(0);
+  //   const [quantity, setQuantity] = useState(0);
 
   /** Filterd function */
-
   const filterdCarts = carts?.filter((cart) => cart?.email === user?.email);
 
+  /** remove form cart */
+  const removeFromCart = (id) => {
+    fetch(`https://toy-marketplace-server-six.vercel.app/carts/${id}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          Swal.fire({
+            title: "item deleted to cart!",
+            text: "item deleted successfully!",
+            icon: "success",
+            confirmButtonText: "ok",
+            confirmButtonColor: "green",
+          });
+          location.reload();
+        }
+      });
+  };
+
   /** Quantity Inc and Dec Function */
-//   const handleQty = (inc) => {
-//     if (inc) {
-//       setQuantity(quantity + 1);
-//     } else {
-//       setQuantity(quantity - 1);
-//     }
-//   };
+  //   const handleQty = (inc) => {
+  //     if (inc) {
+  //       setQuantity(quantity + 1);
+  //     } else {
+  //       setQuantity(quantity - 1);
+  //     }
+  //   };
 
   return (
     <div>
