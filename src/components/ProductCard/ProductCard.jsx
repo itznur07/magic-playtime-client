@@ -5,6 +5,7 @@ import {
   FaMinus,
   FaPlus,
   FaShoppingBag,
+  FaStar,
   FaWindowClose,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -246,25 +247,22 @@ function ProductCard({
       <div
         className={`${
           discount_price
-            ? "px-6 pt-4 pb-2 flex justify-between items-center"
+            ? "px-2 pt-4 pb-2 flex justify-between items-center"
             : "flex justify-center items-center text-center pt-4 pb-2 "
         }`}
       >
         <span
-          className={`${
-            discount_price
-              ? "inline-block bg-gray-200 rounded-full px-2 py-1 text-sm font-semibold text-gray-700 mr-2 line-through"
-              : "bg-gray-200 rounded-full px-3 py-1 text-center text-sm font-semibold text-gray-700"
-          }`}
-        >
-          ${price}
-        </span>
-        <span
           className={`inline-block ${
-            discount_price ? "bg-green-200" : ""
-          } rounded-full px-3 py-1 text-sm font-semibold  text-gray-700 `}
+            discount_price ? "bg-[#1fd1a51f]" : ""
+          } rounded px-2 py-1 text-sm font-semibold  text-gray-700 `}
         >
-          {discount_price ? `P: $${discount_price}` : null}
+          {discount_price ? `Price: $${discount_price}` : null}
+        </span>
+        <span className='flex items-center space-x-1 text-yellow-500'>
+          <FaStar></FaStar>
+          <FaStar></FaStar>
+          <FaStar></FaStar>
+          <FaStar></FaStar>
         </span>
       </div>
     </div>
