@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { FaTrash } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProviders";
 
@@ -9,6 +10,12 @@ const Carts = () => {
 
   /** Filterd function */
   const filterdCarts = carts?.filter((cart) => cart?.email === user?.email);
+
+  /** get cart total function */
+  const total = filterdCarts.reduce(
+    (total, cart) => parseFloat(cart?.discount_price) + total,
+    0
+  );
 
   /** remove form cart */
   const removeFromCart = (id) => {
@@ -44,8 +51,23 @@ const Carts = () => {
 
   return (
     <div>
+      {/* banner */}
+      <div className='mb-5 relative'>
+        <img
+          src='https://img.freepik.com/free-photo/baby-shoes-toy-camera-nursery-decorations_23-2147698717.jpg?w=1060&t=st=1689263351~exp=1689263951~hmac=e3bc754cce3818da66e4f25cf8d56415f03269aadbab44209928d23484019615'
+          alt='cover-image'
+          className='w-full object-cover h-56'
+        />
+        <div className='absolute inset-0 bg-gray-900 bg-opacity-40'></div>
+        <div className='absolute inset-0 top-24 text-center'>
+          <h1 className='text-5xl font-bold text-white'>Cart</h1>
+          <span className='text-sm font-medium text-white mt-2'>
+            <Link to='/'>Home</Link> / <span>Cart</span>
+          </span>
+        </div>
+      </div>
       {/* Tableuer Cart Content here */}
-      <div className='max-w-7xl mx-auto  text-sm font-medium'>
+      <div className='max-w-7xl mx-auto mb-10 text-sm font-medium'>
         {filterdCarts?.length === 0 ? (
           <p className='text-gray-500'>Your cart is empty.</p>
         ) : (
@@ -73,7 +95,7 @@ const Carts = () => {
                   </td>
                   <td className='py-4 px-4 border-b'>{selectedClass?.title}</td>
                   <td className='py-4 px-4 border-b'>
-                    ${selectedClass?.price}
+                    ${selectedClass?.discount_price}
                   </td>
                   {/* <td className='py-4 px-4 border-b'>
                     <div className='flex justify-center items-center'>
@@ -105,6 +127,11 @@ const Carts = () => {
             </tbody>
           </table>
         )}
+        <div className='max-w-7xl flex  justify-end'>
+          <span className='text-xl p-3 font-bold border-2'>
+            Total: ${total.toFixed()}{" "}
+          </span> 
+        </div>
       </div>
     </div>
   );
