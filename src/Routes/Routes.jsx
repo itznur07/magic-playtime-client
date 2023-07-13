@@ -9,6 +9,7 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import MyToys from "../pages/MyToys/MyToys";
 import Registration from "../pages/Registration/Registration";
+import Shop from "../pages/Shop/Shop";
 import ToyDetails from "../pages/ToyDetails/ToyDetails";
 import UpdateToys from "../pages/ToysUpdate/Updated";
 import PrivateRoutes from "./PrivateRoutes";
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/carts",
         element: <Carts></Carts>,
+      },
+      {
+        path: "/shop",
+        element: <Shop></Shop>,
       },
       {
         path: "/toy-details/:id",
