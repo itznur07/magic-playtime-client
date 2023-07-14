@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
+import FeatureCard from "../../components/FeatureCard/FeatureCard";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import ProductCategorys from "../../components/ProductCategorys/ProductCategorys";
+import ShopNav from "../../components/ShopNav/ShopNav";
 
 const Shop = () => {
   const { products } = useContext(AuthContext);
@@ -32,7 +34,7 @@ const Shop = () => {
             <ProductCategorys></ProductCategorys>
             <div className='mt-5'>
               <div className='rounded-lg border'>
-                <div className='bg-[#1fd1a5] p-5  w-full rounded-t-lg font-bold text-xl text-white'>
+                <div className='bg-[#F3F3F3] p-5  w-full rounded-t-lg font-bold text-xl '>
                   Filter
                 </div>
                 <div className='py-2 mt-4 mx-3'>
@@ -40,8 +42,11 @@ const Shop = () => {
                 </div>
               </div>
             </div>
+            <FeatureCard></FeatureCard>
           </div>
-          <div className='col-span-9'> 
+          {/* Shop Products */}
+          <div className='col-span-9'>
+            <ShopNav></ShopNav>
             <div className='grid grid-cols-4 gap-7'>
               {products?.slice(0, 8).map((product) => (
                 <ProductCard key={product.id} product={product} {...product} />

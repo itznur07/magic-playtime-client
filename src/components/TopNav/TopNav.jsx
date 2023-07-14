@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 const TopNav = () => {
   return (
@@ -7,9 +8,11 @@ const TopNav = () => {
         <div className='flex items-center justify-between'>
           <div className='flex items-center space-x-5 text-sm text-white font-medium'>
             <p>Enjoy 10% off everything with code GIFT2023</p>
-            <button className='bg-white hover:bg-[#e52165] text-black hover:text-white font-medium py-1 px-3 rounded-lg '>
-              Shop Now
-            </button>
+            <Link to='/shop'>
+              <button className='bg-white hover:bg-[#e52165] text-black hover:text-white font-medium py-1 px-3 rounded-lg '>
+                Shop Now
+              </button>
+            </Link>
           </div>
           <div className='text-sm font-medium text-white flex items-center space-x-4'>
             <p>Currency</p>
@@ -21,9 +24,7 @@ const TopNav = () => {
               <option>PK-RS</option>
             </select>
             <span className=' w-0.5 h-6 bg-slate-300'></span>
-            <button className='text-white font-bold w-full'>
-              Get Offer
-            </button>
+            <Link to="/shop" ><button className='text-white font-bold w-full'>Get Offer</button></Link>
           </div>
         </div>
       </div>
