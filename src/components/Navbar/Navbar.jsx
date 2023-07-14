@@ -107,7 +107,7 @@ const Navbar = () => {
             <div className='flex items-center md:space-x-3'>
               {user ? (
                 <>
-                  <Link to='/wislists'>
+                  <Link to='/wishlists'>
                     <button className='relative px-3.5 py-3.5 rounded-xl bg-[#1FD1A7] hover:bg-[#0d1137] text-white font-semibold'>
                       <FaHeart size={18}></FaHeart>
                       <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-[#E2355F] px-1.5 rounded-full'>

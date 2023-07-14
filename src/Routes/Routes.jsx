@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import AddToys from "../pages/AddToys/AddToys";
+import Dashboard from "../pages/Admin/Dashboard";
 import AllToys from "../pages/AllToys/AllToys";
 import Blogs from "../pages/Blogs/Blogs";
 import Carts from "../pages/Carts/Carts";
@@ -12,6 +13,7 @@ import Registration from "../pages/Registration/Registration";
 import Shop from "../pages/Shop/Shop";
 import ToyDetails from "../pages/ToyDetails/ToyDetails";
 import UpdateToys from "../pages/ToysUpdate/Updated";
+import Wishlists from "../pages/Wishlists/Wishlists";
 import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
@@ -32,13 +34,22 @@ const router = createBrowserRouter([
         element: <Login></Login>,
       },
       {
+        path: "/admin",
+        element: <Dashboard></Dashboard>,
+      },
+      {
         path: "/carts",
         element: <Carts></Carts>,
+      },
+      {
+        path: "/wishlists",
+        element: <Wishlists></Wishlists>,
       },
       {
         path: "/shop",
         element: <Shop></Shop>,
       },
+
       {
         path: "/toy-details/:id",
         element: (

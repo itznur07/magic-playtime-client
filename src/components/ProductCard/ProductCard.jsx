@@ -258,7 +258,7 @@ function ProductCard({
             discount_price ? "bg-[#1fd1a51f]" : ""
           } rounded px-2 py-1 text-sm font-semibold  text-gray-700 `}
         >
-          {discount_price ? `Price: $${discount_price}` : null}
+          {discount_price ? `Price: $${discount_price}` : `Price: $${price}` }
         </span>
         <span className='flex items-center space-x-1 text-yellow-500'>
           <FaStar></FaStar>
