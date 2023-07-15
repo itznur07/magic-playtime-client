@@ -8,6 +8,17 @@ import ShopNav from "../../components/ShopNav/ShopNav";
 
 const Shop = () => {
   const { products } = useContext(AuthContext);
+  const [view, setView] = useState(4);
+
+  const handleView = (view) => {
+    if (view === "listview") {
+      setView(1);
+    } else if (view === "gridview") {
+      setView(4);
+    } else {
+      alert("no view");
+    }
+  };
 
   return (
     <div>
@@ -46,10 +57,27 @@ const Shop = () => {
           </div>
           {/* Shop Products */}
           <div className='col-span-9'>
-            <ShopNav></ShopNav>
-            <div className='grid grid-cols-4 gap-7'>
+            <ShopNav handleView={handleView}></ShopNav>
+            <div className={`grid grid-cols-${view} gap-7`}>
               {products?.slice(0, 16).map((product) => (
-                <ProductCard key={product.id} product={product} {...product} />
+                <div className={`${view === 1 ? "grid grid-cols-2 items-center" : ""}`}>
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    {...product}
+                  />{" "}
+                  {view === 1 ? (
+                    <div className='text-center space-y-2 bg-[#f5f5f5] p-5 rounded'>
+                      <h1 className='font-bold text-lg'>{product.title}</h1>
+                      <h1 className='text-md'>{product.description}</h1>
+                      <span className="text-lg font-bold mt-2">
+                        Price: ${product.discount_price || product.price}
+                      </span>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
               ))}
             </div>
           </div>

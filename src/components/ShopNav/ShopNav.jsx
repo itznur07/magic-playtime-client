@@ -1,7 +1,7 @@
 import React from "react";
 import { FaArrowDown, FaColumns, FaList, FaSearch } from "react-icons/fa";
 
-const ShopNav = () => {
+const ShopNav = ({ handleView }) => {
   const handleSortChange = (value) => {
     console.log(`Selected sort option: ${value}`);
   };
@@ -9,23 +9,23 @@ const ShopNav = () => {
   return (
     <div className='mb-8 mt-1'>
       <div className='flex items-center justify-between'>
-        <div className="relative">
+        <div className='relative'>
           <input
             type='text'
             placeholder='Search items'
             className='border-2 p-2 px-4 w-96 rounded outline-none'
           />
-          <span className="absolute right-5 top-3 text-slate-500">
+          <span className='absolute right-5 top-3 text-slate-500'>
             <FaSearch></FaSearch>
           </span>
         </div>
 
         <div className='flex items-center space-x-10'>
           <div className='flex items-center space-x-4 text-xl text-slate-500 cursor-pointer'>
-            <span>
+            <span onClick={() => handleView("listview")}>
               <FaList />
             </span>
-            <span>
+            <span onClick={() => handleView("gridview")}>
               <FaColumns></FaColumns>
             </span>
           </div>

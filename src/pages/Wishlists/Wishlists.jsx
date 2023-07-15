@@ -5,17 +5,60 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 const Wishlists = () => {
-  const { user, wishlists } = useContext(AuthContext);
+  const { user, wishlists} = useContext(AuthContext);
   //   const [quantity, setQuantity] = useState(0);
 
   /** Filterd function */
   const filterdCarts = wishlists?.filter((item) => item?.email === user?.email);
 
-  /** get cart total function */
-  const total = filterdCarts.reduce(
-    (total, cart) => parseFloat(cart?.discount_price) + total,
-    0
-  );
+  
+  /** add to cart */
+  const handleAddToCart = (product) => {
+
+    const {
+      title,
+      images,
+      price,
+      discount_price,
+      description,
+      categories,
+      quantity,
+      reviews,
+    } = product;
+
+    const productData = {
+      title,
+      images,
+      price,
+      discount_price,
+      description,
+      categories,
+      quantity,
+      reviews,
+      email: user?.email,
+    };
+
+    fetch("https://toy-marketplace-server-six.vercel.app/carts", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(productData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            title: "added to cart!",
+            text: "Product successfully added to card!",
+            icon: "success",
+            confirmButtonText: "ok",
+            confirmButtonColor: "green",
+          });
+          location.reload();
+        }
+      });
+  };
 
   /** remove form cart */
   const removeFromCart = (id) => {
@@ -113,12 +156,18 @@ const Wishlists = () => {
                     </div>
                   </td> */}
                   <td className='py-6 px-4 border-b '>
-                    <div className='flex justify-center items-center space-x-3'>
+                    <div className='flex justify-center items-center space-x-5'>
                       <button
                         className='text-[#1fd1a5] hover:text-red-700'
                         onClick={() => removeFromCart(selectedClass?._id)}
                       >
                         <FaTrash></FaTrash>
+                      </button>
+                      <button
+                        onClick={() => handleAddToCart(selectedClass)}
+                        className='rounded bg-black hover:bg-[#e52165] text-white border-2 p-2  text-md font-medium'
+                      >
+                        Add To Cart
                       </button>
                     </div>
                   </td>
