@@ -1,7 +1,7 @@
 import React from "react";
 import { FaArrowDown, FaColumns, FaList, FaSearch } from "react-icons/fa";
 
-const ShopNav = ({ handleView }) => {
+const ShopNav = ({ handleView, searchText, setSearchText }) => {
   const handleSortChange = (value) => {
     console.log(`Selected sort option: ${value}`);
   };
@@ -13,6 +13,8 @@ const ShopNav = ({ handleView }) => {
           <input
             type='text'
             placeholder='Search items'
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
             className='border-2 p-2 px-4 w-96 rounded outline-none'
           />
           <span className='absolute right-5 top-3 text-slate-500'>
