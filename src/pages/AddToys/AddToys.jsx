@@ -7,47 +7,50 @@ const AddToys = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    const pictureUrl = form.pictureUrl.value;
+    const images = [
+      form.pictureUrl.value,
+      form.image2.value,
+      form.image3.value,
+    ];
     const name = form.name.value;
-    const sellerName = form.sellerName.value;
-    const sellerEmail = form.sellerEmail.value;
-    const subcategory = form.subcategory.value;
     const price = form.price.value;
-    const rating = form.rating.value;
-    const quantity = form.quantity.value;
+    const discount_price = form.discount_price.value;
     const description = form.description.value;
+    const categry = form.categories.value;
+    const categories = categry.split(",");
 
-    const toyData = {
-      pictureUrl,
+    const productsData = {
+      images,
       name,
-      sellerName,
-      sellerEmail,
-      subcategory,
       price,
-      rating,
-      quantity,
+      discount_price,
+      categories,
+      quantity: 0,
       description,
+      hot: true,
+      sale: false,
+      reviews: [],
     };
 
-    fetch(`https://toy-marketplace-server-six.vercel.app/mytoys`, {
+    fetch(`https://toy-marketplace-server-six.vercel.app/products`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(toyData),
+      body: JSON.stringify(productsData),
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {
-          alert("Toy Data Add successfully!");
+          alert("Products Added successfully!");
           form.reset();
         }
       });
   };
-  
+
   return (
     <div className='p-6'>
-      <h2 className='text-3xl font-bold text-center my-5 '>Add A Toy</h2>
+      <h2 className='text-3xl font-bold text-center my-5 '>Publish Products</h2>
       <form onSubmit={handleSubmit} className='md:mx-52 '>
         <div className='grid grid-cols-2 gap-5'>
           <div>
@@ -55,7 +58,7 @@ const AddToys = () => {
               htmlFor='pictureUrl'
               className='block text-gray-700 font-medium mb-2'
             >
-              Picture URL
+              Image URL
             </label>
             <input
               type='text'
@@ -70,58 +73,13 @@ const AddToys = () => {
               htmlFor='name'
               className='block text-gray-700 font-medium mb-2'
             >
-              Name
+              Title
             </label>
             <input
               type='text'
               id='name'
               className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
               name='name'
-              required
-            />
-          </div>
-          <div>
-            <label
-              htmlFor='sellerName'
-              className='block text-gray-700 font-medium mb-2'
-            >
-              Seller Name
-            </label>
-            <input
-              type='text'
-              id='sellerName'
-              className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
-              name='sellerName'
-              required
-            />
-          </div>
-          <div>
-            <label
-              htmlFor='sellerEmail'
-              className='block text-gray-700 font-medium mb-2'
-            >
-              Seller Email
-            </label>
-            <input
-              type='email'
-              id='sellerEmail'
-              className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
-              name='sellerEmail'
-              required
-            />
-          </div>
-          <div>
-            <label
-              htmlFor='subcategory'
-              className='block text-gray-700 font-medium mb-2'
-            >
-              Sub-category
-            </label>
-            <input
-              type='text'
-              id='subcategory'
-              className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
-              name='subcategory'
               required
             />
           </div>
@@ -142,31 +100,61 @@ const AddToys = () => {
           </div>
           <div>
             <label
-              htmlFor='rating'
+              htmlFor='Discout Price'
               className='block text-gray-700 font-medium mb-2'
             >
-              Rating
+              Discount Price
             </label>
             <input
-              type='text'
-              id='rating'
+              type='discount_price'
+              id='discount_price'
               className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
-              name='rating'
+              name='discount_price'
               required
             />
           </div>
           <div>
             <label
-              htmlFor='quantity'
+              htmlFor='image2'
               className='block text-gray-700 font-medium mb-2'
             >
-              Available Quantity
+              Image URL(2)
             </label>
             <input
               type='text'
-              id='quantity'
+              id='image2'
               className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
-              name='quantity'
+              name='image2'
+              required
+            />
+          </div>
+          <div>
+            <label
+              htmlFor='image3'
+              className='block text-gray-700 font-medium mb-2'
+            >
+              Image URL (3)
+            </label>
+            <input
+              type='text'
+              id='image3'
+              className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
+              name='image3'
+              required
+            />
+          </div>
+          <div>
+            <label
+              htmlFor='categories'
+              className='block text-gray-700 font-medium mb-2'
+            >
+              Categories(, , ,)
+            </label>
+            <input
+              type='text'
+              id='categories'
+              className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
+              name='categories'
               required
             />
           </div>
@@ -177,7 +165,7 @@ const AddToys = () => {
             >
               Detail Description
             </label>
-            <textarea
+            <input
               id='description'
               className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#e52165]'
               name='description'
@@ -190,7 +178,7 @@ const AddToys = () => {
             type='submit'
             className='w-full font-medium my-5 bg-[#e52165] text-white px-4 py-2.5 rounded-md hover:bg-[#0d1137] transition-colors'
           >
-            Add Toy
+            Publish Product
           </button>
         </div>
       </form>
