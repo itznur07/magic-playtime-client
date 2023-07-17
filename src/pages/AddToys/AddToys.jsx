@@ -1,4 +1,5 @@
 import React from "react";
+import Swal from "sweetalert2";
 import useTitle from "../../Hooks/useTitle";
 
 const AddToys = () => {
@@ -12,7 +13,7 @@ const AddToys = () => {
       form.image2.value,
       form.image3.value,
     ];
-    const name = form.name.value;
+    const title = form.name.value;
     const price = form.price.value;
     const discount_price = form.discount_price.value;
     const description = form.description.value;
@@ -21,7 +22,7 @@ const AddToys = () => {
 
     const productsData = {
       images,
-      name,
+      title,
       price,
       discount_price,
       categories,
@@ -42,7 +43,13 @@ const AddToys = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {
-          alert("Products Added successfully!");
+          Swal.fire({
+            title: "Product Publish",
+            text: "Product successfully published!",
+            icon: "success",
+            confirmButtonText: "ok",
+            confirmButtonColor: "green",
+          });
           form.reset();
         }
       });
