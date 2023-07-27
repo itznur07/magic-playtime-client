@@ -13,8 +13,8 @@ const Banner = () => {
   ];
 
   return (
-    <div className='grid grid-cols-9 gap-5'>
-      <div className='col-span-7'>
+    <div className='grid grid-cols-9 gap-5 md:mx-0 mx-5'>
+      <div className='md:col-span-7 col-span-9'>
         <Swiper
           spaceBetween={50}
           slidesPerView={1}
@@ -92,7 +92,7 @@ const Banner = () => {
           </SwiperSlide>
         </Swiper>
       </div>
-      <div className='col-span-2'>
+      <div className='col-span-2 md:block hidden'>
         <div className='rounded-lg relative md:h-96'>
           <img
             src='https://img.freepik.com/free-photo/charming-boy-with-reindeer-horns_1187-140.jpg?w=740&t=st=1688351565~exp=1688352165~hmac=65974c91282a86b16effc5165df51444b278ef65dd8c21f9b21bc5526a6d4621'

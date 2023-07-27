@@ -46,7 +46,7 @@ const Shop = () => {
       {/* Page layout */}
       <div className='max-w-7xl mx-auto'>
         <div className='grid grid-cols-12 gap-10'>
-          <div className='col-span-3'>
+          <div className='col-span-3 md:block hidden'>
             <ProductCategorys></ProductCategorys>
             <div className='mt-5'>
               <div className='rounded-lg border'>
@@ -67,7 +67,7 @@ const Shop = () => {
               setSearchText={setSearchText}
               handleView={handleView}
             ></ShopNav>
-            <div className={`grid grid-cols-${view} gap-7`}>
+            <div className={`grid md:grid-cols-${view} grid-cols-1  gap-7`}>
               {matchedProducts?.slice(0, 16).map((product) => (
                 <div
                   className={`${

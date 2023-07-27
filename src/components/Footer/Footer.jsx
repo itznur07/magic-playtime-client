@@ -13,7 +13,7 @@ import logo from "../../assets/khelaGor.svg";
 
 const Footer = () => {
   return (
-    <footer className='max-w-7xl mx-auto md:mt-10'>
+    <footer className='max-w-7xl md:mx-auto mx-5 md:mt-10'>
       <div className='flex items-center justify-between flex-wrap'>
         <div className='w-full md:w-1/4 text-start py-2 text-black'>
           <Link to='/'>

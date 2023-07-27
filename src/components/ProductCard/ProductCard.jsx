@@ -21,6 +21,10 @@ function ProductCard({
   categories,
   product,
 }) {
+
+
+  /** Product Card Nessaery States & Hooks */
+
   const [quantity, setQuantity] = useState(0);
   const [image, hoverImage] = useState(0);
   const [show, setShow] = useState(false);
@@ -31,6 +35,8 @@ function ProductCard({
   /** Handle Add Function for cart and wishlishts  */
   const handleAddToCartAndWishList = (product, cart) => {
     if (user) {
+
+      /** Products Data Destructure Product Array */
       const {
         title,
         images,
@@ -42,6 +48,7 @@ function ProductCard({
         reviews,
       } = product;
 
+      /** Product Data For Posting Database */
       const productData = {
         title,
         images,
@@ -54,7 +61,7 @@ function ProductCard({
         email: user?.email,
       };
 
-      // api call condition
+      /** Api Calling With Conditional Way */
       if (cart) {
         fetch("https://toy-marketplace-server-six.vercel.app/carts", {
           method: "POST",
@@ -66,6 +73,7 @@ function ProductCard({
           .then((res) => res.json())
           .then((data) => {
             if (data.insertedId) {
+              /** Sweet alert */
               Swal.fire({
                 title: "added to cart!",
                 text: "Product successfully added to card!",
@@ -73,6 +81,7 @@ function ProductCard({
                 confirmButtonText: "ok",
                 confirmButtonColor: "green",
               });
+              /** Window updating */
               location.reload();
             }
           });
@@ -113,7 +122,7 @@ function ProductCard({
   };
 
   return (
-    <div className='max-w-sm border rounded overflow-hidden bg-[#F7F7F7]'>
+    <div className='md:max-w-sm w-full border rounded overflow-hidden bg-[#F7F7F7]'>
       <div className='relative group'>
         <img
           onMouseOver={() => hoverImage(1)}
@@ -129,7 +138,7 @@ function ProductCard({
           Sale
         </span>
         <div className='absolute top-20 right-0 hidden group-hover:block'>
-          <ul className='md:space-y-5 cursor-pointer bg-[#fff] text-slate-600 p-2 py-4 shadow-lg rounded'>
+          <ul className='space-y-5 cursor-pointer bg-[#fff] text-slate-600 p-2 py-4 shadow-lg rounded'>
             <li
               onClick={() =>
                 handleAddToCartAndWishList(product, { cart: true })
@@ -152,10 +161,10 @@ function ProductCard({
             </li>
             {/* popup here */}
             {show ? (
-              <div className='fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-80'>
+              <div className='md:mx-0 mx-5 fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-80'>
                 <div className='bg-[#F7F7F7] border-4 border-white p-4 rounded-md shadow-lg relative'>
                   <div>
-                    <div className='flex space-x-3'>
+                    <div className='flex md:flex-row flex-col space-x-3'>
                       <div className='flex flex-col items-center'>
                         <img
                           src={images[popupImg]}

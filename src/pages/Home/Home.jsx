@@ -13,11 +13,11 @@ const Home = () => {
   useTitle("Home");
 
   return (
-    <div className='my-5'>
-      <div className='max-w-7xl mx-auto'>
-        <div className='grid grid-cols-12 gap-10'>
+    <div className="my-5">
+      <div className="max-w-7xl mx-auto">
+        <div className="md:grid md:grid-cols-12 flex flex-col-reverse gap-10">
           {/* left column here */}
-          <div className='col-span-3'>
+          <div className="col-span-12 md:col-span-3">
             {/* silderbar here */}
             <ProductCategorys></ProductCategorys>
             <PostList></PostList>
@@ -27,30 +27,23 @@ const Home = () => {
           </div>
           {/* left column ends here */}
           {/* right column */}
-          <div className='col-span-9'>
+          <div className="col-span-12 md:col-span-9">
             {/* Banner here */}
             <Banner></Banner>
             {/* Banner ends here */}
-            {/* Hand Pick Pices here */}
+            {/* Hand Pick Pieces here */}
             <HankPick></HankPick>
-            {/* Hand Pick Pices ends here */}
+            {/* Hand Pick Pieces ends here */}
             {/* promo banner here */}
             <PromoBanner></PromoBanner>
             {/* promo banner ends here */}
-            {/* product catelogue here */}
+            {/* product catalog here */}
             <ShopByCategory></ShopByCategory>
-            {/* product catelogue ends here */}
+            {/* product catalog ends here */}
           </div>
           {/* right column ends here */}
         </div>
       </div>
-
-      {/* <Banner data-aos='fade-up'></Banner>
-      <Category data-aos='fade-up'></Category>
-      <Gallery data-aos='fade-up'></Gallery>
-      <ShopByCategory data-aos='fade-up'></ShopByCategory>
-      <Companys data-aos='fade-up'></Companys>
-      <Review data-aos='fade-up'></Review> */}
     </div>
   );
 };

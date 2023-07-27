@@ -13,7 +13,7 @@ const FeatureCard = () => {
   }, []);
 
   return (
-    <div className='my-5 border rounded-lg'>
+    <div className='my-5 border rounded-lg md:mx-0 mx-5'>
       <div className='bg-[#f3f3f3] border p-5  w-full rounded-t-lg font-bold text-xl text-black'>
         Featured Products
       </div>

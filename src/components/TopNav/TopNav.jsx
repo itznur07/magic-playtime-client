@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const TopNav = () => {
   return (
-    <div className='py-2.5 bg-[#1fd1a5]'>
+    <div className='py-2.5 bg-[#1fd1a5] md:block hidden'>
       <div className='max-w-7xl mx-auto'>
         <div className='flex items-center justify-between'>
           <div className='flex items-center space-x-5 text-sm text-white font-medium'>

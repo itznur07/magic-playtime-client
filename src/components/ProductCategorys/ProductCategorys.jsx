@@ -5,7 +5,7 @@ const ProductCategorys = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className='rounded-lg border'>
+    <div className='rounded-lg border md:mx-0 mx-5'>
       <div className='bg-[#1fd1a5] p-5  w-full rounded-t-lg font-bold text-xl text-white'>
         Product Categories
       </div>
