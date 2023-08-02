@@ -37,7 +37,7 @@ const Shop = () => {
         <div className='absolute inset-0 bg-gray-900 bg-opacity-40'></div>
         <div className='absolute inset-0 top-24 text-center'>
           <h1 className='text-5xl font-bold text-white'>Shop</h1>
-          <span className='text-sm font-medium text-white mt-2'>
+          <span className='text-sm  font-medium text-white mt-2'>
             <Link to='/'>Home</Link> / <span>Shop</span>
           </span>
         </div>
