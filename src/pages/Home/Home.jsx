@@ -9,6 +9,7 @@ import PostList from "../../components/RecentPostList/RecentPostList";
 import ShopByCategory from "../../components/ShopByCategory/ShopByCategory";
 import PromoCard from "../../shared/PromoCard/PromoCard";
 
+
 const Home = () => {
   useTitle("Home");
 
