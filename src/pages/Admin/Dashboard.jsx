@@ -21,7 +21,6 @@ const Dashboard = () => {
       >
         {/* Sidebar Header */}
         <div className='p-4'>
-          {/* <img className='w-32' src={logo} alt='logo' /> */}
           <h1>Logo</h1>
         </div>
 
@@ -34,7 +33,6 @@ const Dashboard = () => {
       </div>
       {/* Main Content */}
       <div className='flex-grow'>
-        {/* Toggle Button */}
         <button
           className='bg-[#ffffff] text-[#49BBBD] p-2'
           onClick={toggleSidebar}
@@ -46,7 +44,6 @@ const Dashboard = () => {
 
         {/* Content */}
         <div className='p-4'>
-          {/* Your page content goes here */}
           <h2 className='text-2xl font-bold'></h2>
         </div>
       </div>

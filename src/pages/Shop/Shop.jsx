@@ -60,7 +60,6 @@ const Shop = () => {
             </div>
             <FeatureCard></FeatureCard>
           </div>
-          {/* Shop Products */}
           <div className='col-span-9'>
             <ShopNav
               searchText={searchText}
