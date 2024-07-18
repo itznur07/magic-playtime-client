@@ -13,13 +13,13 @@ const PostList = () => {
   }, []);
 
   return (
-    <div className='my-5 border rounded-lg md:mx-0 mx-5'>
-      <div className='bg-[#f3f3f3] border p-5  w-full rounded-t-lg font-bold text-xl text-black'>
+    <div className='my-5  md:mx-0 mx-5'>
+      <div className='bg-gray-100  p-5  w-full  font-bold text-xl text-black'>
         Latest Post
       </div>
       {posts?.map((post) => (
         <div className='flex items-center space-x-5 py-3 mx-3'>
-          <img className='w-24 rounded' src={post.image} alt='w-12' />
+          <img className='w-24' src={post.image} alt='w-12' />
           <div>
             <span className='text-sm text-slate-400'>10,march,2023</span>
             <Link to='/blogs'>

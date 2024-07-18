@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const TopNav = () => {
   return (
@@ -15,16 +15,9 @@ const TopNav = () => {
             </Link>
           </div>
           <div className='text-sm font-medium text-white flex items-center space-x-4'>
-            <p>Currency</p>
-            <select className='p-1 rounded-sm text-black h-auto outline-none w-full'>
-              <option>USD-$</option>
-              <option>BDT-TK</option>
-              <option>IND-RS</option>
-              <option>UK-$</option>
-              <option>PK-RS</option>
-            </select>
-            <span className=' w-0.5 h-6 bg-slate-300'></span>
-            <Link to="/shop" ><button className='text-white font-bold w-full'>Get Offer</button></Link>
+            <Link to='/shop'>
+              <button className='text-white font-bold w-full'>Get Offer</button>
+            </Link>
           </div>
         </div>
       </div>

@@ -28,19 +28,18 @@ const ShopByCategory = () => {
       <div className='my-5 flex items-center justify-center mt-16'>
         <Tabs>
           <TabList className='flex flex-col md:justify-normal justify-center md:flex-row md:mb-5'>
-            <Tab className='mr-4  md:w-auto w-full mb-4 md:mb-0 bg-gradient-to-r from-[#26f7aa] to-[#4cfdbc] px-4 py-2 border outline-none rounded-sm cursor-pointer text-white font-medium hover:shadow-lg'>
-              {" "}
+            <Tab className='mr-4  md:w-auto w-full mb-4 md:mb-0 bg-black px-5 py-2 cursor-pointer text-white font-medium hover:shadow-lg'>
               All Toys
             </Tab>
-            <Tab className='mr-4 mb-4  md:w-auto w-full md:mb-0 bg-gradient-to-r from-[#26f7aa] to-[#4cfdbc] px-4 py-2 border outline-none  rounded-sm cursor-pointer text-white font-medium hover:shadow-lg'>
+            <Tab className='mr-4  md:w-auto w-full mb-4 md:mb-0 bg-black px-4 py-2 cursor-pointer text-white font-medium hover:shadow-lg'>
               {" "}
               Car Toys
             </Tab>
-            <Tab className='mr-4 mb-4  md:w-auto w-full md:mb-0 bg-gradient-to-r from-[#26f7aa] to-[#4cfdbc] px-4 p-2 border outline-none rounded-sm  cursor-pointer text-white font-medium hover:shadow-lg'>
+            <Tab className='mr-4  md:w-auto w-full mb-4 md:mb-0 bg-black px-4 py-2 cursor-pointer text-white font-medium hover:shadow-lg'>
               {" "}
               Truck
             </Tab>
-            <Tab className='mr-4 mb-4 md:w-auto w-full md:mb-0 bg-gradient-to-r from-[#26f7aa] to-[#4cfdbc] px-4 py-2 border outline-none rounded-sm cursor-pointer text-white font-medium hover:shadow-lg'>
+            <Tab className='mr-4  md:w-auto w-full mb-4 md:mb-0 bg-black px-4 py-2 cursor-pointer text-white font-medium hover:shadow-lg'>
               {" "}
               Bus
             </Tab>

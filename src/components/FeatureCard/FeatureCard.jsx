@@ -13,15 +13,21 @@ const FeatureCard = () => {
   }, []);
 
   return (
-    <div className='my-5 border rounded-lg md:mx-0 mx-5'>
-      <div className='bg-[#f3f3f3] border p-5  w-full rounded-t-lg font-bold text-xl text-black'>
+    <div className='my-5 md:mx-0 mx-5'>
+      <div className='bg-gray-100 p-5  w-full font-bold text-xl text-black'>
         Featured Products
       </div>
       {posts?.slice(0, 6).map((post) => (
         <div className='flex items-center space-x-5 py-3 mx-3'>
-          <img className='w-24 rounded border' src={post.images[0]} alt='w-12' />
+          <img
+            className='w-24 rounded border'
+            src={post.images[0]}
+            alt='w-12'
+          />
           <div>
-            <span className='text-sm text-slate-400'>${post.discount_price || post.price}</span>
+            <span className='text-sm text-slate-400'>
+              ${post.discount_price || post.price}
+            </span>
             <Link to='/shop'>
               <div>
                 <h1 className='font-medium'>{post.title.slice(0, 30)}</h1>

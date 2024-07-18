@@ -5,8 +5,8 @@ const ProductCategorys = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className='rounded-lg border md:mx-0 mx-5'>
-      <div className='bg-[#1fd1a5] p-5  w-full rounded-t-lg font-bold text-xl text-white'>
+    <div className=' bg-gray-100 md:mx-0 mx-5'>
+      <div className='bg-pink-400 p-5  w-full font-bold text-xl text-white'>
         Product Categories
       </div>
       <ul className='flex flex-col md:space-y-5 text-sm font-semibold p-5'>

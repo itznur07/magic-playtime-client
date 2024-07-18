@@ -105,7 +105,7 @@ const Navbar = () => {
                     </button>
                   </Link>
                   <Link to='/carts'>
-                    <button className='relative px-3.5 py-3.5 rounded-xl bg-[#1FD1A7] hover:bg-[#0d1137] text-white font-semibold'>
+                    <button className='relative px-3.5 py-3.5 rounded-xl hover:bg-[#0d1137] text-white font-semibold'>
                       <FaShoppingCart size={18}></FaShoppingCart>
                       <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-[#E2355F] px-1.5 rounded-full'>
                         {filterdCarts.length}
@@ -127,23 +127,27 @@ const Navbar = () => {
               ) : (
                 <>
                   <Link to='/login'>
-                    <button className='relative px-3.5 py-3.5 rounded-xl bg-[#1FD1A7] hover:bg-[#0d1137] text-white font-semibold'>
+                    <button className='relative px-3.5 py-3.5 rounded-full bg-gray-100 hover:bg-[#0d1137] hover:text-white font-semibold'>
                       <FaHeart size={18}></FaHeart>
-                      <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-[#E2355F] px-1.5 rounded-full'>
+                      <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-[#E2355F] text-white px-1.5 rounded-full'>
                         {filterdWishlists.length}
                       </span>
                     </button>
                   </Link>
                   <Link to='/login'>
-                    <button className='relative px-3.5 py-3.5 rounded-xl bg-[#1FD1A7] hover:bg-[#0d1137] text-white font-semibold'>
+                    <button
+                      className='relative px-3.5 py-3.5 rounded-full bg-gray-100 hover:bg-[#0d1137] hover:text-white font-semibold
+                    
+                    '
+                    >
                       <FaShoppingCart size={18}></FaShoppingCart>
-                      <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-[#E2355F] px-1.5 rounded-full'>
+                      <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-[#E2355F] text-white px-1.5 rounded-full'>
                         {filterdCarts.length}
                       </span>
                     </button>
                   </Link>
                   <Link to='/login'>
-                    <button className='px-3.5 py-3.5 rounded-xl bg-[#1FD1A7] hover:bg-[#0d1137] text-white font-semibold'>
+                    <button className=' px-3.5 py-3.5 rounded-full bg-gray-100 hover:bg-[#0d1137] hover:text-white font-semibold'>
                       <FaUser size={18}></FaUser>
                     </button>
                   </Link>
