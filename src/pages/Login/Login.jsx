@@ -52,7 +52,7 @@ function Login() {
     <div className='flex justify-center space-x-24 items-center my-14'>
       <form
         onSubmit={handleSignIn}
-        className='bg-white py-14 px-28 rounded-lg border border-[#e52165]'
+        className='w-[500px] bg-gray-100 py-14 px-14   border-[#e52165]'
       >
         <h2 className='text-3xl text-center font-bold text-gray-800 mb-10'>
           Login
@@ -67,7 +67,7 @@ function Login() {
             name='email'
             required
             id='email'
-            className='w-full border rounded-lg py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-[#e52165] focus:border-transparent'
+            className='w-full   py-3 px-4 text-gray-700 leading-tight focus:outline-none   '
           />
         </div>
         <div className='mb-2'>
@@ -82,7 +82,7 @@ function Login() {
             name='password'
             required
             id='password'
-            className='w-full border rounded-lg py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-[#e52165] focus:border-transparent'
+            className='w-full   py-3 px-4 text-gray-700 leading-tight focus:outline-none   '
           />
         </div>
         <span className='text-sm mb-4'>
@@ -95,15 +95,16 @@ function Login() {
           </span>
         </span>
         <br />
+        <br />
         <button
           type='submit'
-          className='bg-[#e52165] hover:bg-[#0d1137] text-white w-full font-bold py-2 mt-4 px-4 rounded focus:outline-none focus:shadow-outline'
+          className='bg-black  text-white w-full font-bold py-3 mt-4 px-4 focus:outline-none focus:shadow-outline'
         >
           Login
         </button>
         <button
           type='button'
-          className='bg-red-600 hover:bg-[#0d1137] text-white w-full font-bold py-2 mt-4 px-4 rounded focus:outline-none focus:shadow-outline'
+          className='bg-pink-500  text-white w-full font-bold py-3 mt-4 px-4  focus:outline-none focus:shadow-outline'
         >
           <div
             onClick={handleGoogleSignIn}

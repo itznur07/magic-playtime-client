@@ -42,7 +42,9 @@ const Navbar = () => {
           <div className='flex items-center  text-gray-500'>
             <Link to='/'>
               <div className='flex items-center space-x-2 text-[#e52165]'>
-                <img src={logo} alt='logo' className='w-44' />
+                {<h1 className='text-3xl font-bold'>Hakikat</h1> || (
+                  <img src={logo} alt='logo' className='w-44' />
+                )}
               </div>
             </Link>
           </div>
