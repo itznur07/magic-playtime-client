@@ -23,7 +23,7 @@ const Home = () => {
 
   return (
     <div className='my-5'>
-      <div className='max-w-7xl mx-auto'>
+      <div className='max-w-[1280px] mx-auto'>
         <div className='md:grid md:grid-cols-12 flex flex-col-reverse gap-10'>
           {/* left column here */}
           <div className='col-span-12 md:col-span-3'>
