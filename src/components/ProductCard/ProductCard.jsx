@@ -1,13 +1,5 @@
 import React, { useContext, useState } from "react";
-import {
-  FaEye,
-  FaHeart,
-  FaMinus,
-  FaPlus,
-  FaShoppingBag,
-  FaStar,
-  FaWindowClose,
-} from "react-icons/fa";
+import { FaMinus, FaPlus, FaRegHeart, FaWindowClose } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProviders";
@@ -21,261 +13,168 @@ function ProductCard({
   categories,
   product,
 }) {
-
-
-  /** Product Card Nessaery States & Hooks */
-
-  const [quantity, setQuantity] = useState(0);
-  const [image, hoverImage] = useState(0);
-  const [show, setShow] = useState(false);
-  const [popupImg, setPopupImg] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [imageIndex, setImageIndex] = useState(0);
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [popupImageIndex, setPopupImageIndex] = useState(0);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  /** Handle Add Function for cart and wishlishts  */
   const handleAddToCartAndWishList = (product, cart) => {
     if (user) {
-
-      /** Products Data Destructure Product Array */
-      const {
-        title,
-        images,
-        price,
-        discount_price,
-        description,
-        categories,
-        quantity,
-        reviews,
-      } = product;
-
-      /** Product Data For Posting Database */
       const productData = {
-        title,
-        images,
-        price,
-        discount_price,
-        description,
-        categories,
-        quantity,
-        reviews,
+        ...product,
         email: user?.email,
       };
 
-      /** Api Calling With Conditional Way */
-      if (cart) {
-        fetch("https://toy-marketplace-server-six.vercel.app/carts", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(productData),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.insertedId) {
-              /** Sweet alert */
-              Swal.fire({
-                title: "added to cart!",
-                text: "Product successfully added to card!",
-                icon: "success",
-                confirmButtonText: "ok",
-                confirmButtonColor: "green",
-              });
-              /** Window updating */
-              location.reload();
-            }
-          });
-      } else {
-        fetch("https://toy-marketplace-server-six.vercel.app/wishlists", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(productData),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.insertedId) {
-              Swal.fire({
-                title: "added to wishlists!",
-                text: "Product successfully added to wishlists!",
-                icon: "success",
-                confirmButtonText: "ok",
-                confirmButtonColor: "green",
-              });
-              location.reload();
-            }
-          });
-      }
+      const url = cart
+        ? "https://toy-marketplace-server-six.vercel.app/carts"
+        : "https://toy-marketplace-server-six.vercel.app/wishlists";
+
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(productData),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            Swal.fire({
+              title: `Added to ${cart ? "cart" : "wishlists"}!`,
+              text: `Product successfully added to ${
+                cart ? "cart" : "wishlists"
+              }!`,
+              icon: "success",
+              confirmButtonText: "OK",
+              confirmButtonColor: "green",
+            });
+            location.reload();
+          }
+        });
     } else {
       navigate("/login");
     }
   };
 
-  /** Quantity Inc and Dec Function */
-  const handleQty = (inc) => {
-    if (inc) {
-      setQuantity(quantity + 1);
-    } else {
-      setQuantity(quantity - 1);
-    }
+  const handleQuantityChange = (increment) => {
+    setQuantity((prev) => Math.max(1, prev + (increment ? 1 : -1)));
   };
 
   return (
-    <div className='md:max-w-sm w-full border rounded overflow-hidden bg-[#F7F7F7]'>
-      <div className='relative group'>
+    <div className='border bg-white rounded-lg shadow-lg overflow-hidden'>
+      <div className='relative'>
         <img
-          onMouseOver={() => hoverImage(1)}
-          onMouseLeave={() => hoverImage(0)}
-          className={`w-full object-cover h-64`}
-          src={images[image]}
-          alt='Toy airplane'
+          onMouseOver={() => setImageIndex(1)}
+          onMouseLeave={() => setImageIndex(0)}
+          className='w-full h-64 object-cover transition-transform duration-300'
+          src={images[imageIndex]}
+          alt={title}
         />
-        <span className='absolute top-0 left-0 bg-red-500 text-white px-2 py-1 text-xs font-bold uppercase'>
-          Hot
-        </span>
-        <span className='absolute top-0 right-0 ml-2 bg-yellow-500 text-white px-2 py-1 text-xs font-bold uppercase'>
-          Sale
-        </span>
-        <div className='absolute top-20 right-0 hidden group-hover:block'>
-          <ul className='space-y-5 cursor-pointer bg-[#fff] text-slate-600 p-2 py-4 shadow-lg rounded'>
-            <li
-              onClick={() =>
-                handleAddToCartAndWishList(product, { cart: true })
-              }
-              className='hover:shadow-inner hover:text-[#e52165]'
-            >
-              <FaShoppingBag></FaShoppingBag>
-            </li>
-            <li
-              onClick={() => handleAddToCartAndWishList(product)}
-              className='hover:shadow-inner hover:text-[#e52165]'
-            >
-              <FaHeart></FaHeart>{" "}
-            </li>
-            <li
-              onClick={() => setShow(!show)}
-              className='hover:shadow-inner hover:text-[#e52165]'
-            >
-              <FaEye></FaEye>{" "}
-            </li>
-            {/* popup here */}
-            {show ? (
-              <div className='md:mx-0 mx-5 fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-80'>
-                <div className='bg-[#F7F7F7] border-4 border-white p-4 rounded-md shadow-lg relative'>
-                  <div>
-                    <div className='flex md:flex-row flex-col space-x-3'>
-                      <div className='flex flex-col items-center'>
-                        <img
-                          src={images[popupImg]}
-                          className='max-w-sm h-auto rounded border-2 border-white shadow object-cover'
-                          alt=''
-                        />
-                        <div className='flex space-x-2 mt-2'>
-                          <img
-                            src={images[1]}
-                            className='w-28 rounded border-2 border-white shadow object-cover'
-                            alt=''
-                            onClick={() => setPopupImg(1)}
-                          />
-                          <img
-                            src={images[2]}
-                            className='w-28 rounded border-2 border-white shadow object-cover'
-                            alt=''
-                            onClick={() => setPopupImg(2)}
-                          />
-                          <img
-                            src={images[0]}
-                            className='w-28 rounded border-2 border-white shadow object-cover'
-                            alt=''
-                            onClick={() => setPopupImg(0)}
-                          />
-                        </div>
-                      </div>
-                      <div className='p-10'>
-                        <h1 className='text-2xl font-semibold'>{title}</h1>
-                        <div className='mt-3 font-semibold'>
-                          Price: <span>${discount_price}</span>{" "}
-                          <span className='line-through'>${price}</span>
-                        </div>
+        <button
+          onClick={() => handleAddToCartAndWishList(product, false)}
+          className='absolute top-2 right-2 text-white bg-red-600 p-2 rounded-full'
+        >
+          <FaRegHeart className='text-xl' />
+        </button>
+      </div>
+      <div className='p-4'>
+        <h2 className='text-lg font-semibold mb-2'>{title}</h2>
+        <p className='text-gray-700 mb-2'>{description.slice(0, 80)}...</p>
+        <div className='flex items-center justify-between'>
+          <span className='text-lg font-bold text-red-600'>
+            ${discount_price || price}
+          </span>
+          {discount_price && (
+            <span className='text-sm line-through text-gray-500'>${price}</span>
+          )}
+          <button
+            onClick={() => setIsPopupVisible(true)}
+            className='bg-black text-white px-4 py-2 rounded-md hover:bg-gray-700 transition-colors'
+          >
+            View Details
+          </button>
+        </div>
+      </div>
 
-                        <div className='max-w-sm mt-2'>
-                          <p>{description}</p>
-                        </div>
-
-                        <div className='flex items-center space-x-3'>
-                          <button className='flex items-center space-x-5 rounded border-2 p-2 mt-3 text-md font-medium'>
-                            <span className='hover:text-black font-bold'>
-                              <FaMinus onClick={() => handleQty()}></FaMinus>
-                            </span>
-                            <span>{quantity}</span>
-                            <span className='hover:text-black font-bold'>
-                              <FaPlus
-                                onClick={() => handleQty({ inc: true })}
-                              ></FaPlus>
-                            </span>
-                          </button>
-                          <button
-                            onClick={() =>
-                              handleAddToCartAndWishList(product, {
-                                cart: true,
-                              })
-                            }
-                            className='rounded bg-black hover:bg-[#e52165] text-white border-2 p-2 mt-3 text-md font-medium'
-                          >
-                            Add To Cart
-                          </button>
-                        </div>
-                        <div className='mt-5 font-medium'>
-                          <span className='font-bold'>Categories:</span>{" "}
-                          <span>{categories[0]}</span>,{" "}
-                          <span>{categories[1]}</span>
-                        </div>
-                      </div>
-                    </div>
+      {isPopupVisible && (
+        <div className='fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50'>
+          <div className='bg-white rounded-lg overflow-hidden shadow-xl max-w-lg w-full'>
+            <button
+              onClick={() => setIsPopupVisible(false)}
+              className='absolute top-4 right-4 text-gray-600 hover:text-red-600'
+            >
+              <FaWindowClose size={20} />
+            </button>
+            <div className='p-6'>
+              <div className='flex flex-col md:flex-row'>
+                <div className='w-full md:w-1/2'>
+                  <img
+                    src={images[popupImageIndex]}
+                    className='w-full h-auto object-cover rounded-lg mb-4'
+                    alt={title}
+                  />
+                  <div className='flex space-x-2 overflow-x-auto'>
+                    {images.map((img, index) => (
+                      <img
+                        key={index}
+                        src={img}
+                        className={`w-16 h-16 object-cover rounded-lg cursor-pointer ${
+                          index === popupImageIndex
+                            ? "border-2 border-red-600"
+                            : ""
+                        }`}
+                        onClick={() => setPopupImageIndex(index)}
+                        alt={`Thumbnail ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className='w-full md:w-1/2 md:pl-6'>
+                  <h2 className='text-2xl font-semibold mb-2'>{title}</h2>
+                  <p className='text-gray-700 mb-4'>{description}</p>
+                  <div className='flex items-center mb-4'>
+                    <span className='text-lg font-bold text-red-600'>
+                      ${discount_price || price}
+                    </span>
+                    {discount_price && (
+                      <span className='text-sm line-through text-gray-500 ml-2'>
+                        ${price}
+                      </span>
+                    )}
+                  </div>
+                  <div className='flex items-center mb-4'>
                     <button
-                      type='button'
-                      className='bg-[#fdfdfd] text-red-500 p-2 rounded-md absolute top-2 right-2'
-                      onClick={() => setShow(!show)}
+                      onClick={() => handleQuantityChange(false)}
+                      className='bg-gray-200 p-2 rounded-l-md'
                     >
-                      <FaWindowClose size={20} />
+                      <FaMinus />
                     </button>
+                    <span className='px-4 py-2 bg-gray-100'>{quantity}</span>
+                    <button
+                      onClick={() => handleQuantityChange(true)}
+                      className='bg-gray-200 p-2 rounded-r-md'
+                    >
+                      <FaPlus />
+                    </button>
+                  </div>
+                  <button
+                    onClick={() => handleAddToCartAndWishList(product, true)}
+                    className='w-full bg-black text-white px-4 py-2 rounded-md hover:bg-gray-700 transition-colors'
+                  >
+                    Add to Cart
+                  </button>
+                  <div className='mt-4'>
+                    <span className='font-bold'>Categories:</span>{" "}
+                    {categories.join(", ")}
                   </div>
                 </div>
               </div>
-            ) : (
-              ""
-            )}
-            {/* popup ends here */}
-          </ul>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className='px-2 mt-5'>
-        <div className='font-semibold text-lg text-center'>
-          {title.slice(0, 16)}..
-        </div>
-      </div>
-      <div
-        className={`${
-          discount_price
-            ? "px-2 pt-4 pb-2 flex justify-between items-center"
-            : "flex justify-center items-center text-center pt-4 pb-2 "
-        }`}
-      >
-        <span
-          className={`inline-block ${
-            discount_price ? "bg-[#1fd1a51f]" : ""
-          } rounded px-2 py-1 text-sm font-semibold  text-gray-700 `}
-        >
-          {discount_price ? `Price: $${discount_price}` : `Price: $${price}` }
-        </span>
-        <span className='flex items-center space-x-1 text-yellow-500'>
-          <FaStar></FaStar>
-          <FaStar></FaStar>
-          <FaStar></FaStar>
-          <FaStar></FaStar>
-        </span>
-      </div>
+      )}
     </div>
   );
 }

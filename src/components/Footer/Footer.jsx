@@ -36,7 +36,7 @@ const Footer = () => {
             </div>
             <div
               role='button'
-              className='self-stretch justify-between items-end  max-xl:flex-wrap   flex'
+              className='self-stretch gap-5 items-end  max-xl:flex-wrap   flex'
             >
               <div className='p-[18px] rounded-[10px] border border-black justify-start items-start gap-2.5 flex'>
                 <div className='w-[30px] h-[30px] pb-[0.11px] justify-center  text-3xl items-center flex'>

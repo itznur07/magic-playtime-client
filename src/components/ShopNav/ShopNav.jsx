@@ -1,7 +1,7 @@
 import React from "react";
 import { FaArrowDown, FaColumns, FaList, FaSearch } from "react-icons/fa";
 
-const ShopNav = ({ handleView, searchText, setSearchText }) => {
+const ShopNav = ({ handleView, searchText, setSearchText, sort, setSort }) => {
   const handleSortChange = (value) => {
     console.log(`Selected sort option: ${value}`);
   };
@@ -15,9 +15,9 @@ const ShopNav = ({ handleView, searchText, setSearchText }) => {
             placeholder='Search items'
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
-            className='border-2 p-2 px-4 w-96 rounded outline-none'
+            className='border border-black p-2 px-4 w-[400px] outline-none'
           />
-          <span className='absolute right-5 top-3 text-slate-500'>
+          <span className='absolute right-5 top-3 '>
             <FaSearch></FaSearch>
           </span>
         </div>
@@ -42,8 +42,18 @@ const ShopNav = ({ handleView, searchText, setSearchText }) => {
               <option value='default' disabled>
                 Sort by
               </option>
-              <option value='priceHighToLow'>Price: High to Low</option>
-              <option value='priceLowToHigh'>Price: Low to High</option>
+              <option
+                onClick={() => setSort(() => b - a)}
+                value='priceHighToLow'
+              >
+                Price: High to Low
+              </option>
+              <option
+                onClick={() => setSort(() => a - b)}
+                value='priceLowToHigh'
+              >
+                Price: Low to High
+              </option>
             </select>
           </div>
         </div>

@@ -2,14 +2,299 @@ import React, { useContext } from "react";
 import { FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import image3 from "../../assets/landscape-img-crd5.webp";
+import image1 from "../../assets/OurService2.webp";
+import image2 from "../../assets/two.webp";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 const Carts = () => {
   const { user, carts } = useContext(AuthContext);
   //   const [quantity, setQuantity] = useState(0);
 
+  const dummyProducts = [
+    {
+      id: 1,
+      title: "Pure AC cotton 3 pis",
+      description:
+        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
+      categories: ["3pis", "Sharee", "2pis", "Party saree"],
+      images: [image1, image2, image3],
+      price: 2000,
+      discount_price: 1650,
+      quantity: 0,
+      reviews: [
+        {
+          id: 1,
+          author: "John",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+        {
+          id: 2,
+          author: "Mark",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+      ],
+    },
+    {
+      id: 2,
+      title: "Pure cotton sharee for women",
+      description:
+        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
+      categories: ["3pis", "Sharee", "2pis", "Party saree"],
+      images: [image2, image1, image3],
+      price: 3000,
+      discount_price: 2350,
+      quantity: 0,
+      reviews: [
+        {
+          id: 1,
+          author: "John",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+        {
+          id: 2,
+          author: "Mark",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+      ],
+    },
+    {
+      id: 3,
+      title: "Lehenga saree bundle pack ",
+      description:
+        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
+      categories: ["3pis", "Sharee", "2pis", "Party saree"],
+      images: [image3, image1, image2],
+      price: 9000,
+      discount_price: 8650,
+      quantity: 0,
+      reviews: [
+        {
+          id: 1,
+          author: "John",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+        {
+          id: 2,
+          author: "Mark",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+      ],
+    },
+    {
+      id: 4,
+      title: "Pure AC cotton 3 pis",
+      description:
+        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
+      categories: ["3pis", "Sharee", "2pis", "Party saree"],
+      images: [image3, image1, image2],
+      price: 2000,
+      discount_price: 1650,
+      quantity: 0,
+      reviews: [
+        {
+          id: 1,
+          author: "John",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+        {
+          id: 2,
+          author: "Mark",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+      ],
+    },
+    {
+      id: 5,
+      title: "Pure cotton sharee for women",
+      description:
+        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
+      categories: ["3pis", "Sharee", "2pis", "Party saree"],
+      images: [image2, image1, image3],
+      price: 3000,
+      discount_price: 2350,
+      quantity: 0,
+      reviews: [
+        {
+          id: 1,
+          author: "John",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+        {
+          id: 2,
+          author: "Mark",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+      ],
+    },
+    {
+      id: 6,
+      title: "Lehenga saree bundle pack ",
+      description:
+        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
+      categories: ["3pis", "Sharee", "2pis", "Party saree"],
+      images: [image1, image2, image3],
+      price: 9000,
+      discount_price: 8650,
+      quantity: 0,
+      reviews: [
+        {
+          id: 1,
+          author: "John",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+        {
+          id: 2,
+          author: "Mark",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+      ],
+    },
+    {
+      id: 7,
+      title: "Pure AC cotton 3 pis",
+      description:
+        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
+      categories: ["3pis", "Sharee", "2pis", "Party saree"],
+      images: [image1, image2, image3],
+      price: 2000,
+      discount_price: 1650,
+      quantity: 0,
+      reviews: [
+        {
+          id: 1,
+          author: "John",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+        {
+          id: 2,
+          author: "Mark",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+      ],
+    },
+    {
+      id: 8,
+      title: "Pure cotton sharee for women",
+      description:
+        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
+      categories: ["3pis", "Sharee", "2pis", "Party saree"],
+      images: [image1, image2, image3],
+      price: 3000,
+      discount_price: 2350,
+      quantity: 0,
+      reviews: [
+        {
+          id: 1,
+          author: "John",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+        {
+          id: 2,
+          author: "Mark",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+      ],
+    },
+    {
+      id: 9,
+      title: "Lehenga saree bundle pack ",
+      description:
+        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
+      categories: ["3pis", "Sharee", "2pis", "Party saree"],
+      images: [image1, image2, image3],
+      price: 9000,
+      discount_price: 8650,
+      quantity: 0,
+      reviews: [
+        {
+          id: 1,
+          author: "John",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+        {
+          id: 2,
+          author: "Mark",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+      ],
+    },
+    {
+      id: 10,
+      title: "Pure AC cotton 3 pis",
+      description:
+        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
+      categories: ["3pis", "Sharee", "2pis", "Party saree"],
+      images: [image1, image2, image3],
+      price: 2000,
+      discount_price: 1650,
+      quantity: 0,
+      reviews: [
+        {
+          id: 1,
+          author: "John",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+        {
+          id: 2,
+          author: "Mark",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+      ],
+    },
+    {
+      id: 11,
+      title: "Pure cotton sharee for women",
+      description:
+        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
+      categories: ["3pis", "Sharee", "2pis", "Party saree"],
+      images: [image1, image2, image3],
+      price: 3000,
+      discount_price: 2350,
+      quantity: 0,
+      reviews: [
+        {
+          id: 1,
+          author: "John",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+        {
+          id: 2,
+          author: "Mark",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+      ],
+    },
+    {
+      id: 12,
+      title: "Lehenga saree bundle pack ",
+      description:
+        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
+      categories: ["3pis", "Sharee", "2pis", "Party saree"],
+      images: [image1, image2, image3],
+      price: 9000,
+      discount_price: 8650,
+      quantity: 0,
+      reviews: [
+        {
+          id: 1,
+          author: "John",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+        {
+          id: 2,
+          author: "Mark",
+          text: "Pure AC inductive product with optional price option for customers with purchase",
+        },
+      ],
+    },
+  ];
+
   /** Filterd function */
-  const filterdCarts = carts?.filter((cart) => cart?.email === user?.email);
+  const filterdCarts =
+    carts?.length > 0
+      ? carts
+      : dummyProducts?.filter((cart) => cart?.email === user?.email);
 
   /** get cart total function */
   const total = filterdCarts.reduce(
@@ -130,7 +415,7 @@ const Carts = () => {
         <div className='max-w-7xl flex  justify-end'>
           <span className='text-xl p-3 font-bold border-2'>
             Total: ${total.toFixed()}{" "}
-          </span> 
+          </span>
         </div>
       </div>
     </div>
