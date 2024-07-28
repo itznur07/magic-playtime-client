@@ -26,24 +26,22 @@ const ShopByCategory = () => {
   return (
     <>
       <div className='my-5 flex items-center justify-center mt-16'>
-        <Tabs>
-          <TabList className='flex flex-col md:justify-normal justify-center md:flex-row md:mb-5'>
-            <Tab className='mr-4  md:w-auto w-full mb-4 md:mb-0 bg-black px-5 py-2 cursor-pointer text-white font-medium hover:shadow-lg'>
-              All Toys
-            </Tab>
-            <Tab className='mr-4  md:w-auto w-full mb-4 md:mb-0 bg-black px-4 py-2 cursor-pointer text-white font-medium hover:shadow-lg'>
-              {" "}
-              Car Toys
-            </Tab>
-            <Tab className='mr-4  md:w-auto w-full mb-4 md:mb-0 bg-black px-4 py-2 cursor-pointer text-white font-medium hover:shadow-lg'>
-              {" "}
-              Truck
-            </Tab>
-            <Tab className='mr-4  md:w-auto w-full mb-4 md:mb-0 bg-black px-4 py-2 cursor-pointer text-white font-medium hover:shadow-lg'>
-              {" "}
-              Bus
-            </Tab>
-          </TabList>
+        <Tabs type=''>
+          {/* Tab List */}
+          <div className='flex items-center justify-between mb-10'>
+            <TabList className='flex gap-7'>
+              <Tab className='text-xl font-bold border-b-2 border-black outline-none cursor-pointer'>
+                New Arrivals
+              </Tab>
+              <Tab className='text-xl font-bold hover:border-b-2 border-black outline-none cursor-pointer'>
+                Best Sellers
+              </Tab>
+              <Tab className='text-xl font-bold hover:border-b-2 outline-none border-black cursor-pointer'>
+                Sale Items
+              </Tab>
+            </TabList>
+            <div className='text-xl font-bold'>View All</div>
+          </div>
 
           <TabPanel>
             {/* Render toys for Car category */}
@@ -61,7 +59,7 @@ const ShopByCategory = () => {
 
           <TabPanel>
             {/* Render toys for Car category */}
-            <div className='grid grid-cols-1 md:grid-cols-4 gap-5'>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
               {car?.map((toy) => (
                 <ProductCard className='toy' key={toy._id} {...toy} />
               ))}
@@ -70,7 +68,7 @@ const ShopByCategory = () => {
 
           <TabPanel>
             {/* Render toys for Sports category */}
-            <div className='grid grid-cols-1 md:grid-cols-4 gap-5'>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
               {truck?.map((toy) => (
                 <ProductCard className='toy' key={toy._id} {...toy} />
               ))}
@@ -79,7 +77,7 @@ const ShopByCategory = () => {
 
           <TabPanel>
             {/* Render toys for Doll category */}
-            <div className='grid grid-cols-1 md:grid-cols-4 gap-5'>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
               {bus?.map((toy) => (
                 <ProductCard className='toy' key={toy._id} {...toy} />
               ))}

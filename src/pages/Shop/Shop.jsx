@@ -294,14 +294,13 @@ const Shop = () => {
     },
   ];
 
-  const matchedProducts =
-    products.length > 0
-      ? products
-      : dummyProducts
-          .sort(sort)
-          .filter((product) =>
-            product.title.toLowerCase().includes(searchText.toLowerCase())
-          );
+  const matchedProducts = (
+    products && products.length > 0 ? products : dummyProducts
+  )
+    .sort(sort)
+    .filter((product) =>
+      product.title.toLowerCase().includes(searchText.toLowerCase())
+    );
 
   const handleView = (view) => {
     if (view === "listview") {
@@ -335,7 +334,7 @@ const Shop = () => {
       <div className='max-w-[1280px] mx-auto'>
         <div className='grid grid-cols-12 gap-10'>
           <div className='col-span-3 md:block hidden'>
-            <ProductCategorys></ProductCategorys>
+            <ProductCategorys />
             <div className='mt-5'>
               <div className='rounded-lg border'>
                 <div className='bg-[#F3F3F3] p-5  w-full rounded-t-lg font-bold text-xl '>
@@ -346,7 +345,7 @@ const Shop = () => {
                 </div>
               </div>
             </div>
-            <FeatureCard></FeatureCard>
+            <FeatureCard />
           </div>
           <div className='col-span-9'>
             <ShopNav
@@ -355,13 +354,13 @@ const Shop = () => {
               handleView={handleView}
               sort={sort}
               setSort={setSort}
-            ></ShopNav>
+            />
             <div
               className={`grid md:grid-cols-${view} grid-cols-1  gap-5 mb-20`}
             >
               {matchedProducts.map((product, i) => (
                 <div
-                  key={i + 1}
+                  key={product.id}
                   className={`${
                     view === 1 ? "grid grid-cols-2 items-center" : ""
                   }`}

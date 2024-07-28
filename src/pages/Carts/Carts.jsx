@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { FaTrash } from "react-icons/fa";
+import React, { useContext, useState } from "react";
+import { FaMinus, FaPlus, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import image3 from "../../assets/landscape-img-crd5.webp";
@@ -9,7 +9,7 @@ import { AuthContext } from "../../Providers/AuthProviders";
 
 const Carts = () => {
   const { user, carts } = useContext(AuthContext);
-  //   const [quantity, setQuantity] = useState(0);
+  const [cartItems, setCartItems] = useState(carts || []);
 
   const dummyProducts = [
     {
@@ -290,60 +290,51 @@ const Carts = () => {
     },
   ];
 
-  /** Filterd function */
-  const filterdCarts =
-    carts?.length > 0
-      ? carts
-      : dummyProducts?.filter((cart) => cart?.email === user?.email);
+  const filteredCarts =
+    cartItems.length > 0
+      ? cartItems
+      : dummyProducts.filter((cart) => cart.email === user?.email);
 
-  /** get cart total function */
-  const total = filterdCarts.reduce(
-    (total, cart) => parseFloat(cart?.discount_price) + total,
-    0
-  );
+  const total = filteredCarts.reduce((total, cart) => {
+    const price = parseFloat(cart.discount_price);
+    const quantity = parseInt(cart.quantity, 10);
+    return total + price * quantity;
+  }, 0);
 
-  /** remove form cart */
   const removeFromCart = (id) => {
-    fetch(`https://toy-marketplace-server-six.vercel.app/carts/${id}`, {
-      method: "DELETE",
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.deletedCount > 0) {
-          Swal.fire({
-            title: "item deleted to cart!",
-            text: "item deleted successfully!",
-            icon: "success",
-            confirmButtonText: "ok",
-            confirmButtonColor: "green",
-          });
-          location.reload();
-        }
-      });
+    setCartItems(cartItems.filter((item) => item.id !== id));
+    Swal.fire({
+      title: "Item removed!",
+      text: "Item removed from cart successfully!",
+      icon: "success",
+      confirmButtonText: "OK",
+      confirmButtonColor: "green",
+    });
   };
 
-  /** Quantity Inc and Dec Function */
-  //   const handleQty = (inc) => {
-  //     if (inc) {
-  //       setQuantity(quantity + 1);
-  //     } else {
-  //       setQuantity(quantity - 1);
-  //     }
-  //   };
+  const handleQty = (id, inc) => {
+    const updatedItems = cartItems.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          quantity: Math.max(0, item.quantity + (inc ? 1 : -1)),
+        };
+      }
+      return item;
+    });
+    setCartItems(updatedItems);
+  };
 
   return (
-    <div>
-      {/* banner */}
-      <div className='mb-5 relative'>
+    <div className='container mx-auto p-5'>
+      {/* Banner */}
+      <div className='relative mb-5'>
         <img
           src='https://img.freepik.com/free-photo/baby-shoes-toy-camera-nursery-decorations_23-2147698717.jpg?w=1060&t=st=1689263351~exp=1689263951~hmac=e3bc754cce3818da66e4f25cf8d56415f03269aadbab44209928d23484019615'
-          alt='cover-image'
-          className='w-full object-cover h-56'
+          alt='cover'
+          className='w-full h-56 object-cover rounded-lg shadow-md'
         />
-        <div className='absolute inset-0 bg-gray-900 bg-opacity-40'></div>
+        <div className='absolute inset-0 bg-gray-900 bg-opacity-40 rounded-lg'></div>
         <div className='absolute inset-0 top-24 text-center'>
           <h1 className='text-5xl font-bold text-white'>Cart</h1>
           <span className='text-sm font-medium text-white mt-2'>
@@ -351,72 +342,79 @@ const Carts = () => {
           </span>
         </div>
       </div>
-      {/* Tableuer Cart Content here */}
-      <div className='max-w-7xl mx-auto mb-10 text-sm font-medium'>
-        {filterdCarts?.length === 0 ? (
+
+      {/* Cart Content */}
+      <div className='bg-white shadow-lg rounded-lg p-5'>
+        {filteredCarts.length === 0 ? (
           <p className='text-gray-500'>Your cart is empty.</p>
         ) : (
-          <table className='min-w-full bg-white border border-gray-300'>
-            <thead className='bg-[#1fd1a5] h-14'>
-              <tr className='text-white font-medium text-lg'>
-                <th className='py-2 px-4 border-b'>No.</th>
-                <th className='py-2 px-4 border-b'>Image</th>
-                <th className='py-2 px-4 border-b'>Name</th>
-                <th className='py-2 px-4 border-b'>Price</th>
-                {/* <th className='py-2 px-4 border-b'>Qty</th> */}
-                <th className='py-2 px-4 border-b'>Action</th>
+          <table className='w-full text-left'>
+            <thead className='bg-[#1fd1a5] text-white'>
+              <tr>
+                <th className='py-3 px-4'>No.</th>
+                <th className='py-3 px-4'>Image</th>
+                <th className='py-3 px-4'>Name</th>
+                <th className='py-3 px-4'>Price</th>
+                <th className='py-3 px-4'>Quantity</th>
+                <th className='py-3 px-4'>Action</th>
               </tr>
             </thead>
             <tbody>
-              {filterdCarts?.map((selectedClass, index) => (
-                <tr key={index} className='text-center'>
-                  <td className='py-4 px-4 border-b'>{index + 1}</td>
-                  <td className='py-4 px-4 flex justify-center border-b'>
+              {filteredCarts.map((item, index) => (
+                <tr key={index} className='border-b'>
+                  <td className='py-4 px-4'>{index + 1}</td>
+                  <td className='py-4 px-4'>
                     <img
-                      src={selectedClass?.images[0]}
-                      alt={selectedClass?.className}
-                      className='w-16 h-16 object-cover'
+                      src={item.images[0]}
+                      alt={item.title}
+                      className='w-16 h-16 object-cover rounded'
                     />
                   </td>
-                  <td className='py-4 px-4 border-b'>{selectedClass?.title}</td>
-                  <td className='py-4 px-4 border-b'>
-                    ${selectedClass?.discount_price}
-                  </td>
-                  {/* <td className='py-4 px-4 border-b'>
-                    <div className='flex justify-center items-center'>
-                      <button className='flex items-center space-x-5 rounded border p-2 text-md font-medium'>
-                        <span className='hover:text-black font-bold'>
-                          <FaMinus onClick={() => handleQty()}></FaMinus>
-                        </span>
-                        <span>{quantity}</span>
-                        <span className='hover:text-black font-bold'>
-                          <FaPlus
-                            onClick={() => handleQty({ inc: true })}
-                          ></FaPlus>
-                        </span>
-                      </button>
-                    </div>
-                  </td> */}
-                  <td className='py-6 px-4 border-b '>
-                    <div className='flex justify-center items-center space-x-3'>
+                  <td className='py-4 px-4'>{item.title}</td>
+                  <td className='py-4 px-4'>${item.discount_price}</td>
+                  <td className='py-4 px-4'>
+                    <div className='flex items-center justify-center'>
                       <button
-                        className='text-[#1fd1a5] hover:text-red-700'
-                        onClick={() => removeFromCart(selectedClass?._id)}
+                        className='p-2 rounded-lg border bg-gray-100 text-gray-700'
+                        onClick={() => handleQty(item.id, false)}
                       >
-                        <FaTrash></FaTrash>
+                        <FaMinus />
+                      </button>
+                      <span className='mx-3'>{item.quantity}</span>
+                      <button
+                        className='p-2 rounded-lg border bg-gray-100 text-gray-700'
+                        onClick={() => handleQty(item.id, true)}
+                      >
+                        <FaPlus />
                       </button>
                     </div>
+                  </td>
+                  <td className='py-4 px-4'>
+                    <button
+                      className='text-red-600 hover:text-red-800'
+                      onClick={() => removeFromCart(item.id)}
+                    >
+                      <FaTrash />
+                    </button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
         )}
-        <div className='max-w-7xl flex  justify-end'>
-          <span className='text-xl p-3 font-bold border-2'>
-            Total: ${total.toFixed()}{" "}
+
+        {/* Total */}
+        <div className='flex justify-end mt-5'>
+          <span className='text-xl font-bold border-t-2 pt-2'>
+            Total: ${total.toFixed(2)}
           </span>
         </div>
+        <Link
+          to='/checkout'
+          className='bg-[#1fd1a5] text-white py-2 px-4 rounded-lg hover:bg-[#17a589] transition-colors duration-300'
+        >
+          Checkout
+        </Link>
       </div>
     </div>
   );

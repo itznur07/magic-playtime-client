@@ -1,75 +1,73 @@
+import { Link } from "react-router-dom";
 import { Autoplay, Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
+import banner1 from "../../assets/banner1.png";
+import banner2 from "../../assets/banner2.png";
+import banner3 from "../../assets/banner3.png";
 
 const Banner = () => {
-  const imgSrc = [
-    "https://mobirise.com/extensions/commercem4/assets/images/gallery01.jpg",
-    "https://mobirise.com/extensions/commercem4/assets/images/gallery04.jpg",
-    "https://mobirise.com/extensions/commercem4/assets/images/gallery03.jpg",
-  ];
+  const imgSrc = [banner1, banner2, banner3];
 
   const banners = [
     {
       image: imgSrc[0],
-      buttonText: "Super Hit Doll Collections",
-      title: "Dolls & Toys",
-      buttonPosition: "top-5 left-10",
-      titlePosition: "top-20 left-10",
+      buttonText: "Buy Now",
+      title: "Watch",
+      description: "Amazing watch quality and performance",
     },
     {
       image: imgSrc[1],
-      buttonText: "Super Hit Cars Collections",
-      title: "Cars & Toys",
-      buttonPosition: "top-5 left-10",
-      titlePosition: "top-20 left-10",
+      buttonText: "Buy Now",
+      title: "Shoes",
+      description: "Great for running, very comfortable!",
     },
     {
       image: imgSrc[2],
-      buttonText: "Super Hit Cloth Collections",
-      title: "Cloth & Toys",
-      buttonPosition: "top-10 right-10",
-      titlePosition: "top-20 right-10",
+      buttonText: "Buy Now",
+      title: "Cloth",
+      description: "Men denim pent, very comfortable!",
     },
   ];
 
   return (
-    <div className='grid grid-cols-9 gap-5 mx-5 md:mx-0'>
-      <div className='col-span-9'>
-        <Swiper
-          spaceBetween={0}
-          slidesPerView={1}
-          navigation
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 3000 }}
-          loop={true}
-          modules={[Pagination, Navigation, Autoplay]}
-        >
-          {banners.map((banner, index) => (
-            <SwiperSlide key={index}>
-              <div className='relative h-64 md:h-[500px]'>
-                <img
-                  src={banner.image}
-                  alt={`Banner ${index + 1}`}
-                  className='w-full h-full object-cover rounded-lg'
-                />
-                <div className={`absolute ${banner.buttonPosition}`}>
-                  <button className='mb-2 p-2 text-white font-medium text-xs border border-white rounded-full'>
-                    {banner.buttonText}
-                  </button>
-                </div>
-                <div className={`absolute ${banner.titlePosition}`}>
-                  <div className='text-4xl font-bold text-white'>
-                    {banner.title}
-                  </div>
-                </div>
+    <div className='mx-5 md:mx-0'>
+      <Swiper
+        spaceBetween={0}
+        slidesPerView={1}
+        navigation
+        pagination={{ clickable: true }}
+        autoplay={{ delay: 2000 }}
+        speed={1500}
+        loop={true}
+        className='lg:h-[450px]'
+        modules={[Pagination, Navigation, Autoplay]}
+      >
+        {banners.map((banner, index) => (
+          <SwiperSlide key={index}>
+            <div>
+              <img
+                src={banner.image}
+                alt={`Banner ${index + 1}`}
+                className='relative w-full h-full object-cover '
+              />
+
+              {/* Banner Content */}
+              <div className='absolute inset-0 top-1/3 left-10'>
+                <h1 className='text-lg font-bold'>{banner.title}</h1>
+                <p className='text-3xl font-bold w-[50%] mt-1'>
+                  {banner.description}
+                </p>
+                <button className='mt-5 bg-black text-white px-4 py-2'>
+                  <Link to='/shop'>{banner.buttonText}</Link>
+                </button>
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };

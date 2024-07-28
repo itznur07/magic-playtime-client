@@ -54,8 +54,8 @@ const ProductCategorys = () => {
   };
 
   return (
-    <div className='bg-gray-100 md:mx-0 mx-5'>
-      <div className='bg-green-600 p-5 w-full font-bold text-xl text-white'>
+    <div className='bg-gray-100 md:mx-0 mx-5 min-h-[450px] h-auto'>
+      <div className='bg-black p-5 w-full font-bold text-xl text-white '>
         Product Categories
       </div>
       <ul className='flex flex-col md:space-y-5 text-sm font-semibold p-5'>

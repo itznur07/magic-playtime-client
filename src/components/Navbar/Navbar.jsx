@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import { FaHeart, FaShoppingCart, FaUser } from "react-icons/fa";
+import { FaRegHeart, FaShoppingBag, FaUser } from "react-icons/fa";
+import { IoSearchOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
 import logo from "../../assets/KhelaGor.svg";
-
 const Navbar = () => {
   const { user, logOut, loading, carts, wishlists } = useContext(AuthContext);
 
@@ -41,116 +41,98 @@ const Navbar = () => {
           {/* logo here */}
           <div className='flex items-center  text-gray-500'>
             <Link to='/'>
-              <div className='flex items-center space-x-2 text-[#e52165]'>
-                {<h1 className='text-3xl font-bold'>Hakikat</h1> || (
+              <div className='flex items-center space-x-2 text-black'>
+                {<h1 className='text-3xl font-bold'>Shopzip</h1> || (
                   <img src={logo} alt='logo' className='w-44' />
                 )}
               </div>
             </Link>
           </div>
           {/* navigation link here */}
-          <div className='md:flex md:flex-row md:text-md flex flex-col items-center space-x-5 font-medium'>
+          <div className='md:flex md:flex-row md:text-md flex flex-col items-center gap-10 font-medium'>
             <Link
               to='/'
-              className='inline-block text-md px-4 py-2 leading-none  text-gray-800   hover:text-blue-500 hover:bg-slate-100 rounded-sm mt-4 lg:mt-0'
+              className='relative inline-block text-md  py-2 leading-none  text-gray-800  hover:border-b-2 border-black rounded-sm mt-4 lg:mt-0'
             >
               Home
             </Link>
 
             <Link
-              className='relative inline-block text-md px-4 py-2 leading-none  text-gray-800   hover:text-blue-500 hover:bg-slate-100 rounded-sm mt-4 lg:mt-0 '
+              className='relative inline-block text-md  py-2 leading-none  text-gray-800  hover:border-b-2 border-black rounded-sm mt-4 lg:mt-0'
               to='/shop'
             >
               Shop
             </Link>
 
             <Link
-              to='/alltoys'
-              className='relative inline-block text-md px-4 py-2 leading-none  text-gray-800   hover:text-blue-500 hover:bg-slate-100 rounded-sm mt-4 lg:mt-0 '
-            >
-              All Products
-            </Link>
-            <Link
-              to='/addtoys'
-              className='relative inline-block text-md px-4 py-2 leading-none  text-gray-800   hover:text-blue-500 hover:bg-slate-100 rounded-sm mt-4 lg:mt-0 '
-            >
-              Add Product
-            </Link>
-            {user?.email ? (
-              <Link
-                to='/mytoys'
-                className='inline-block text-md px-4 py-2 leading-none  text-gray-800  hover:text-blue-500 hover:bg-slate-100 rounded-sm  mt-4 lg:mt-0 '
-              >
-                My Toys
-              </Link>
-            ) : (
-              ""
-            )}
-            <Link
               to='/blogs'
-              className='relative inline-block text-md px-4 py-2 leading-none  text-gray-800   hover:text-blue-500 hover:bg-slate-100 rounded-sm mt-4 lg:mt-0'
+              className='relative inline-block text-md  py-2 leading-none  text-gray-800  hover:border-b-2 border-black rounded-sm mt-4 lg:mt-0'
             >
               Blogs
+            </Link>
+            <Link
+              to='/contact'
+              className='relative inline-block text-md  py-2 leading-none  text-gray-800  hover:border-b-2 border-black rounded-sm mt-4 lg:mt-0'
+            >
+              Contact Us
             </Link>
           </div>
           {/* login & cart & wish icon here */}
           <div>
-            <div className='flex items-center md:space-x-3'>
+            <div className='flex items-center gap-3'>
               {user ? (
                 <>
+                  <Link to='/search'>
+                    <IoSearchOutline className='text-black' size={24} />
+                  </Link>
                   <Link to='/wishlists'>
-                    <button className='relative px-3.5 py-3.5 rounded-xl bg-[#1FD1A7] hover:bg-[#0d1137] text-white font-semibold'>
-                      <FaHeart size={18}></FaHeart>
-                      <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-[#E2355F] px-1.5 rounded-full'>
+                    <button className='relative px-3.5 py-3.5  text-black font-semibold'>
+                      <FaRegHeart size={24}></FaRegHeart>
+                      <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-black px-1.5 rounded-full text-white'>
                         {filterdWishlists.length}
                       </span>
                     </button>
                   </Link>
                   <Link to='/carts'>
-                    <button className='relative px-3.5 py-3.5 rounded-xl hover:bg-[#0d1137] text-white font-semibold'>
-                      <FaShoppingCart size={18}></FaShoppingCart>
-                      <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-[#E2355F] px-1.5 rounded-full'>
+                    <button className='relative px-3.5 py-3.5  text-black font-semibold'>
+                      <FaShoppingBag size={24}></FaShoppingBag>
+                      <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-black text-white px-1.5 rounded-full'>
                         {filterdCarts.length}
                       </span>
                     </button>
                   </Link>
-                  <img
-                    className='w-12 h-12 mx-3 cursor-pointer  rounded-full border-2 border-[#1FD1A7]'
-                    src={user?.auth.currentUser.photoURL}
-                    alt='profile-pic'
-                  />
+
                   <button
                     onClick={handleLogout}
-                    className='px-4 py-2.5 rounded bg-[#1FD1A7] hover:bg-[#0d1137]  text-white font-semibold'
+                    className='px-4 py-2  bg-black  text-white font-medium'
                   >
                     Log out
                   </button>
                 </>
               ) : (
                 <>
+                  <Link to='/search'>
+                    <IoSearchOutline size={24} />
+                  </Link>
                   <Link to='/login'>
-                    <button className='relative px-3.5 py-3.5 rounded-full bg-gray-100 hover:bg-[#0d1137] hover:text-white font-semibold'>
-                      <FaHeart size={18}></FaHeart>
-                      <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-[#E2355F] text-white px-1.5 rounded-full'>
+                    <button className='relative px-3.5 py-3.5  text-black font-semibold'>
+                      <FaRegHeart size={24}></FaRegHeart>
+                      <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-black px-1.5 rounded-full text-white'>
                         {filterdWishlists.length}
                       </span>
                     </button>
                   </Link>
                   <Link to='/login'>
-                    <button
-                      className='relative px-3.5 py-3.5 rounded-full bg-gray-100 hover:bg-[#0d1137] hover:text-white font-semibold
-                    
-                    '
-                    >
-                      <FaShoppingCart size={18}></FaShoppingCart>
-                      <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-[#E2355F] text-white px-1.5 rounded-full'>
+                    <button className='relative px-3.5 py-3.5  text-black font-semibold'>
+                      <FaShoppingBag size={24}></FaShoppingBag>
+                      <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-black text-white px-1.5 rounded-full'>
                         {filterdCarts.length}
                       </span>
                     </button>
                   </Link>
                   <Link to='/login'>
-                    <button className=' px-3.5 py-3.5 rounded-full bg-gray-100 hover:bg-[#0d1137] hover:text-white font-semibold'>
-                      <FaUser size={18}></FaUser>
+                    <button className=''>
+                      <FaUser size={24}></FaUser>
                     </button>
                   </Link>
                 </>

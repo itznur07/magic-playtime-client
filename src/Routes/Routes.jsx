@@ -5,6 +5,7 @@ import Dashboard from "../pages/Admin/Dashboard";
 import AllToys from "../pages/AllToys/AllToys";
 import Blogs from "../pages/Blogs/Blogs";
 import Carts from "../pages/Carts/Carts";
+import Checkout from "../pages/Carts/Checkout";
 import Error from "../pages/ErrorPages/Error";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
         element: <Carts></Carts>,
       },
       {
+        path: "/checkout",
+        element: <Checkout />,
+      },
+      {
         path: "/wishlists",
         element: <Wishlists></Wishlists>,
       },
@@ -70,6 +75,7 @@ const router = createBrowserRouter([
         path: "/alltoys",
         element: <AllToys></AllToys>,
       },
+
       {
         path: "/addtoys",
         element: <AddToys></AddToys>,

@@ -1,5 +1,8 @@
 import React, { useContext, useState } from "react";
-import { FaMinus, FaPlus, FaRegHeart, FaWindowClose } from "react-icons/fa";
+import { AiOutlineClose, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { CiHeart } from "react-icons/ci";
+import { FaRegStar } from "react-icons/fa";
+import { IoIosGitCompare } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProviders";
@@ -63,67 +66,60 @@ function ProductCard({
   };
 
   return (
-    <div className='border bg-white rounded-lg shadow-lg overflow-hidden'>
+    <div className=' bg-white  overflow-hidden cursor-pointer'>
       <div className='relative'>
         <img
+          onClick={() => setIsPopupVisible(true)}
           onMouseOver={() => setImageIndex(1)}
           onMouseLeave={() => setImageIndex(0)}
-          className='w-full h-64 object-cover transition-transform duration-300'
+          className='w-full h-[300px] object-cover transition-transform duration-300'
           src={images[imageIndex]}
           alt={title}
         />
         <button
           onClick={() => handleAddToCartAndWishList(product, false)}
-          className='absolute top-2 right-2 text-white bg-red-600 p-2 rounded-full'
+          className='absolute top-2 right-2 text-black   p-2 rounded-full '
         >
-          <FaRegHeart className='text-xl' />
+          <CiHeart size={24} className='text-gray-500' />
         </button>
       </div>
-      <div className='p-4'>
-        <h2 className='text-lg font-semibold mb-2'>{title}</h2>
-        <p className='text-gray-700 mb-2'>{description.slice(0, 80)}...</p>
+      <div onClick={() => setIsPopupVisible(true)} className='p-4 '>
+        <h2 className='text-md font-semibold '>{title}</h2>
         <div className='flex items-center justify-between'>
-          <span className='text-lg font-bold text-red-600'>
-            ${discount_price || price}
-          </span>
-          {discount_price && (
-            <span className='text-sm line-through text-gray-500'>${price}</span>
-          )}
-          <button
-            onClick={() => setIsPopupVisible(true)}
-            className='bg-black text-white px-4 py-2 rounded-md hover:bg-gray-700 transition-colors'
-          >
-            View Details
-          </button>
+          <span className='text-sm font-medium text-gray-600'>TK {price}</span>
         </div>
       </div>
 
+      {/* MODAL  */}
+
       {isPopupVisible && (
         <div className='fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50'>
-          <div className='bg-white rounded-lg overflow-hidden shadow-xl max-w-lg w-full'>
+          <div className='relative bg-white overflow-hidden shadow-xl max-w-[750px] w-full'>
+            {/* Modal Close Button */}
             <button
               onClick={() => setIsPopupVisible(false)}
-              className='absolute top-4 right-4 text-gray-600 hover:text-red-600'
+              className='absolute top-4 right-4 text-gray-600 hover:text-black-600'
             >
-              <FaWindowClose size={20} />
+              <AiOutlineClose size={20} />
             </button>
-            <div className='p-6'>
+
+            {/* Modal Details Product*/}
+            <div className='p-6 mt-5'>
               <div className='flex flex-col md:flex-row'>
+                {/* Image Layout */}
                 <div className='w-full md:w-1/2'>
                   <img
                     src={images[popupImageIndex]}
-                    className='w-full h-auto object-cover rounded-lg mb-4'
+                    className='w-full h-[400px] object-cover '
                     alt={title}
                   />
-                  <div className='flex space-x-2 overflow-x-auto'>
+                  <div className='flex space-x-2 mt-5'>
                     {images.map((img, index) => (
                       <img
                         key={index}
                         src={img}
-                        className={`w-16 h-16 object-cover rounded-lg cursor-pointer ${
-                          index === popupImageIndex
-                            ? "border-2 border-red-600"
-                            : ""
+                        className={`w-16 h-16 object-cover  cursor-pointer ${
+                          index === popupImageIndex ? "border border-black" : ""
                         }`}
                         onClick={() => setPopupImageIndex(index)}
                         alt={`Thumbnail ${index + 1}`}
@@ -131,43 +127,85 @@ function ProductCard({
                     ))}
                   </div>
                 </div>
-                <div className='w-full md:w-1/2 md:pl-6'>
-                  <h2 className='text-2xl font-semibold mb-2'>{title}</h2>
-                  <p className='text-gray-700 mb-4'>{description}</p>
-                  <div className='flex items-center mb-4'>
-                    <span className='text-lg font-bold text-red-600'>
-                      ${discount_price || price}
-                    </span>
-                    {discount_price && (
-                      <span className='text-sm line-through text-gray-500 ml-2'>
-                        ${price}
+
+                {/* Details TEXT INFO */}
+                <div className='w-full md:w-1/2 md:pl-6 mt-7'>
+                  <h2 className='text-xl font-semibold mb-2'>{title}</h2>
+                  <div className='flex items-center justify-between'>
+                    <span className='text-md text-blacks'>TK {price}</span>
+                  </div>
+
+                  {/* Qty and Size */}
+                  <div className='flex items-center gap-3'>
+                    {/* Quantity Block */}
+                    <div className='mt-3'>
+                      <p className='text-sm font-semibold'>Quantity</p>
+                      <div className='w-[120px] h-[36px] flex items-center justify-center gap-5 border border-black mt-1.5  px-3 py-1'>
+                        <button onClick={() => handleQuantityChange(false)}>
+                          <AiOutlineMinus />
+                        </button>
+                        <span>{quantity}</span>
+                        <button onClick={() => handleQuantityChange(true)}>
+                          <AiOutlinePlus />
+                        </button>
+                      </div>
+                    </div>
+                    {/* Size Block */}
+                    <div className='mt-3'>
+                      <p className='text-sm font-semibold'>Size</p>
+                      <div className='w-[120px] h-[36px] flex items-center justify-center gap-5 border border-black outline-none mt-1.5  px-3 py-1'>
+                        <select
+                          className='text-sm outline-none'
+                          name='ff'
+                          id=''
+                        >
+                          <option value=''>Choose an </option>
+                          <option value=''>S</option>
+                          <option value=''>L</option>
+                          <option value=''>XL</option>
+                          <option value=''>XLL</option>
+                          <option value=''>3XLL</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <div className='mt-5'>
+                    <p className='text-sm font-semibold'>Description</p>
+                    <p className='text-gray-700 text-sm mt-1'>{description}</p>
+                  </div>
+
+                  {/* Review */}
+                  <div className='mt-3'>
+                    <p className='text-sm font-semibold'>Review (3)</p>
+                    <div className='flex items-center gap-3 mt-1'>
+                      <span className='flex text-gray-700 '>
+                        <FaRegStar size={14} className='text-yellow-400' />
+                        <FaRegStar size={14} className='text-yellow-400' />
+                        <FaRegStar size={14} className='text-yellow-400' />
+                        <FaRegStar size={14} className='text-gray-400' />
+                        <FaRegStar size={14} className='text-gray-400' />
                       </span>
-                    )}
+                    </div>
                   </div>
-                  <div className='flex items-center mb-4'>
+
+                  {/* Add TO Cart and Compare and share  */}
+                  <div className='grid grid-cols-12 gap-5 mt-5'>
+                    <div className='col-span-4 flex gap-1.5'>
+                      <button className='h-[40px] border border-black text-black     px-3 py-2'>
+                        <CiHeart size={20} />
+                      </button>
+                      <button className='h-[40px] border border-black text-black   px-3 py-2 '>
+                        <IoIosGitCompare size={20} />
+                      </button>
+                    </div>
                     <button
-                      onClick={() => handleQuantityChange(false)}
-                      className='bg-gray-200 p-2 rounded-l-md'
+                      onClick={() => handleAddToCartAndWishList(product, true)}
+                      className='col-span-8 h-[40px] bg-black text-white  hover:bg-gray-700 transition-colors px-5 py-2'
                     >
-                      <FaMinus />
+                      Add to Cart
                     </button>
-                    <span className='px-4 py-2 bg-gray-100'>{quantity}</span>
-                    <button
-                      onClick={() => handleQuantityChange(true)}
-                      className='bg-gray-200 p-2 rounded-r-md'
-                    >
-                      <FaPlus />
-                    </button>
-                  </div>
-                  <button
-                    onClick={() => handleAddToCartAndWishList(product, true)}
-                    className='w-full bg-black text-white px-4 py-2 rounded-md hover:bg-gray-700 transition-colors'
-                  >
-                    Add to Cart
-                  </button>
-                  <div className='mt-4'>
-                    <span className='font-bold'>Categories:</span>{" "}
-                    {categories.join(", ")}
                   </div>
                 </div>
               </div>

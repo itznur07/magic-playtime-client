@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { FaArrowRight, FaWindowClose } from "react-icons/fa";
 import { Outlet } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
+import AddToys from "../AddToys/AddToys";
+import AllToys from "../AllToys/AllToys";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
@@ -27,7 +29,10 @@ const Dashboard = () => {
         {/* Sidebar Navigation */}
         <nav className='px-4 md:mt-5'>
           <ul>
-            <li>add project</li>
+            <li>All Products</li>
+          </ul>
+          <ul>
+            <li>Add Products</li>
           </ul>
         </nav>
       </div>
@@ -44,7 +49,8 @@ const Dashboard = () => {
 
         {/* Content */}
         <div className='p-4'>
-          <h2 className='text-2xl font-bold'></h2>
+          <AllToys />
+          <AddToys />
         </div>
       </div>
     </div>
