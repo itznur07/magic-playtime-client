@@ -54,8 +54,8 @@ const Shop = () => {
           <div className='col-span-3 md:block hidden'>
             <ProductCategorys setSelectedCategory={setSelectedCategory} />
             <div className='mt-5'>
-              <div className='rounded-lg border'>
-                <div className='bg-[#F3F3F3] p-5  w-full rounded-t-lg font-bold text-xl '>
+              <div className='border border-gray-100'>
+                <div className='bg-gray-100 p-5  w-full  font-bold text-xl '>
                   Filter
                 </div>
                 <div className='py-2 mt-4 mx-3'>

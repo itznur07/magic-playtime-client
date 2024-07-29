@@ -7,17 +7,21 @@ const BlogSection = () => {
 
   return (
     <div className='mt-24'>
-      {/* Heading  */}
-      <div className=''>
-        <h1 className='text-3xl font-bold'>Blogs & Offer</h1>
-      </div>
-
-      <div className='grid grid-cols-3 mt-7 gap-16'>
+      <div className='grid grid-cols-4 mt-7 gap-7'>
+        {/* Heading  */}
+        <div className='flex flex-col items-center justify-center'>
+          <h1 className='text-3xl font-bold'>Blogs & Offer</h1>
+          <Link to='/blogs'>
+            <button className='bg-black text-white font-semibold px-5 py-2 mt-3'>
+              View All
+            </button>
+          </Link>
+        </div>
         {blogs.slice(0, 3).map((blog) => (
           <Link
             className='relative group'
             key={blog.id}
-            to={`/blog/${blog.id}`}
+            to={`/blogs/${blog._id}`}
           >
             <div className='relative overflow-hidden'>
               <img

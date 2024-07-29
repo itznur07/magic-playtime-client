@@ -24,7 +24,7 @@ const PriceSlider = ({ priceRange, setPriceRange }) => {
         max='1000'
         value={priceRange.min}
         onChange={handlePriceChange}
-        className='slider'
+        className=' text-black'
       />
       <input
         type='range'

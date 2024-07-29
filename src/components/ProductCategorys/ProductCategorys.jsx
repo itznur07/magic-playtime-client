@@ -21,12 +21,12 @@ const ProductCategorys = ({ setSelectedCategory }) => {
       <div className='bg-black p-5 w-full font-bold text-xl text-white '>
         Product Categories
       </div>
-      <ul className='flex flex-col md:space-y-5 text-sm font-semibold p-5'>
+      <ul className='flex flex-col gap-4 text-sm font-semibold p-5'>
         {categories.map((category, index) => (
           <div key={index + 1} className='flex flex-col'>
             <div
               className='collapse-header flex items-center justify-between cursor-pointer hover:text-[#1fd1a5]'
-              onClick={() => setSelectedCategory(category.name)}
+              onClick={() => setSelectedCategory(category?.name)}
             >
               <span>{category.name}</span>
             </div>

@@ -12,6 +12,7 @@ import Login from "../pages/Login/Login";
 import MyToys from "../pages/MyToys/MyToys";
 import Registration from "../pages/Registration/Registration";
 import Shop from "../pages/Shop/Shop";
+import BlogDetails from "../pages/SingleBlog/BlogDetails";
 import ToyDetails from "../pages/ToyDetails/ToyDetails";
 import UpdateToys from "../pages/ToysUpdate/Updated";
 import Wishlists from "../pages/Wishlists/Wishlists";
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blogs></Blogs>,
+      },
+      {
+        path: "/blogs/:id",
+        element: <BlogDetails />,
       },
       {
         path: "/mytoys",
