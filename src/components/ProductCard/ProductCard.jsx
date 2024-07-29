@@ -87,7 +87,12 @@ function ProductCard({
       <div onClick={() => setIsPopupVisible(true)} className='p-4'>
         <h2 className='text-md font-semibold'>{title}</h2>
         <div className='flex items-center justify-between'>
-          <span className='text-sm font-medium text-gray-600'>TK {price}</span>
+          <span className='text-sm font-medium text-gray-600'>
+            ${discount_price}
+            <span className='text-xs line-through text-gray-400 ml-1'>
+              {price}
+            </span>
+          </span>
         </div>
       </div>
 

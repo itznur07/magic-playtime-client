@@ -1,5 +1,7 @@
 import React from "react";
-import { FaArrowDown, FaColumns, FaList, FaSearch } from "react-icons/fa";
+import { CiCircleList, CiGrid42 } from "react-icons/ci";
+import { FaArrowDown } from "react-icons/fa";
+import { IoSearchOutline } from "react-icons/io5";
 
 const ShopNav = ({ handleView, searchText, setSearchText, sort, setSort }) => {
   const handleSortChange = (value) => {
@@ -15,24 +17,24 @@ const ShopNav = ({ handleView, searchText, setSearchText, sort, setSort }) => {
             placeholder='Search items'
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
-            className='border border-black p-2 px-4 w-[400px] outline-none'
+            className='relative w-[500px] mt-4 p-2 border-b border-gray-300 outline-none'
           />
-          <span className='absolute right-5 top-3 '>
-            <FaSearch></FaSearch>
-          </span>
+          <IoSearchOutline
+            className='absolute right-3 top-6 text-gray-400'
+            size={24}
+          />
         </div>
 
-        <div className='flex items-center space-x-10'>
-          <div className='flex items-center space-x-4 text-xl text-slate-500 cursor-pointer'>
+        <div className='flex items-center gap-7'>
+          <div className='flex items-center gap-5 text-xl text-slate-500 cursor-pointer'>
             <span onClick={() => handleView("listview")}>
-              <FaList />
+              <CiCircleList size={24} />
             </span>
             <span onClick={() => handleView("gridview")}>
-              <FaColumns></FaColumns>
+              <CiGrid42 size={24} />
             </span>
           </div>
           <div>
-            {" "}
             <select
               defaultValue='default'
               className='w-40 border outline-none py-2.5 px-1 rounded'

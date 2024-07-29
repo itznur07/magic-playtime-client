@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
+import { CiHeart } from "react-icons/ci";
+import { FaRegStar } from "react-icons/fa";
+import { IoIosGitCompare } from "react-icons/io";
 import { Link } from "react-router-dom";
-import image3 from "../../assets/landscape-img-crd5.webp";
-import image1 from "../../assets/OurService2.webp";
-import image2 from "../../assets/two.webp";
 import FeatureCard from "../../components/FeatureCard/FeatureCard";
+import PriceSlider from "../../components/PriceSlider/PriceSlider";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import ProductCategorys from "../../components/ProductCategorys/ProductCategorys";
 import ShopNav from "../../components/ShopNav/ShopNav";
@@ -14,317 +15,34 @@ const Shop = () => {
   const [view, setView] = useState(3);
   const [searchText, setSearchText] = useState("");
   const [sort, setSort] = useState();
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [priceRange, setPriceRange] = useState({ min: 0, max: 1000 });
 
-  const dummyProducts = [
-    {
-      id: 1,
-      title: "Pure AC cotton 3 pis",
-      description:
-        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
-      categories: ["3pis", "Sharee", "2pis", "Party saree"],
-      images: [image1, image2, image3],
-      price: 2000,
-      discount_price: 1650,
-      quantity: 0,
-      reviews: [
-        {
-          id: 1,
-          author: "John",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-        {
-          id: 2,
-          author: "Mark",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-      ],
-    },
-    {
-      id: 2,
-      title: "Pure cotton sharee for women",
-      description:
-        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
-      categories: ["3pis", "Sharee", "2pis", "Party saree"],
-      images: [image2, image1, image3],
-      price: 3000,
-      discount_price: 2350,
-      quantity: 0,
-      reviews: [
-        {
-          id: 1,
-          author: "John",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-        {
-          id: 2,
-          author: "Mark",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-      ],
-    },
-    {
-      id: 3,
-      title: "Lehenga saree bundle pack ",
-      description:
-        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
-      categories: ["3pis", "Sharee", "2pis", "Party saree"],
-      images: [image3, image1, image2],
-      price: 9000,
-      discount_price: 8650,
-      quantity: 0,
-      reviews: [
-        {
-          id: 1,
-          author: "John",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-        {
-          id: 2,
-          author: "Mark",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-      ],
-    },
-    {
-      id: 4,
-      title: "Pure AC cotton 3 pis",
-      description:
-        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
-      categories: ["3pis", "Sharee", "2pis", "Party saree"],
-      images: [image3, image1, image2],
-      price: 2000,
-      discount_price: 1650,
-      quantity: 0,
-      reviews: [
-        {
-          id: 1,
-          author: "John",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-        {
-          id: 2,
-          author: "Mark",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-      ],
-    },
-    {
-      id: 5,
-      title: "Pure cotton sharee for women",
-      description:
-        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
-      categories: ["3pis", "Sharee", "2pis", "Party saree"],
-      images: [image2, image1, image3],
-      price: 3000,
-      discount_price: 2350,
-      quantity: 0,
-      reviews: [
-        {
-          id: 1,
-          author: "John",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-        {
-          id: 2,
-          author: "Mark",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-      ],
-    },
-    {
-      id: 6,
-      title: "Lehenga saree bundle pack ",
-      description:
-        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
-      categories: ["3pis", "Sharee", "2pis", "Party saree"],
-      images: [image1, image2, image3],
-      price: 9000,
-      discount_price: 8650,
-      quantity: 0,
-      reviews: [
-        {
-          id: 1,
-          author: "John",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-        {
-          id: 2,
-          author: "Mark",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-      ],
-    },
-    {
-      id: 7,
-      title: "Pure AC cotton 3 pis",
-      description:
-        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
-      categories: ["3pis", "Sharee", "2pis", "Party saree"],
-      images: [image1, image2, image3],
-      price: 2000,
-      discount_price: 1650,
-      quantity: 0,
-      reviews: [
-        {
-          id: 1,
-          author: "John",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-        {
-          id: 2,
-          author: "Mark",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-      ],
-    },
-    {
-      id: 8,
-      title: "Pure cotton sharee for women",
-      description:
-        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
-      categories: ["3pis", "Sharee", "2pis", "Party saree"],
-      images: [image1, image2, image3],
-      price: 3000,
-      discount_price: 2350,
-      quantity: 0,
-      reviews: [
-        {
-          id: 1,
-          author: "John",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-        {
-          id: 2,
-          author: "Mark",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-      ],
-    },
-    {
-      id: 9,
-      title: "Lehenga saree bundle pack ",
-      description:
-        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
-      categories: ["3pis", "Sharee", "2pis", "Party saree"],
-      images: [image1, image2, image3],
-      price: 9000,
-      discount_price: 8650,
-      quantity: 0,
-      reviews: [
-        {
-          id: 1,
-          author: "John",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-        {
-          id: 2,
-          author: "Mark",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-      ],
-    },
-    {
-      id: 10,
-      title: "Pure AC cotton 3 pis",
-      description:
-        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
-      categories: ["3pis", "Sharee", "2pis", "Party saree"],
-      images: [image1, image2, image3],
-      price: 2000,
-      discount_price: 1650,
-      quantity: 0,
-      reviews: [
-        {
-          id: 1,
-          author: "John",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-        {
-          id: 2,
-          author: "Mark",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-      ],
-    },
-    {
-      id: 11,
-      title: "Pure cotton sharee for women",
-      description:
-        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
-      categories: ["3pis", "Sharee", "2pis", "Party saree"],
-      images: [image1, image2, image3],
-      price: 3000,
-      discount_price: 2350,
-      quantity: 0,
-      reviews: [
-        {
-          id: 1,
-          author: "John",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-        {
-          id: 2,
-          author: "Mark",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-      ],
-    },
-    {
-      id: 12,
-      title: "Lehenga saree bundle pack ",
-      description:
-        "Pure AC inductive product with optional price option for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with purchase options for customers with",
-      categories: ["3pis", "Sharee", "2pis", "Party saree"],
-      images: [image1, image2, image3],
-      price: 9000,
-      discount_price: 8650,
-      quantity: 0,
-      reviews: [
-        {
-          id: 1,
-          author: "John",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-        {
-          id: 2,
-          author: "Mark",
-          text: "Pure AC inductive product with optional price option for customers with purchase",
-        },
-      ],
-    },
-  ];
-
-  const matchedProducts = (
-    products && products.length > 0 ? products : dummyProducts
-  )
-    .sort(sort)
+  const matchedProducts = (products && products)
+    .filter((product) =>
+      selectedCategory ? product.categories[0] === selectedCategory : true
+    )
     .filter((product) =>
       product.title.toLowerCase().includes(searchText.toLowerCase())
-    );
+    )
+    .filter(
+      (product) =>
+        product.price >= priceRange.min && product.price <= priceRange.max
+    )
+    .sort(sort);
 
   const handleView = (view) => {
-    if (view === "listview") {
-      setView(1);
-    } else if (view === "gridview") {
-      setView(4);
-    } else {
-      alert("no view");
-    }
+    setView(view === "listview" ? 1 : 3);
   };
 
   return (
     <div>
-      {/* banner */}
-      <div className='mb-5 relative'>
-        <img
-          src='https://img.freepik.com/free-photo/baby-shoes-toy-camera-nursery-decorations_23-2147698717.jpg?w=1060&t=st=1689263351~exp=1689263951~hmac=e3bc754cce3818da66e4f25cf8d56415f03269aadbab44209928d23484019615'
-          alt='cover-image'
-          className='w-full object-cover h-56'
-        />
-        <div className='absolute inset-0 bg-gray-900 bg-opacity-40'></div>
-        <div className='absolute inset-0 top-24 text-center'>
-          <h1 className='text-5xl font-bold text-white'>Shop</h1>
-          <span className='text-sm  font-medium text-white mt-2'>
+      {/* Banner */}
+      <div className='mb-5 relative h-44'>
+        <div className='absolute inset-0 bg-gray-100 bg-opacity-40'></div>
+        <div className='absolute inset-0 top-1/3 text-center text-black'>
+          <h1 className='text-5xl font-bold text-black'>Shop</h1>
+          <span className='text-sm  font-medium text-gray-600 mt-2'>
             <Link to='/'>Home</Link> / <span>Shop</span>
           </span>
         </div>
@@ -334,14 +52,17 @@ const Shop = () => {
       <div className='max-w-[1280px] mx-auto'>
         <div className='grid grid-cols-12 gap-10'>
           <div className='col-span-3 md:block hidden'>
-            <ProductCategorys />
+            <ProductCategorys setSelectedCategory={setSelectedCategory} />
             <div className='mt-5'>
               <div className='rounded-lg border'>
                 <div className='bg-[#F3F3F3] p-5  w-full rounded-t-lg font-bold text-xl '>
                   Filter
                 </div>
                 <div className='py-2 mt-4 mx-3'>
-                  <PriceSlider />
+                  <PriceSlider
+                    priceRange={priceRange}
+                    setPriceRange={setPriceRange}
+                  />
                 </div>
               </div>
             </div>
@@ -369,14 +90,46 @@ const Shop = () => {
                     key={product.id}
                     product={product}
                     {...product}
-                  />{" "}
+                  />
                   {view === 1 ? (
-                    <div className='text-center space-y-2 bg-[#f5f5f5] p-5 rounded'>
-                      <h1 className='font-bold text-lg'>{product.title}</h1>
-                      <h1 className='text-md'>{product.description}</h1>
-                      <span className='text-lg font-bold mt-2'>
-                        Price: ${product.discount_price || product.price}
-                      </span>
+                    <div className='w-full md:pl-6 mt-7'>
+                      <h2 className='text-xl font-semibold mb-2'>
+                        {product.title}
+                      </h2>
+                      <p className='text-gray-700 text-sm mt-1'>
+                        {product.description}
+                      </p>
+                      <div className='flex items-center justify-between'>
+                        <span className='text-md text-blacks'>
+                          $ {product.price}
+                        </span>
+                      </div>
+
+                      <div className='mt-3'>
+                        <p className='text-sm font-semibold'>Review (3)</p>
+                        <div className='flex items-center gap-3 mt-1'>
+                          <span className='flex text-gray-700'>
+                            <FaRegStar size={14} className='text-yellow-400' />
+                            <FaRegStar size={14} className='text-yellow-400' />
+                            <FaRegStar size={14} className='text-yellow-400' />
+                            <FaRegStar size={14} className='text-gray-400' />
+                            <FaRegStar size={14} className='text-gray-400' />
+                          </span>
+                        </div>
+                      </div>
+                      <div className='grid grid-cols-12 gap-5 mt-5'>
+                        <div className='col-span-4 flex gap-1.5'>
+                          <button className='h-[40px] border border-black text-black px-3 py-2'>
+                            <CiHeart size={20} />
+                          </button>
+                          <button className='h-[40px] border border-black text-black px-3 py-2'>
+                            <IoIosGitCompare size={20} />
+                          </button>
+                        </div>
+                        <button className='col-span-8 h-[40px] bg-black text-white hover:bg-gray-700 transition-colors px-5 py-2'>
+                          View Details
+                        </button>
+                      </div>
                     </div>
                   ) : (
                     ""
@@ -388,49 +141,6 @@ const Shop = () => {
         </div>
       </div>
       {/* Page layout end here */}
-    </div>
-  );
-};
-
-/*** Price Slider */
-
-const PriceSlider = () => {
-  const [priceRange, setPriceRange] = useState({ min: 0, max: 100 });
-
-  const handlePriceChange = (e) => {
-    const { name, value } = e.target;
-    setPriceRange((prevState) => ({
-      ...prevState,
-      [name]: parseInt(value),
-    }));
-  };
-
-  return (
-    <div>
-      <div className='flex items-center justify-between mb-4'>
-        <span className='text-gray-600'>Price Range:</span>
-        <span className='font-bold'>
-          ${priceRange.min} - ${priceRange.max}
-        </span>
-      </div>
-      <input
-        type='range'
-        name='min'
-        min='0'
-        max='100'
-        value={priceRange.min}
-        onChange={handlePriceChange}
-        className='w-full appearance-none h-1 bg-gray-200 rounded-full focus:outline-none'
-      />
-      <input
-        type='range'
-        name='max'
-        min='0'
-        max='100'
-        value={priceRange.max}
-        onChange={handlePriceChange}
-        className='w-full appearance-none h-1 bg-gray-200 rounded-full focus:outline-none mt-4  '
-      />
     </div>
   );
 };

@@ -203,7 +203,7 @@ const Navbar = () => {
                     placeholder='Search for products...'
                     value={searchQuery}
                     onChange={handleSearchChange}
-                    className='relative w-full mt-4 p-2 border border-gray-300 outline-none'
+                    className='relative w-full mt-4 p-2 border-b border-gray-300 outline-none'
                   />
                   <IoSearchOutline
                     className='absolute right-3 top-6 text-gray-400'
@@ -218,10 +218,8 @@ const Navbar = () => {
                         className='flex items-center p-2 border-b border-gray-300 cursor-pointer hover:bg-gray-100'
                         onClick={() => {
                           handleProductClick(product);
-
                           setIsSearchOpen(false);
                         }}
-                        // onClick={() => setSelectedProduct(product)}
                       >
                         <span className='mr-4'>{index + 1}</span>
                         <img
