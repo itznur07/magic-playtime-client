@@ -17,10 +17,10 @@ const ShopNav = ({ handleView, searchText, setSearchText, sort, setSort }) => {
             placeholder='Search items'
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
-            className='relative w-[500px] mt-4 p-2 border-b border-gray-300 outline-none'
+            className='relative w-[500px]  p-2 border border-gray-300 outline-none'
           />
           <IoSearchOutline
-            className='absolute right-3 top-6 text-gray-400'
+            className='absolute right-3 top-2.5 text-gray-400'
             size={24}
           />
         </div>

@@ -21,6 +21,7 @@ const AuthProviders = ({ children }) => {
   const [carts, setCarts] = useState([]);
   const [wishlists, setWishlists] = useState([]);
   const [blogs, setBlogs] = useState([]);
+  const [compares, setCompares] = useState([]);
 
   const auth = getAuth(app);
 
@@ -102,6 +103,14 @@ const AuthProviders = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    fetch("https://toy-marketplace-server-six.vercel.app/compares")
+      .then((res) => res.json())
+      .then((data) => {
+        setCompares(data);
+      });
+  }, []);
+
+  useEffect(() => {
     fetch("https://toy-marketplace-server-six.vercel.app/blogs")
       .then((res) => res.json())
       .then((data) => {
@@ -122,6 +131,7 @@ const AuthProviders = ({ children }) => {
     forgetPassword,
     updateUserProfile,
     blogs,
+    compares,
   };
 
   return (

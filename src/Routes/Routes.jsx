@@ -6,6 +6,7 @@ import AllToys from "../pages/AllToys/AllToys";
 import Blogs from "../pages/Blogs/Blogs";
 import Carts from "../pages/Carts/Carts";
 import Checkout from "../pages/Carts/Checkout";
+import Compares from "../pages/Compares/Compares";
 import Error from "../pages/ErrorPages/Error";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "/wishlists",
         element: <Wishlists></Wishlists>,
+      },
+      {
+        path: "/compares",
+        element: <Compares />,
       },
       {
         path: "/shop",

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AiOutlineClose, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import { CiHeart } from "react-icons/ci";
-import { FaRegHeart, FaRegStar, FaShoppingBag, FaUser } from "react-icons/fa";
+import { CiHeart, CiShoppingCart, CiUser } from "react-icons/ci";
+import { FaRegStar } from "react-icons/fa";
 import { IoIosGitCompare } from "react-icons/io";
 import { IoCloseOutline, IoSearchOutline } from "react-icons/io5";
 import ReactImageMagnify from "react-image-magnify";
@@ -109,7 +109,8 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div className='md:flex md:flex-row md:text-md flex flex-col items-center gap-10 font-medium'>
-          {["Home", "Shop", "Blogs", "Contact Us"].map((item) => (
+          <Link to='/'>Home</Link>
+          {["Shop", "Blogs", "Contact Us"].map((item) => (
             <Link
               key={item}
               to={`/${item.toLowerCase().replace(" ", "")}`}
@@ -130,21 +131,28 @@ const Navbar = () => {
             <IoSearchOutline className='text-black' size={24} />
           </button>
 
-          {/* Conditional Rendering for User or Login Links */}
           {user ? (
             <>
-              <Link to='/wishlists'>
-                <button className='relative px-3.5 py-3.5 text-black font-semibold'>
-                  <FaRegHeart size={24} />
-                  <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-black px-1.5 rounded-full text-white'>
+              <Link className='mr-1.5' to='/wishlists'>
+                <button className='relative  py-3.5 text-black font-semibold'>
+                  <CiHeart size={24} />
+                  <span className='absolute text-sm top-0.5 font-medium -right-3 bg-black px-1.5 rounded-full text-white'>
                     {filteredWishlists.length}
                   </span>
                 </button>
               </Link>
-              <Link to='/carts'>
-                <button className='relative px-3.5 py-3.5 text-black font-semibold'>
-                  <FaShoppingBag size={24} />
-                  <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-black text-white px-1.5 rounded-full'>
+              <Link className='mr-1.5' to='/compares'>
+                <button className='relative  py-3.5 text-black font-semibold'>
+                  <IoIosGitCompare size={24} />
+                  <span className='absolute text-sm top-0.5 font-medium -right-3 bg-black px-1.5 rounded-full text-white'>
+                    0
+                  </span>
+                </button>
+              </Link>
+              <Link className='mr-3.5' to='/carts'>
+                <button className='relative  py-3.5 text-black font-semibold'>
+                  <CiShoppingCart size={24} />
+                  <span className='absolute text-sm top-0.5 font-medium -right-3 bg-black text-white px-1.5 rounded-full'>
                     {filteredCarts.length}
                   </span>
                 </button>
@@ -158,25 +166,34 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <Link to='/login'>
-                <button className='relative px-3.5 py-3.5 text-black font-semibold'>
-                  <FaRegHeart size={24} />
-                  <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-black px-1.5 rounded-full text-white'>
+              <Link className='mr-1.5' to='/login'>
+                <button className='relative  py-3.5 text-black font-semibold'>
+                  <CiHeart size={24} />
+                  <span className='absolute text-sm top-0.5 font-medium -right-3 bg-black px-1.5 rounded-full text-white'>
                     {filteredWishlists.length}
                   </span>
                 </button>
               </Link>
-              <Link to='/login'>
-                <button className='relative px-3.5 py-3.5 text-black font-semibold'>
-                  <FaShoppingBag size={24} />
-                  <span className='absolute text-sm top-0.5 font-medium right-0.5 bg-black text-white px-1.5 rounded-full'>
+              <Link className='mr-1.5' to='/login'>
+                <button className='relative  py-3.5 text-black font-semibold'>
+                  <IoIosGitCompare size={24} />
+                  <span className='absolute text-sm top-0.5 font-medium -right-3 bg-black px-1.5 rounded-full text-white'>
+                    0
+                  </span>
+                </button>
+              </Link>
+              <Link className='mr-3' to='/login'>
+                <button className='relative py-3.5 text-black font-semibold'>
+                  <CiShoppingCart size={24} />
+                  <span className='absolute text-sm top-0.5 font-medium -right-3 bg-black text-white px-1.5 rounded-full'>
                     {filteredCarts.length}
                   </span>
                 </button>
               </Link>
+
               <Link to='/login'>
                 <button>
-                  <FaUser size={24} />
+                  <CiUser size={24} />
                 </button>
               </Link>
             </>
